@@ -8,7 +8,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="<c:url value="/view/css/style.css" />" rel="stylesheet"
+<link href="<c:url value="/templates/Bootstrap-4-Ecommerce-Theme-master/css/style.css" />" rel="stylesheet"
 	type="text/css">
 </head>
 <body>

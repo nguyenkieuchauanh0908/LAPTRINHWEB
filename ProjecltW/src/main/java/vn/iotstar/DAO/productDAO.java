@@ -1,5 +1,108 @@
 package vn.iotstar.DAO;
 
-public class productDAO {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import vn.iotstar.connection.DBconnect;
+import vn.iotstar.model.product;
+
+public class productDAO {
+	Connection conn = null;
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	
+	public List<product> getTop4Product(){
+		List<product> list = new ArrayList<product>();
+		//khai báo chuỗi truy vấn
+		String sql = "select TOP 4 * from Product order by ProductId ASC";
+		try {
+			//mở kết nối
+			conn = new DBconnect().getConnection();
+			//ném câu query qua sql
+			ps = conn.prepareStatement(sql);
+			//chạy query và nhận kết quả
+			rs = ps.executeQuery();
+			//lấy ResultSet đổ vào list
+			while (rs.next()) {
+				list.add(new product(rs.getInt(1), 
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDouble(6),
+						rs.getDate(7),
+						rs.getString(8)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+		
+	}
+	public product getTop1Product(){
+		//khai báo chuỗi truy vấn
+		String sql = "select TOP 1 * from Product order by ProductId ASC";
+		try {
+			//mở kết nối
+			conn = new DBconnect().getConnection();
+			//ném câu query qua sql
+			ps = conn.prepareStatement(sql);
+			//chạy query và nhận kết quả
+			rs = ps.executeQuery();
+			//lấy ResultSet đổ vào list
+			while (rs.next()) {
+				return (new product(rs.getInt(1), 
+						rs.getInt(2),
+						rs.getString(3),
+				 		rs.getString(4),
+						rs.getString(5),
+						rs.getDouble(6),
+						rs.getDate(7),
+						rs.getString(8)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
+	}
+	public List<product> getLast4Product(){
+		List<product> list = new ArrayList<product>();
+		//khai báo chuỗi truy vấn
+		String sql = "SELECT TOP 4 * from Product order by ProductId DESC";
+		try {
+			//mở kết nối
+			conn = new DBconnect().getConnection();
+			//ném câu query qua sql
+			ps = conn.prepareStatement(sql);
+			//chạy query và nhận kết quả
+			rs = ps.executeQuery();
+			//lấy ResultSet đổ vào list
+			while (rs.next()) {
+				list.add(new product(rs.getInt(1), 
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDouble(6),
+						rs.getDate(7),
+						rs.getString(8)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+		
+	}
+	public static void main(String[] args) {
+        productDAO dao = new productDAO();
+        List<product> list = dao.getTop4Product();
+
+        for (product o : list) {
+            System.out.println(o);
+        }
+    }
 }

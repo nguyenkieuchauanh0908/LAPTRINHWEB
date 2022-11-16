@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBconnect {
-	//private final String serverName = "DESKTOP-052B03D";
-	private final String serverName = "DESKTOP-7CJHVGV";
+	private final String serverName = "DESKTOP-052B03D";
+	//private final String serverName = "DESKTOP-7CJHVGV";
 	private final String dbName = "STATIONERY";
 	private final String portNumber = "1433";
 	private final String instance = "\\SQLEXPRESS";
