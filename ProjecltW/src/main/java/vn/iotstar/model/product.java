@@ -11,11 +11,12 @@ public class product {
 	private double price;
 	private Date createdDate;
 	private String createby;
+	private int sold;
 	public product() {
 		super();
 	}
 	public product(int productid, int categoryid, String productname, String description, String image, double price,
-			Date createdDate, String createby) {
+			Date createdDate, String createby, int sold) {
 		super();
 		this.productid = productid;
 		this.categoryid = categoryid;
@@ -25,6 +26,7 @@ public class product {
 		this.price = price;
 		this.createdDate = createdDate;
 		this.createby = createby;
+		this.sold = sold;
 	}
 	public int getProductid() {
 		return productid;
@@ -74,11 +76,18 @@ public class product {
 	public void setCreateby(String createby) {
 		this.createby = createby;
 	}
+	public int getSold() {
+		return sold;
+	}
+	public void setSold(int sold) {
+		this.sold = sold;
+	}
 	@Override
 	public String toString() {
 		return "product [productid=" + productid + ", categoryid=" + categoryid + ", productname=" + productname
 				+ ", description=" + description + ", image=" + image + ", price=" + price + ", createdDate="
-				+ createdDate + ", createby=" + createby + "]";
+				+ createdDate + ", createby=" + createby + ", sold=" + sold + "]";
 	}
+	
 	
 }

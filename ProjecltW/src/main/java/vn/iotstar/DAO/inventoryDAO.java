@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import vn.iotstar.connection.DBconnect;
-import vn.iotstar.model.category;
+
 import vn.iotstar.model.inventory;
 
 public class inventoryDAO {

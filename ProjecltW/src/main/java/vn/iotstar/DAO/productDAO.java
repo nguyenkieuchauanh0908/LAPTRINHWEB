@@ -28,7 +28,7 @@ public class productDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getDouble(6), rs.getDate(7), rs.getString(8)));
+						rs.getDouble(6), rs.getDate(7), rs.getString(8),rs.getInt(9)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -39,7 +39,7 @@ public class productDAO {
 	public List<product> getTop4Product() {
 		List<product> list = new ArrayList<product>();
 		// khai báo chuỗi truy vấn
-		String sql = "select TOP 4 * from Product order by ProductId ASC";
+		String sql = "select TOP 4 * from Product order by Sold DESC";
 		try {
 			// mở kết nối
 			conn = new DBconnect().getConnection();
@@ -50,7 +50,7 @@ public class productDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getDouble(6), rs.getDate(7), rs.getString(8)));
+						rs.getDouble(6), rs.getDate(7), rs.getString(8),rs.getInt(9)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -61,7 +61,7 @@ public class productDAO {
 
 	public product getTop1Product() {
 		// khai báo chuỗi truy vấn
-		String sql = "select TOP 1 * from Product order by ProductId ASC";
+		String sql = "select TOP 1 * from Product order by Sold DESC";
 		try {
 			// mở kết nối
 			conn = new DBconnect().getConnection();
@@ -72,7 +72,7 @@ public class productDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				return (new product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getDouble(6), rs.getDate(7), rs.getString(8)));
+						rs.getDouble(6), rs.getDate(7), rs.getString(8),rs.getInt(9)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -95,7 +95,7 @@ public class productDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getDouble(6), rs.getDate(7), rs.getString(8)));
+						rs.getDouble(6), rs.getDate(7), rs.getString(8),rs.getInt(9)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -119,7 +119,7 @@ public class productDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getDouble(6), rs.getDate(7), rs.getString(8)));
+						rs.getDouble(6), rs.getDate(7), rs.getString(8),rs.getInt(9)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -141,7 +141,7 @@ public class productDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				return (new product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getDouble(6), rs.getDate(7), rs.getString(8)));
+						rs.getDouble(6), rs.getDate(7), rs.getString(8),rs.getInt(9)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
