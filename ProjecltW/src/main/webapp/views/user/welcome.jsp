@@ -77,15 +77,15 @@
 						src="https://dummyimage.com/600x400/55595c/fff"
 						alt="Card image cap">
 					<div class="card-body">
-						<h4 class="card-title text-center">
-							<a href="product.html" title="View Product">${list1product.productname}</a>
+						<h4 class="card-title text-center" ${tagactive==list1product.productid ? "active":""}">
+							<a href="productDetail?pid=${list1product.productid}" title="View Product">${list1product.productname}</a>
 						</h4>
 						<div class="row">
 							<div class="col">
-								<p class="btn btn-danger btn-block">${list1product.price}</p>
+								<p class="btn btn-danger btn-block">${list1product.price} đồng</p>
 							</div>
-							<div class="col">
-								<a href="product.html" class="btn btn-success btn-block">View</a>
+							<div class="col" ${tagactive==list1product.productid ? "active":""}">
+								<a href="productDetail?pid=${list1product.productid}" class="btn btn-success btn-block">Xem</a>
 							</div>
 						</div>
 					</div>
@@ -110,17 +110,16 @@
 										<img class="card-img-top"
 											src="https://dummyimage.com/600x400/55595c/fff"
 											alt="Card image cap">
-										<div class="card-body">
+										<div class="card-body"${tagactive==p.productid ? "active":""}">
 											<h4 class="card-title">
-												<a href="#" title="View Product">${p.productname}</a>
+												<a href="productDetail?pid=${p.productid}" title="View Product">${p.productname}</a>
 											</h4>
 											<div class="row">
 												<div class="col">
-													<p class="btn btn-danger btn-block">${p.price}</p>
+													<p class="btn btn-danger btn-block">${p.price} đồng</p>
 												</div>
 												<div class="col">
-													<a href="#" class="btn btn-success btn-block">Add to
-														cart</a>
+													<a href="#" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 										</div>
@@ -150,12 +149,12 @@
 										src="https://dummyimage.com/600x400/55595c/fff"
 										alt="Card image cap">
 									<div class="card-body">
-										<h4 class="card-title">
-											<a href="#" title="View Product">${p.productname}</a>
+										<h4 class="card-title"${tagactive==p.productid ? "active":""}">
+											<a href="productDetail?pid=${p.productid}" title="View Product">${p.productname}</a>
 										</h4>
 										<div class="row">
 											<div class="col">
-												<p class="btn btn-danger btn-block">${p.price}</p>
+												<p class="btn btn-danger btn-block">${p.price} đồng</p>
 											</div>
 											<div class="col">
 												<a href="#" class="btn btn-success btn-block">Add to

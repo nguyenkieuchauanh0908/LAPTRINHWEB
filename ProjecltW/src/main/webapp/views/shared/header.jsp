@@ -30,7 +30,7 @@
 						<!-- <div class="dropdown-divider"></div> -->
 
 					</div></li>
-				<li class="nav-item"><a class="nav-link" href="product.html">Sản
+				<li class="nav-item"><a class="nav-link" href="products">Sản
 						phẩm</a></li>
 				<li class="nav-item"><a class="nav-link" href="contact.html">Liên
 						hệ</a></li>
