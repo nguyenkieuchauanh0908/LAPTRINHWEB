@@ -28,6 +28,8 @@ public class user {
 		this.image = image;
 		this.role = role;
 	}
+
+	
 	public int getUserid() {
 		return userid;
 	}
@@ -88,6 +90,10 @@ public class user {
 	public void setRole(byte role) {
 		this.role = role;
 	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "user [userid=" + userid + ", username=" + username + ", password=" + password + ", firstname="
