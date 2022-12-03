@@ -1,5 +1,5 @@
 package vn.iotstar.controller;
 
-public class registerController {
+public class MyOrderController {
 
 }

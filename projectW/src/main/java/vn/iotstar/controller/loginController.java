@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.iotstar.DAO.userInfoDAO;
-import vn.iotstar.model.user;
+import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns  = "/login")
 public class loginController extends HttpServlet {
@@ -18,21 +18,24 @@ public class loginController extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 		try 
 		{
-			String username = req.getParameter("username");
+			String email = req.getParameter("email"); 
 			String password = req.getParameter("password");
 			HttpSession session = req.getSession(); //Tạo session
-			session.setAttribute("uName", username); //gán các giá trị vào session
-			session.setAttribute("uPass", password); // cách gọi session ở servlet Controller khác: Ex: listaProds =(ArrayList<Produto>) request.getSession().getAttribute("listaProdutos");
 			userInfoDAO loginDAO =new userInfoDAO(); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
-			user a = loginDAO.checkLogin(username, password);
+			User a = loginDAO.checkLogin(email, password);
 			if(a == null) //Người dùng không tồn tại
 			{
 				req.getRequestDispatcher("/views/shared/login.jsp").forward(req,resp);
 			}
 			else
 			{
-				session.setAttribute("uId", a.getUserid());
-				req.getRequestDispatcher("/views/shared/registration.jsp").forward(req,resp); // thay lại là trang home của admin
+				//gán các giá trị vào session 
+				// cách gọi session ở servlet Controller khác: Ex: listaProds =(ArrayList<Produto>) request.getSession().getAttribute("listaProdutos");
+				session.setAttribute("uEmail", email); 
+				session.setAttribute("uId", a.get_id());
+				session.setAttribute("uFirstname", a.getFirstname());
+				session.setAttribute("uLastname", a.getLastname());
+				req.getRequestDispatcher("/views/shared/test.jsp").forward(req,resp); // thay lại là trang home của admin
 			}
 		}
 		catch (Exception e){
