@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import vn.iotstar.DAO.userInfoDAO;
 import vn.iotstar.model.User;
 
@@ -25,10 +27,14 @@ public class UserController extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
+		// lay tham so tu Session
+		HttpSession session = req.getSession();
+		Object obj = session.getAttribute("uId");
+		String uid = String.valueOf(obj);
 		// B1:khỏi tạo DAO
 		userInfoDAO userInfoDao = new userInfoDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ profileUSerDAO
-		User list1 = userInfoDao.getUser(1);
+		User list1 = userInfoDao.getUser(uid);
 		// B3:thiết lập dữ liệu trên jsp
 		req.setAttribute("getUser", list1);
 		RequestDispatcher rq = req.getRequestDispatcher("views/user/userInfo.jsp");

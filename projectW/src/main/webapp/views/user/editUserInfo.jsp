@@ -29,24 +29,22 @@
 	<!-- end header -->
 
 	<!-- content -->
-	<section id="edit" style="margin-top: 100px">
+	<form method="post" action="edituserinfo">
 		<div class="container">
 			<div class="main-body">
 				<div class="row gutters-sm">
+					<!-- 			<form method="post" action="edituserinfo"> -->
 					<div class="col-md-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
 									<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
 										alt="Admin" class="rounded-circle" width="150">
-									<div class="mt-3">
-										<button class="btn btn-outline-primary">
-											Change Avatar</button>
-										<div class="form-group mt-3">
-											<div class="">
-												<input type="submit" value="Save"
-													class="btn btn-outline-danger" />
-											</div>
+										<p class="text-danger">${alert }</p>
+									<div class="form-group mt-3">
+										<div class="">
+											<input type="submit" value="Lưu"
+												class="btn btn-outline-danger" />
 										</div>
 									</div>
 								</div>
@@ -55,47 +53,85 @@
 					</div>
 					<div class="col-md-8">
 						<div class="form-horizontal">
+
 							<div class="row">
 								<div class="form-group col-2">
+									<label>ID</label>
+									<div class="form-group">
+										<input class="form-control" type="text"
+											name="id" id="id" value="${getUserEdit._id }" readonly="readonly">
+									</div>
 								</div>
 								<div class="form-group col-5">
-								
+									<label>Tên</label>
+									<div class="form-group">
+										<input class="form-control" type="text" name="firstname"
+											id="firstname" value="${getUserEdit.firstname }" required="required">
+									</div>
 								</div>
 
 								<div class="form-group col-5">
-									
+									<label>Họ</label>
+									<div class="form-group">
+										<input class="form-control" type="text" name="lastname"
+											id="lastname" value="${getUserEdit.lastname }" required="required">
+									</div>
 								</div>
 							</div>
 							<hr />
 							<div class="row">
 								<div class="form-group col-6">
-									
+									<label>Số điện thoại</label>
+									<div class="form-group">
+										<input class="form-control" type="text" name="phone"
+											id="phone" value="${getUserEdit.phone }" required="required">
+									</div>
 								</div>
 
 								<div class="form-group col-6">
-								
+									<label>Email</label>
+									<div class="form-group">
+										<input class="form-control" type="email" name="email"
+											id="email" value="${getUserEdit.email }" readonly="readonly">
+									</div>
 								</div>
 							</div>
 							<hr />
 							<div class="row">
 								<div class="form-group col-4">
-									
+									<label>Địa chỉ</label>
+									<div class="">
+										<input class="form-control" type="text" name="addresses"
+											id="addresses" value="${getUserEdit.addresses }" required="required">
+									</div>
 								</div>
 
-								<div class="form-group col-4">
-									
-								</div>
+								<!-- 							<div class="form-group col-4"> -->
+								<!-- 								@Html.Label("Quận", htmlAttributes: new { @class = -->
+								<!-- 								"control-label col-md-2" }) -->
+								<!-- 								<div class="">@Html.EditorFor(model => model.district, new -->
+								<!-- 									{ htmlAttributes = new { @class = "form-control" } }) -->
+								<!-- 									@Html.ValidationMessageFor(model => model.district, "", new { -->
+								<!-- 									@class = "text-danger" })</div> -->
+								<!-- 							</div> -->
 
-								<div class="form-group col-4">
-									
-								</div>
+								<!-- 							<div class="form-group col-4"> -->
+								<!-- 								@Html.Label("Thành phố", htmlAttributes: new { @class = -->
+								<!-- 								"control-label col-md-4" }) -->
+								<!-- 								<div class="">@Html.EditorFor(model => model.city, new { -->
+								<!-- 									htmlAttributes = new { @class = "form-control" } }) -->
+								<!-- 									@Html.ValidationMessageFor(model => model.city, "", new { -->
+								<!-- 									@class = "text-danger" })</div> -->
+								<!-- 							</div> -->
 							</div>
 						</div>
 					</div>
+					<!-- 				</form> -->
 				</div>
+
 			</div>
 		</div>
-	</section>
+	</form>
 	<!-- end content -->
 
 	<!-- Footer -->

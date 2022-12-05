@@ -35,7 +35,7 @@ public class loginController extends HttpServlet {
 				session.setAttribute("uId", a.get_id());
 				session.setAttribute("uFirstname", a.getFirstname());
 				session.setAttribute("uLastname", a.getLastname());
-				req.getRequestDispatcher("/views/shared/test.jsp").forward(req,resp); // thay lại là trang home của admin
+				resp.sendRedirect("welcome"); // thay lại là trang home của admin
 			}
 		}
 		catch (Exception e){
