@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Xin chào ${sessionScope.uLastname}</h1>
-<h1>Bạn đã đăng nhập thành công vào sachgiaokhoa.com</h1>
+<h1 style="color: red; font-size: 50px; text-align:center">hehe</h1>;
 </body>
 </html>

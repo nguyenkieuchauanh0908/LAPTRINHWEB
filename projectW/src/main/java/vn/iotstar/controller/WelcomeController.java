@@ -42,7 +42,7 @@ public class WelcomeController extends HttpServlet {
 		req.setAttribute("list1product", list1);
 		req.setAttribute("list4last", list3);
 		req.setAttribute("listcate", listC);
-		RequestDispatcher rq = req.getRequestDispatcher("views/user/welcome.jsp");
+		RequestDispatcher rq = req.getRequestDispatcher("/views/user/welcome.jsp");
 		rq.forward(req, resp);
 	}
 

@@ -34,8 +34,16 @@
 						phẩm</a></li>
 				<li class="nav-item"><a class="nav-link" href="contact.html">Liên
 						hệ</a></li>
-				<li class="nav-item"><a class="nav-link" href="login">Đăng
-						nhập</a></li>
+				<c:if test="${sessionScope.uId != null}">
+					<li class="nav-item"><a class="nav-link"  ${tagactive==sessionScope.uId ? "
+								active":""}" href="user">${sessionScope.uEmail}</a></li>
+					<li class="nav-item"><a class="nav-link" href="logout">Đăng
+							xuất</a></li>
+				</c:if>
+				<c:if test="${sessionScope.uId == null}">
+					<li class="nav-item"><a class="nav-link" href="login">Đăng
+							nhập</a></li>
+				</c:if>
 			</ul>
 
 			<form class="form-inline my-2 my-lg-0">
@@ -48,7 +56,7 @@
 						</button>
 					</div>
 				</div>
-				<a class="btn btn-success btn-sm ml-3" href="cart.html"> <i
+				<a class="btn btn-success btn-sm ml-3" href="cart"> <i
 					class="fa fa-shopping-cart"></i> Cart <span
 					class="badge badge-light">0</span>
 				</a>
