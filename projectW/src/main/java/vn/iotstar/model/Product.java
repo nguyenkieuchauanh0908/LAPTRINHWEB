@@ -13,6 +13,7 @@ public class Product {
 	private int sold;
 	private byte isActive;
 	private byte isSelling;
+	private String image;
 	private int categoryId;
 	private int storeId;
 	private byte isDeteled;

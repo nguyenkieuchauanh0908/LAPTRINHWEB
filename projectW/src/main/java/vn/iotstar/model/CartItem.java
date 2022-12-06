@@ -5,18 +5,18 @@ import java.sql.Date;
 public class CartItem {
 	private int _id;
 	private int cartId;
-	private int productId;
+	private Product product;
 	private int count_SP;
 	private Date createdAt;
 	private Date updatedAt;
 	public CartItem() {
 		super();
 	}
-	public CartItem(int _id, int cartId, int productId, int count_SP, Date createdAt, Date updatedAt) {
+	public CartItem(int _id, int cartId, Product product, int count_SP, Date createdAt, Date updatedAt) {
 		super();
 		this._id = _id;
 		this.cartId = cartId;
-		this.productId = productId;
+		this.product = product;
 		this.count_SP = count_SP;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
@@ -33,11 +33,11 @@ public class CartItem {
 	public void setCartId(int cartId) {
 		this.cartId = cartId;
 	}
-	public int getProductId() {
-		return productId;
+	public Product getProduct() {
+		return product;
 	}
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	public int getCount_SP() {
 		return count_SP;
@@ -59,8 +59,9 @@ public class CartItem {
 	}
 	@Override
 	public String toString() {
-		return "CartItem [_id=" + _id + ", cartId=" + cartId + ", productId=" + productId + ", count_SP=" + count_SP
+		return "CartItem [_id=" + _id + ", cartId=" + cartId + ", product=" + product + ", count_SP=" + count_SP
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
+	
 	
 }
