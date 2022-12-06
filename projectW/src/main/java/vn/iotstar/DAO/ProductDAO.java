@@ -28,8 +28,8 @@ public class ProductDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
-						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10), rs.getInt(11),
-						rs.getInt(12), rs.getByte(13), rs.getInt(14), rs.getDate(15), rs.getDate(16)));
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getByte(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -52,8 +52,8 @@ public class ProductDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
-						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10), rs.getInt(11),
-						rs.getInt(12), rs.getByte(13), rs.getInt(14), rs.getDate(15), rs.getDate(16)));
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getByte(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -75,8 +75,8 @@ public class ProductDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				return (new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
-						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10), rs.getInt(11),
-						rs.getInt(12), rs.getByte(13), rs.getInt(14), rs.getDate(15), rs.getDate(16)));
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getByte(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -98,8 +98,8 @@ public class ProductDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
-						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10), rs.getInt(11),
-						rs.getInt(12), rs.getByte(13), rs.getInt(14), rs.getDate(15), rs.getDate(16)));
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getByte(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -123,8 +123,8 @@ public class ProductDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
-						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10), rs.getInt(11),
-						rs.getInt(12), rs.getByte(13), rs.getInt(14), rs.getDate(15), rs.getDate(16)));
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getByte(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -146,8 +146,8 @@ public class ProductDAO {
 			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 				return (new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
-						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10), rs.getInt(11),
-						rs.getInt(12), rs.getByte(13), rs.getInt(14), rs.getDate(15), rs.getDate(16)));
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getByte(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
