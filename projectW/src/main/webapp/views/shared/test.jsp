@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Test</title>
 </head>
 <body>
-<h1 style="color: red; font-size: 50px; text-align:center">hehe</h1>;
+<h1 style="color: red; font-size: 50px; text-align:center">${sessionScope.pname}</h1>
 </body>
 </html>

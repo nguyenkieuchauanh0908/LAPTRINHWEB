@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import vn.iotstar.DAO.userInfoDAO;
+import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns = "/user")
@@ -32,7 +32,7 @@ public class UserController extends HttpServlet {
 		Object obj = session.getAttribute("uId");
 		String uid = String.valueOf(obj);
 		// B1:khỏi tạo DAO
-		userInfoDAO userInfoDao = new userInfoDAO();
+		UserDAO userInfoDao = new UserDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ profileUSerDAO
 		User list1 = userInfoDao.getUser(uid);
 		// B3:thiết lập dữ liệu trên jsp

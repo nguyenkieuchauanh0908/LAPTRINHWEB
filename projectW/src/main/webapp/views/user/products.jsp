@@ -51,7 +51,7 @@
 								src="https://dummyimage.com/600x400/55595c/fff"
 								alt="Card image cap">
 							<div class="card-body">
-								<h4 class="card-title"${tagactive==p._id ? "active":""}">
+								<h4 class="card-title"${tagactive==p._id ? "active":""}>
 									<a href="productDetail?pid=${p._id}" title="View Product">${p.name }</a>
 								</h4>
 								<div class="row">

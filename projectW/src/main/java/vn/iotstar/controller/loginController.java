@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import vn.iotstar.DAO.userInfoDAO;
+import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns  = "/login")
@@ -21,7 +21,7 @@ public class loginController extends HttpServlet {
 			String email = req.getParameter("email"); 
 			String password = req.getParameter("password");
 			HttpSession session = req.getSession(); //Tạo session
-			userInfoDAO loginDAO =new userInfoDAO(); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
+			UserDAO loginDAO =new UserDAO(); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
 			User a = loginDAO.checkLogin(email, password);
 			if(a == null) //Người dùng không tồn tại
 			{
@@ -30,16 +30,22 @@ public class loginController extends HttpServlet {
 			else
 			{
 				//gán các giá trị vào session 
-				// cách gọi session ở servlet Controller khác: Ex: listaProds =(ArrayList<Produto>) request.getSession().getAttribute("listaProdutos");
+				// cách gọi session ở servlet Controller khác: Ex: request.getSession().getAttribute("listaProdutos");
 				session.setAttribute("uEmail", email); 
 				session.setAttribute("uId", a.get_id());
 				session.setAttribute("uFirstname", a.getFirstname());
 				session.setAttribute("uLastname", a.getLastname());
-				resp.sendRedirect("welcome"); // thay lại là trang home của admin
+				if (a.get_role().equals("1")) // Nếu role là user thì chuyển hướng về trang admin
+				{
+					resp.sendRedirect("welcome"); 
+				}
+				else
+				{
+					req.getRequestDispatcher("/views/shared/test.jsp").forward(req,resp);
+				}
 			}
 		}
 		catch (Exception e){
-			
 		}
 	}
 

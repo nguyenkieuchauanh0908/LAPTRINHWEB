@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import vn.iotstar.DAO.userInfoDAO;
+import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.util.EmailUtility;
 /**
  * A Java Servlet to handle requests to reset password for customer
@@ -50,10 +50,10 @@ public class ResetPasswordController extends HttpServlet {
             throws ServletException, IOException {
         String recipient = request.getParameter("email");
         String subject = "Mật khẩu của bạn đã được đặt lại";
-        userInfoDAO user = new userInfoDAO();
+        UserDAO user = new UserDAO();
         String newPassword = user.resetCustomerPassword(recipient); //taọ pass ngẫu nhiên
         int u_id = user.findByEmail(recipient); // tìm id ứng với email nhập vào
-        user.update(newPassword,u_id);// cập nhật pass mới theo id
+        user.updatePass(newPassword,u_id);// cập nhật pass mới theo id
         String content = "Đây là mật khẩu mới của bạn: " + newPassword;
         content += "\nLưu ý: Vì lý do bảo mật, "
                 + "Vui lòng đổi mật khẩu ngay sau khi đăng nhập";
