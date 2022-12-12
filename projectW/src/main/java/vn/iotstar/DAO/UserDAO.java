@@ -68,24 +68,20 @@ public class UserDAO {
 		return a;
 	}
 
-	public int checkSignup(String fname, String lname, String email, String phone, String address, String password) { //kiểm tra đăng kí có thành công hay không
+	public int checkSignup(String email, String password) { //kiểm tra đăng kí có thành công hay không
 		int check = 0;
 		try {
 			// insert into [_User](firstname,lastname, email, phone, hashed_password,
 			// _role,addresses) values('Nguyen','Kieu Chau
 			// Anh','20110234@student.hcmute.edu.vn','0913935810','chauanh123',1,'123 Le Thi
 			// Hong, Ho Chi Minh')
-			String query = "insert into [_User](firstname,lastname, email, phone, hashed_password, _role,addresses) values(?,?,?,?,?,?,?)";
+			String query = "insert into [_User](email, hashed_password, _role) values(?,?,?)";
 			conn = new DBconnect().getConnection();
 			ps = conn.prepareStatement(query);
 			// rs = ps.executeQuery();
-			ps.setString(1, fname);
-			ps.setString(2, lname);
-			ps.setString(3, email);
-			ps.setString(4, phone);
-			ps.setString(5, password);
-			ps.setInt(6, 1);//Role:1 là khách hàng, chức năng đăng ký chỉ dành cho khách hàng, các role khác admin thêm thủ công
-			ps.setString(7, address);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ps.setInt(3, 1);//Role:1 là khách hàng, chức năng đăng ký chỉ dành cho khách hàng, các role khác admin thêm thủ công
 			check = ps.executeUpdate();
 			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
 			{
@@ -130,8 +126,9 @@ public class UserDAO {
 		return randomPassword;
 	}
 
-	public void updatePass(String randomPassword, int u_id) // cập nhật mật khẩu người dùng theo id
+	public int updatePass(String randomPassword, int u_id) // cập nhật mật khẩu người dùng theo id
 	{
+		int check = 0; //Nếu thành công thì check = 1
 		try {
 			// update [_User] set hashed_password= 'èakfakjfa' where _id = 13
 			String query = "update [_User] set hashed_password= ? where _id = ?";
@@ -139,8 +136,11 @@ public class UserDAO {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, randomPassword);
 			ps.setInt(2, u_id);
-			rs = ps.executeQuery();
-		} catch (Exception e) {
+			check = ps.executeUpdate();
+			return check;
+		} 
+		catch (Exception e) {
+			return check;
 		}
 
 	}

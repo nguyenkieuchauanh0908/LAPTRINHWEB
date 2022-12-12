@@ -1,48 +1,46 @@
 package vn.iotstar.controller;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import vn.iotstar.DAO.UserDAO;
-
-/**
- * Servlet implementation class registrationController
- */
-
+import vn.iotstar.model.User;
 @WebServlet(urlPatterns  = "/registration")
-public class registrationController extends HttpServlet {
+public class RegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		doPost(req, resp);
+		req.getRequestDispatcher("/views/shared/registration.jsp").forward(req,resp); 
+		//doPost(req, resp);
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		resp.setContentType("text/html;charset=UTF-8");
-		int check = -1;
+		resp.setContentType("text/html");
+		resp.setCharacterEncoding("UTF-8");
+		req.setCharacterEncoding("UTF-8");
+		int check = -1; //nếu đăng ký thành công thì check = 1
 		try 
 		{
+			String email = req.getParameter("email");
+			String password = req.getParameter("pass");
 			String fname = req.getParameter("fname");
 			String lname = req.getParameter("lname");
-			String email = req.getParameter("email");
 			String phone = req.getParameter("phone");
-			String address = req.getParameter("address");
-			String password = req.getParameter("pass");
 			String re_pass = req.getParameter("re_pass");
-			if(email == null)
+			User user = new User();
+			user.setFirstname(fname);
+			user.setLastname(lname);
+			user.setPhone(phone);
+			user.setEmail(email);
+			user.setHashed_password(password);
+			user.set_role("1");
+			if (password.equals(re_pass))
 			{
-				req.getRequestDispatcher("/views/shared/registration.jsp").forward(req,resp); 
-			}
-			else
-			if (password.equals(re_pass) && fname != null && lname!= null && email != null && phone != null && address != null)
-			{
-				UserDAO signupDAO = new UserDAO();
-				check = signupDAO.checkSignup(fname, lname, email, phone, address, password);
-				if(check == 1) //nếu đăng ký thành công thì chuyển hướng sang trang đăng nhập
+				UserDAO userDAO = new UserDAO();
+				check = userDAO.insertUser(user);
+				if(check == 1) 
 				{
 					 req.getRequestDispatcher("/views/shared/login.jsp").forward(req,resp);
 				}
@@ -52,15 +50,11 @@ public class registrationController extends HttpServlet {
 				}
 				check = -1;
 			}
-			else 
-				req.getRequestDispatcher("/views/shared/registration.jsp").forward(req,resp); 
+			 
 		}
 		catch (Exception e)
 		{
 			
 		}
 	}
-
-
-
 }

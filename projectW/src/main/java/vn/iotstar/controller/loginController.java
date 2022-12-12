@@ -20,8 +20,7 @@ public class loginController extends HttpServlet {
 		{
 			String email = req.getParameter("email"); 
 			String password = req.getParameter("password");
-			HttpSession session = req.getSession(); //Tạo session
-			UserDAO loginDAO =new UserDAO(); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
+			UserDAO loginDAO =new UserDAO(); 
 			User a = loginDAO.checkLogin(email, password);
 			if(a == null) //Người dùng không tồn tại
 			{
@@ -29,9 +28,9 @@ public class loginController extends HttpServlet {
 			}
 			else
 			{
-				//gán các giá trị vào session 
 				// cách gọi session ở servlet Controller khác: Ex: request.getSession().getAttribute("listaProdutos");
-				session.setAttribute("uEmail", email); 
+				HttpSession session = req.getSession(); //Tạo session
+				session.setAttribute("uEmail", email); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
 				session.setAttribute("uId", a.get_id());
 				session.setAttribute("uFirstname", a.getFirstname());
 				session.setAttribute("uLastname", a.getLastname());
@@ -41,7 +40,7 @@ public class loginController extends HttpServlet {
 				}
 				else
 				{
-					req.getRequestDispatcher("/views/shared/test.jsp").forward(req,resp);
+					req.getRequestDispatcher("userList").forward(req,resp);
 				}
 			}
 		}

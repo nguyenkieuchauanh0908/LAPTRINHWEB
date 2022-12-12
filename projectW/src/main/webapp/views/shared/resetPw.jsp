@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Đăng nhập</title>
+<title>Đặt lại mật khẩu</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	rel="stylesheet">
@@ -74,21 +74,19 @@ span.psw {
 </style>
 </head>
 <body>
-	<form action="login" method=post>
-		<h1>Đăng nhập</h1>
+	<form action="ResetPassword" method=post>
+		<h1>Đặt lại mật khẩu</h1>
 		<div class="formcontainer">
 			<hr />
 			<div class="container">
-				<label for="uname"><strong>Username</strong></label> <input
-					type="email" placeholder="Nhập email" name="email" required>
-				<label for="psw"><strong>Password</strong></label> <input
-					type="password" placeholder="Nhập password" name="password" required>
+				<label for="uname"><strong>Mã xác nhận</strong></label> <input
+					type="text" placeholder="Vui lòng kiểm tra email" name="code" required>
+				<label for="psw"><strong>Mật khẩu</strong></label> <input
+					type="password" placeholder="Nhập password" name="pass" required>
+				<label for="psw"><strong>Nhập lại mật khẩu</strong></label> <input
+					type="password" placeholder="Nhập lại password" name="re_pass" required>
 			</div>
-			<button type="submit">Đăng nhập</button>
-			<div class="container" style="background-color: white">
-				<span class="psw" style = "margin-bottom:10px;"><a href="registration"> Chưa có tài khoản</a></span>
-				<span class="psw"><a href="forgetPassword"> Quên mật khẩu</a></span>
-			</div>
+			<button type="submit">Hoàn tất</button>
 			</div>
 	</form>
 </body>
