@@ -31,36 +31,9 @@
 
 	<div class="container-fluid" id="content">
 		<div class="row min-vh-100 flex-column flex-md-row">
-			<div class="col-12 col-md-3 col-xl-2 p-0 bg-dark ">
-				<nav
-					class="navbar navbar-expand-md navbar-dark bd-dark flex-md-column flex-row align-items-center py-2 sticky-top "
-					id="sidebar">
-					<div class="text-center" style="color: white;">
-						<h2 style="margin-top: 25px;">Trang Admin</h2>
-					</div>
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#nav"
-						aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse order-last" id="nav">
-						<ul class="navbar-nav flex-column w-100 justify-content-center">
-							<li class="nav-item"><a href=""
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Trang chủ</a></li>
-								<li class="nav-item"><a href="userList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Khách hàng</a></li>
-								<li class="nav-item"><a href="employeeList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Nhân viên</a></li>
-								<li class="nav-item"><a href="productList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Sản phẩm</a></li>
-								<li class="nav-item"><a href="categoryList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Loại sản phẩm</a></li>
-								<li class="nav-item"><a href="orderList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Đơn hàng</a></li>
-						</ul>
-					</div>
-				</nav>
-			</div>
+			<!-- menu bar -->
+			<%@ include file="/views/admin/menuAdmin.jsp"%>
+			<!-- end menu bar -->
 			<div class="container-fluid col-12 col-md-9 col-xl-10">
 				<h2 style="margin-top: 30px; margin-left: 60px;">
 					<b>Thêm mới sản phẩm</b>
@@ -75,15 +48,18 @@
 										<form method="post" action="productAdd">
 											<div class="form-group">
 												<label>Tên sản phẩm</label> <input class="form-control"
-													placeholder="Bút chì Muji" name="pname" type="text" required />
+													placeholder="Bút chì Muji" name="pname" type="text"
+													required />
 											</div>
 											<div class="form-group" style="margin-top: 15px;">
 												<label for="category-id">Loại sản phẩm</label>
-												<div class="col-sm-10" style="width:100%" >
+												<div class="col-sm-10" style="width: 100%">
 													<select required id="categoryId" name="categoryId"
-														class="form-select form-control" >
+														class="form-select form-control">
 														<c:forEach var="category" items="${cateList}">
-															<option ${product.category._id == category._id ? "selected" : ""}  value="${category._id}">${category._name}</option>
+															<option
+																${product.category._id == category._id ? "selected" : ""}
+																value="${category._id}">${category._name}</option>
 														</c:forEach>
 													</select>
 												</div>

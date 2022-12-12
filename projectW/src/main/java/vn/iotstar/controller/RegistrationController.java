@@ -5,6 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import vn.iotstar.DAO.CartDAO;
 import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.User;
 @WebServlet(urlPatterns  = "/registration")
@@ -29,20 +31,25 @@ public class RegistrationController extends HttpServlet {
 			String lname = req.getParameter("lname");
 			String phone = req.getParameter("phone");
 			String re_pass = req.getParameter("re_pass");
+			String address = req.getParameter("address");
 			User user = new User();
 			user.setFirstname(fname);
 			user.setLastname(lname);
 			user.setPhone(phone);
 			user.setEmail(email);
 			user.setHashed_password(password);
+			user.setAddresses(address);
 			user.set_role("1");
 			if (password.equals(re_pass))
 			{
 				UserDAO userDAO = new UserDAO();
 				check = userDAO.insertUser(user);
-				if(check == 1) 
+				if(check == 1) //đăng ký thành công
 				{
-					 req.getRequestDispatcher("/views/shared/login.jsp").forward(req,resp);
+					String uId = Integer.toString(userDAO.findByEmail(email));
+					CartDAO cartDAO = new CartDAO();
+					cartDAO.Insert((String)(uId));
+					req.getRequestDispatcher("/views/shared/login.jsp").forward(req,resp);
 				}
 				else //nếu thất bại
 				{
@@ -50,6 +57,7 @@ public class RegistrationController extends HttpServlet {
 				}
 				check = -1;
 			}
+			
 			 
 		}
 		catch (Exception e)

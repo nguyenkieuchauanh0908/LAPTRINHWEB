@@ -79,9 +79,9 @@ span.psw {
 		<div class="formcontainer">
 			<hr />
 			<div class="container">
-				<label for="uname"><strong>Username</strong></label> <input
+				<label for="uname"><strong>Email</strong></label> <input
 					type="email" placeholder="Nhập email" name="email" required>
-				<label for="psw"><strong>Password</strong></label> <input
+				<label for="psw"><strong>Mật khẩu</strong></label> <input
 					type="password" placeholder="Nhập password" name="password" required>
 			</div>
 			<button type="submit">Đăng nhập</button>

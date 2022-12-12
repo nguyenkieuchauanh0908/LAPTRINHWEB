@@ -30,36 +30,9 @@
 
 	<div class="container-fluid" id="content">
 		<div class="row min-vh-100 flex-column flex-md-row">
-			<div class="col-12 col-md-3 col-xl-2 p-0 bg-dark ">
-				<nav
-					class="navbar navbar-expand-md navbar-dark bd-dark flex-md-column flex-row align-items-center py-2 sticky-top "
-					id="sidebar">
-					<div class="text-center" style="color: white">
-						<h2 style="margin-top:25px;">Trang Admin </h2>
-					</div>
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#nav"
-						aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse order-last" id="nav">
-						<ul class="navbar-nav flex-column w-100 justify-content-center">
-						<li class="nav-item"><a href=""
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Trang chủ</a></li>
-								<li class="nav-item"><a href="userList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Khách hàng</a></li>
-								<li class="nav-item"><a href="employeeList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Nhân viên</a></li>
-								<li class="nav-item"><a href="productList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Sản phẩm</a></li>
-								<li class="nav-item"><a href="categoryList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Loại sản phẩm</a></li>
-								<li class="nav-item"><a href="orderList"
-								class="nav-link pt-3 pb-3 ps-5 pe-5">Đơn hàng</a></li>
-						</ul>
-					</div>
-				</nav>
-			</div>
+			<!-- menu bar -->
+			<%@ include file="/views/admin/menuAdmin.jsp"%>
+			<!-- end menu bar -->
 			<div class="container-fluid col-12 col-md-9 col-xl-10">
 				<section id="table">
 					<div class="container">
@@ -77,7 +50,7 @@
 								<thead>
 									<tr>
 										<th style="width: 100px">Mã đơn</th>
-										<th style="width: 100px">Mã khách hàng</th>
+										<th style="width: 150px">Mã khách hàng</th>
 										<th style="width: 900px">Trạng thái</th>
 										<th style="margin-right: 30px">Chi tiết</th>
 									</tr>

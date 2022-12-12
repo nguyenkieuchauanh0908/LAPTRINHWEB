@@ -18,10 +18,6 @@ import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns = "/edituserinfo")
 public class EditUserInfoController extends HttpServlet {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -34,7 +30,6 @@ public class EditUserInfoController extends HttpServlet {
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("uId");
 		String uid = String.valueOf(obj);
-		
 		// B1:khỏi tạo DAO
 		UserDAO userInfoDao = new UserDAO();
 		CategoryDAO categoryDao = new CategoryDAO();
@@ -50,7 +45,9 @@ public class EditUserInfoController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html;charset=UTF-8");
+		resp.setContentType("text/html");
+		resp.setCharacterEncoding("UTF-8");
+		req.setCharacterEncoding("UTF-8");
 		try {
 			String uid = req.getParameter("id");
 			String fname = req.getParameter("firstname");

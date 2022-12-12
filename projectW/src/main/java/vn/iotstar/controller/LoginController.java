@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.iotstar.DAO.UserDAO;
-import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns  = "/login")
-public class loginController extends HttpServlet {
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +26,7 @@ public class loginController extends HttpServlet {
 			{
 				req.getRequestDispatcher("/views/shared/login.jsp").forward(req,resp);
 			}
-			else
+			else //Người dùng tồn tại
 			{
 				// cách gọi session ở servlet Controller khác: Ex: request.getSession().getAttribute("listaProdutos");
 				HttpSession session = req.getSession(); //Tạo session
@@ -35,14 +34,16 @@ public class loginController extends HttpServlet {
 				session.setAttribute("uId", a.get_id());
 				session.setAttribute("uFirstname", a.getFirstname());
 				session.setAttribute("uLastname", a.getLastname());
-				if (a.get_role().equals("1")) // Nếu role là user thì chuyển hướng về trang admin
+				if (a.get_role().equals("1")) // Nếu role là user thì chuyển hướng về trang khách hàng
 				{
 					resp.sendRedirect("welcome"); 
 				}
-				else
+				if (a.get_role().equals("0")) // Nếu role là admin thì chuyển hướng về trang admin
 				{
-					req.getRequestDispatcher("userList").forward(req,resp);
+					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);
 				}
+				else // Nếu role là vendor thì chuyển hướng về trang vendor
+					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);
 			}
 		}
 		catch (Exception e){

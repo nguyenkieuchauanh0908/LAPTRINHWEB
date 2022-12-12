@@ -40,7 +40,6 @@ public class UserDAO {
 		}
 		return null;
 	}
-
 	public User checkLogin(String email, String pass) {//kiểm tra mật khẩu và password có đúng không
 		User a = null;
 		try {
@@ -203,10 +202,6 @@ public class UserDAO {
 	{
 		int check = 0;
 		try {
-			// insert into [_User](firstname,lastname, email, phone, hashed_password,
-			// _role,addresses) values('Nguyen','Kieu Chau
-			// Anh','20110234@student.hcmute.edu.vn','0913935810','chauanh123',1,'123 Le Thi
-			// Hong, Ho Chi Minh')
 			String query = "insert into [_User](firstname,lastname, email, phone, hashed_password, _role,addresses) values(?,?,?,?,?,?,?)";
 			conn = new DBconnect().getConnection();
 			ps = conn.prepareStatement(query);

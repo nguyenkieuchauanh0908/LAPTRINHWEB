@@ -75,7 +75,7 @@ span.psw {
 </head>
 <body>
 	<form action="registration" method=post>
-		<h2>Đăng kỳ tài khoản</h2>
+		<h2>Đăng ký tài khoản</h2>
 		<div class="formcontainer">
 			<hr />
 			<div class="container">

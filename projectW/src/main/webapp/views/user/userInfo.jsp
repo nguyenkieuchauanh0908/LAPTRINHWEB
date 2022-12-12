@@ -40,7 +40,7 @@
 										href="edituserinfo">Sửa thông tin</a>
 								</div>
 								<div class="mt-3">
-									<a class="btn btn-outline-danger" href="welcome">Thay đổi
+									<a class="btn btn-outline-danger" href="forgetPassword">Thay đổi
 										mật khẩu</a>
 								</div>
 								<div class="mt-3">
