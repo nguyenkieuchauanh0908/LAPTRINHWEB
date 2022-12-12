@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 	<div class="container">
-		<a class="navbar-brand" href="welcome">STATIONERY</a>
+		<a class="navbar-brand" href="welcome">VĂN PHÒNG PHẨM</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarsExampleDefault"
 			aria-controls="navbarsExampleDefault" aria-expanded="false"
@@ -37,7 +37,7 @@
 				<c:if test="${sessionScope.uId != null}">
 					<li class="nav-item"><a class="nav-link"
 						${tagactive==sessionScope.uId ? "
-								active":""}" href="user">${sessionScope.uEmail}</a></li>
+								active":""}" href="user">${sessionScope.uFirstname} ${sessionScope.uLastname}</a></li>
 					<li class="nav-item"><a class="nav-link" href="logout">Đăng
 							xuất</a></li>
 				</c:if>

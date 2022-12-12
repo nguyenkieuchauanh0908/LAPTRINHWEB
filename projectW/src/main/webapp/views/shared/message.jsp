@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Thông báo</title>
+<title>Insert title here</title>
 </head>
 <body>
 <div align="center">

@@ -1,7 +1,5 @@
 package vn.iotstar.model;
-
 import java.sql.Date;
-
 public class Product {
 	private int _id;
 	private String name;
@@ -16,7 +14,7 @@ public class Product {
 	private String image;
 	private int categoryId;
 	private int storeId;
-	private byte isDeteled;
+	private boolean isDeleted;
 	private int rating;
 	private Date createdAt;
 	private Date updatedAt;
@@ -25,7 +23,7 @@ public class Product {
 	}
 	public Product(int _id, String name, String slug, String description, Float price, Float promotionalPrice,
 			int quantity, int sold, byte isActive, byte isSelling, String image, int categoryId, int storeId,
-			byte isDeteled, int rating, Date createdAt, Date updatedAt) {
+			boolean isDeteled, int rating, Date createdAt, Date updatedAt) {
 		super();
 		this._id = _id;
 		this.name = name;
@@ -40,7 +38,7 @@ public class Product {
 		this.image = image;
 		this.categoryId = categoryId;
 		this.storeId = storeId;
-		this.isDeteled = isDeteled;
+		this.isDeleted = isDeteled;
 		this.rating = rating;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
@@ -123,11 +121,11 @@ public class Product {
 	public void setStoreId(int storeId) {
 		this.storeId = storeId;
 	}
-	public byte getIsDeteled() {
-		return isDeteled;
+	public boolean getIsDeleted() {
+		return isDeleted;
 	}
-	public void setIsDeteled(byte isDeteled) {
-		this.isDeteled = isDeteled;
+	public void setIsDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	public int getRating() {
 		return rating;
@@ -152,7 +150,7 @@ public class Product {
 		return "Product [_id=" + _id + ", name=" + name + ", slug=" + slug + ", description=" + description + ", price="
 				+ price + ", promotionalPrice=" + promotionalPrice + ", quantity=" + quantity + ", sold=" + sold
 				+ ", isActive=" + isActive + ", isSelling=" + isSelling + ", image=" + image + ", categoryId="
-				+ categoryId + ", storeId=" + storeId + ", isDeteled=" + isDeteled + ", rating=" + rating
+				+ categoryId + ", storeId=" + storeId + ", isDeteled=" + isDeleted + ", rating=" + rating
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 	
