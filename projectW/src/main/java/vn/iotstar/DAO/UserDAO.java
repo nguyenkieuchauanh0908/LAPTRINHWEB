@@ -9,7 +9,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import vn.iotstar.connection.DBconnect;
 import vn.iotstar.model.User;
 
-public class userInfoDAO {
+public class UserDAO {
 	static Connection conn = null;
 	static PreparedStatement ps = null;
 	static ResultSet rs = null;
@@ -178,7 +178,7 @@ public class userInfoDAO {
 	
 
 	public static void main(String[] args) {
-		userInfoDAO user1 = new userInfoDAO();
+		UserDAO user1 = new UserDAO();
 		// int check = user1.checkSignup("Nguyen","Kieu Thanh
 		// Thi","nguyenkieuchauanh0908@gmail.com","0966732750","123 Le Thi Hong, Ho Chi
 		// Minh","123456");

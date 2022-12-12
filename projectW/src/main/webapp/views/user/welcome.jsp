@@ -18,8 +18,9 @@
 	rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/templates/Bootstrap-4-Ecommerce-Theme-master/css/style.css" />" rel="stylesheet"
-	type="text/css">
+<link
+	href="<c:url value="/templates/Bootstrap-4-Ecommerce-Theme-master/css/style.css" />"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -43,17 +44,17 @@
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img class="d-block w-100"
-								src="https://dummyimage.com/855x365/55595c/fff"
+								src="	https://vanphongphambaoan.vn/wp-content/uploads/2022/10/dung-cu-hoc-tap-van-phong-pham-bao-an.jpg" width="855" height="365"
 								alt="First slide">
 						</div>
 						<div class="carousel-item">
 							<img class="d-block w-100"
-								src="https://dummyimage.com/855x365/a30ca3/fff"
+								src="https://cdn0.fahasa.com/media/wysiwyg/NGOAI-VAN-2018/JULY-2018/VPP-cao-cap-915x423-1.jpg" width="855" height="365"
 								alt="Second slide">
 						</div>
 						<div class="carousel-item">
 							<img class="d-block w-100"
-								src="https://dummyimage.com/855x365/1443ff/fff"
+								src="https://thienlong.com.vn/vnt_upload/weblink/bannerweb40nam_TL1366x576.png" width="855" height="365"
 								alt="Third slide">
 						</div>
 					</div>
@@ -74,18 +75,21 @@
 						<i class="fa fa-heart"></i> Bán chạy nhất
 					</div>
 					<img class="img-fluid border-0"
-						src="https://dummyimage.com/600x400/55595c/fff"
+						src="${pageContext.request.contextPath}${list1product.image}" width="200" height="200" 
 						alt="Card image cap">
 					<div class="card-body">
-						<h4 class="card-title text-center" ${tagactive==list1product._id ? "active":""}">
-							<a href="productDetail?pid=${list1product._id}" title="View Product">${list1product.name}</a>
+						<h4 class="card-title text-center"${tagactive==list1product._id ? "active":""}">
+							<a href="productDetail?pid=${list1product._id}"
+								title="View Product">${list1product.name}</a>
 						</h4>
 						<div class="row">
 							<div class="col">
-								<p class="btn btn-danger btn-block">${list1product.price} đồng</p>
+								<p class="btn btn-danger btn-block">${list1product.price}
+									đồng</p>
 							</div>
-							<div class="col" ${tagactive==list1product._id ? "active":""}">
-								<a href="productDetail?pid=${list1product._id}" class="btn btn-success btn-block">Xem</a>
+							<div class="col"${tagactive==list1product._id ? "active":""}">
+								<a href="productDetail?pid=${list1product._id}"
+									class="btn btn-success btn-block">Xem</a>
 							</div>
 						</div>
 					</div>
@@ -108,7 +112,7 @@
 								<div class="col-sm">
 									<div class="card">
 										<img class="card-img-top"
-											src="https://dummyimage.com/600x400/55595c/fff"
+											src="${pageContext.request.contextPath}${p.image}" width="200" height="200" 
 											alt="Card image cap">
 										<div class="card-body"${tagactive==p._id ? "active":""}">
 											<h4 class="card-title">
@@ -116,10 +120,17 @@
 											</h4>
 											<div class="row">
 												<div class="col">
-													<p class="btn btn-danger btn-block">${p.price} đồng</p>
+													<p class="btn btn-danger btn-block">${p.price}đồng</p>
 												</div>
 												<div class="col">
-													<a href="#" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
+													<c:if test="${sessionScope.uId != null}">
+														<a href="cartadd?pid=${p._id}"
+															class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
+													</c:if>
+													<c:if test="${sessionScope.uId == null}">
+														<a href="login" class="btn btn-success btn-block">Thêm
+															vào giỏ hàng</a>
+													</c:if>
 												</div>
 											</div>
 										</div>
@@ -146,7 +157,7 @@
 							<div class="col-sm">
 								<div class="card">
 									<img class="card-img-top"
-										src="https://dummyimage.com/600x400/55595c/fff"
+										src="${pageContext.request.contextPath}${p.image}" width="200" height="200" 
 										alt="Card image cap">
 									<div class="card-body">
 										<h4 class="card-title"${tagactive==p._id ? "active":""}">
@@ -154,11 +165,17 @@
 										</h4>
 										<div class="row">
 											<div class="col">
-												<p class="btn btn-danger btn-block">${p.price} đồng</p>
+												<p class="btn btn-danger btn-block">${p.price}đồng</p>
 											</div>
 											<div class="col">
-												<a href="#" class="btn btn-success btn-block">Add to
-													cart</a>
+												<c:if test="${sessionScope.uId != null}">
+													<a href="cartadd?pid=${p._id}"
+														class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
+												</c:if>
+												<c:if test="${sessionScope.uId == null}">
+													<a href="login" class="btn btn-success btn-block">Thêm
+														vào giỏ hàng</a>
+												</c:if>
 											</div>
 										</div>
 									</div>

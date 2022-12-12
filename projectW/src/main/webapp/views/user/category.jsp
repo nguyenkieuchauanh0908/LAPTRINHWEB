@@ -63,7 +63,7 @@
 						<div class="col-12 col-md-6 col-lg-4">
 							<div class="card">
 								<img class="card-img-top"
-									src="https://dummyimage.com/600x400/55595c/fff"
+									src="${pageContext.request.contextPath}${p.image}" width="200" height="200"
 									alt="Card image cap">
 								<div class="card-body">
 									<h4 class="card-title" ${tagactive==p._id ? "active":""}">

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import vn.iotstar.DAO.userInfoDAO;
+import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns  = "/login")
@@ -21,7 +21,7 @@ public class loginController extends HttpServlet {
 			String email = req.getParameter("email"); 
 			String password = req.getParameter("password");
 			HttpSession session = req.getSession(); //Tạo session
-			userInfoDAO loginDAO =new userInfoDAO(); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
+			UserDAO loginDAO =new UserDAO(); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
 			User a = loginDAO.checkLogin(email, password);
 			if(a == null) //Người dùng không tồn tại
 			{
