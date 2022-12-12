@@ -30,6 +30,7 @@
 
 	<!-- content -->
 	<div class="container mb-4">
+
 		<div class="row">
 			<div class="col-12">
 				<div class="table-responsive">
@@ -37,73 +38,77 @@
 						<thead>
 							<tr>
 								<th scope="col"></th>
-								<th scope="col">Product</th>
-								<th scope="col">Available</th>
-								<th scope="col" class="text-center">Quantity</th>
-								<th scope="col" class="text-right">Price</th>
+								<th scope="col">Sản phẩm</th>
+								<th scope="col">Tình trạng</th>
+								<th scope="col" class="text-center">Số lượng</th>
+								<th scope="col" class="text-center">Giá</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><img src="https://dummyimage.com/50x50/55595c/fff" />
-								</td>
-								<td>Product Name Dada</td>
-								<td>In stock</td>
-								<td><input class="form-control" type="text" value="1" /></td>
-								<td class="text-right">124,90 €</td>
-								<td class="text-right"><button
-										class="btn btn-sm btn-danger">
-										<i class="fa fa-trash"></i>
-									</button></td>
-							</tr>
-							<tr>
-								<td><img src="https://dummyimage.com/50x50/55595c/fff" />
-								</td>
-								<td>Product Name Toto</td>
-								<td>In stock</td>
-								<td><input class="form-control" type="text" value="1" /></td>
-								<td class="text-right">33,90 €</td>
-								<td class="text-right"><button
-										class="btn btn-sm btn-danger">
-										<i class="fa fa-trash"></i>
-									</button></td>
-							</tr>
-							<tr>
-								<td><img src="https://dummyimage.com/50x50/55595c/fff" />
-								</td>
-								<td>Product Name Titi</td>
-								<td>In stock</td>
-								<td><input class="form-control" type="text" value="1" /></td>
-								<td class="text-right">70,00 €</td>
-								<td class="text-right"><button
-										class="btn btn-sm btn-danger">
-										<i class="fa fa-trash"></i>
-									</button></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>Sub-Total</td>
-								<td class="text-right">255,90 €</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>Shipping</td>
-								<td class="text-right">6,90 €</td>
-							</tr>
+							<form action="cartremove" method="get">
+								<c:forEach items="${getAllCartItem }" var="cI">
+									<input hidden value="${cI.product._id }" name="productId" />
+									<tr>
+										<td><img
+											src="${pageContext.request.contextPath}${cI.product.image}"
+											width="50" height="50" /></td>
+										<td>${cI.product.name}</td>
+										<td><c:if test="${cI.product.quantity > 0 }">Còn hàng</c:if>
+											<c:if test="${cI.product.quantity == 0 }">Hết hàng</c:if> <c:if
+												test="${cI.product.quantity < 0 }">Hết hàng</c:if></td>
+										<td>
+											<div class="col d-flex flex-row align-items-center qty"
+												style="justify-content: center">
+												<!-- <input class="form-control" type="text"
+										value="${cI.count_SP }" /> -->
+												<c:if test="${cI.count_SP ==1 }">
+													<a href="#" value="-" class="fa fa-minus text-danger"></a>
+												</c:if>
+												<c:if test="${cI.count_SP >1}">
+													<a
+														href="cartadd?MinusPro=${cI.product._id }&&MinusCart=${cI.cartId }"
+														value="-" class="fa fa-minus text-danger"></a>
+												</c:if>
+												<h6 class="text-grey mt-1 mr-1 ml-1">
+													<input type="text" name="quantity" value="${cI.count_SP}"
+														style="width: 50px; text-align: center"
+														readonly="readonly">
+												</h6>
+												<c:if test="${cI.product.quantity == cI.count_SP }">
+													<a href="#" value="+" class="fa fa-plus text-success"></a>
+												</c:if>
+												<c:if test="${cI.product.quantity > cI.count_SP }">
+													<a
+														href="cartadd?PlusPro=${cI.product._id }&&PlusCart=${cI.cartId }"
+														value="+" class="fa fa-plus text-success"></a>
+												</c:if>
+											</div>
+										</td>
+										<td class="text-right"
+											style="display: flex; justify-content: center">${cI.product.price * cI.count_SP}
+											đồng</td>
+										<td class="text-right"><button type="submit"
+												class="btn btn-sm btn-danger">
+												<i class="fa fa-trash"></i>
+											</button></td>
+
+									</tr>
+								</c:forEach>
+							</form>
 							<tr>
 								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
-								<td><strong>Total</strong></td>
-								<td class="text-right"><strong>346,90 €</strong></td>
+								<td><strong>Tổng</strong></td>
+								<td class="text-right"><strong><c:set var="total"
+											value="${0}" /> <c:forEach items="${getAllCartItem }"
+											var="cI">
+											<c:set var="total"
+												value="${total + cI.count_SP * cI.product.price}" />
+										</c:forEach> <span class="pull-right subtotal-cost">${total } đồng</span>
+								</strong></td>
 							</tr>
 						</tbody>
 					</table>
@@ -112,7 +117,8 @@
 			<div class="col mb-2">
 				<div class="row">
 					<div class="col-sm-12  col-md-6">
-						<button class="btn btn-block btn-light">Continue Shopping</button>
+						<a class="btn btn-block btn-light" href="welcome">Tiếp tục mua
+							hàng</a>
 					</div>
 					<div class="col-sm-12 col-md-6 text-right">
 						<button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>

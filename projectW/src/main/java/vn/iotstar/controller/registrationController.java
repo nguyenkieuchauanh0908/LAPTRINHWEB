@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.*;
 
-import vn.iotstar.DAO.userInfoDAO;
+import vn.iotstar.DAO.UserDAO;
 
 /**
  * Servlet implementation class registrationController
@@ -43,7 +43,7 @@ public class registrationController extends HttpServlet {
 			else
 			if (password.equals(re_pass) && fname != null && lname!= null && email != null && phone != null && address != null)
 			{
-				userInfoDAO signupDAO = new userInfoDAO();
+				UserDAO signupDAO = new UserDAO();
 				check = signupDAO.checkSignup(fname, lname, email, phone, address, password);
 				if(check == 1) //nếu đăng ký thành công thì chuyển hướng sang trang đăng nhập
 				{

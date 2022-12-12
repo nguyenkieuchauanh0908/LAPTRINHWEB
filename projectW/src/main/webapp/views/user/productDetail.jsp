@@ -49,7 +49,7 @@
 				<div class="card bg-light mb-3">
 					<div class="card-body">
 						<a href="" data-toggle="modal" data-target="#productModal"> <img
-							class="img-fluid" src="https://dummyimage.com/800x800/55595c/fff" />
+							class="img-fluid" src="${pageContext.request.contextPath}${getPro.image}" width="800" height="800"  />
 						</a>
 					</div>
 				</div>
@@ -59,25 +59,32 @@
 			<div class="col-12 col-lg-6 add_to_cart_block">
 				<div class="card bg-light mb-3">
 					<div class="card-body">
-						<h4 class="card-title">${getPro.name }</h4>
-						<!-- <p>Tình trạng: ${Status}</p> -->
+						<h2 class="card-title">${getPro.name }</h2>
+						<p>
+							Tình trạng:
+							<c:if test="${getPro.quantity > 0 }">Còn hàng</c:if>
+							<c:if test="${getPro.quantity == 0 }">Hết hàng</c:if>
+							<c:if test="${getPro.quantity < 0 }">Hết hàng</c:if>
+						</p>
 						<br />
 						<p class="btn btn-danger btn-block">${getPro.price }đồng</p>
-						<form method="get" action="cart.html">
+						<form method="post" action="cartadd">
+							<input hidden value="${getPro._id }" name="productId"/>
 							<div class="form-group">
 								<label>Số lượng :</label>
 								<div class="input-group mb-3">
 
 									<input type="number" class="form-control text-center"
-										id="quantity" name="quantity" min="1" max=100 value="1"
-										step="1">
+										id="quantity" name="quantity" min="1" max=${getPro.quantity }
+										value="1" step="1">
 
 								</div>
 							</div>
-							<a href="cart.html"
-								class="btn btn-success btn-lg btn-block text-uppercase"> <i
-								class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
-							</a>
+							<button type="submit"
+								class="btn btn-success btn-lg btn-block text-uppercase">
+								<i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+							</button>
+
 						</form>
 						<!-- 
 						<div class="product_rassurance">
