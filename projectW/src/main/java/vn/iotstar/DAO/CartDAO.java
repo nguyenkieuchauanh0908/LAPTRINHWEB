@@ -48,5 +48,13 @@ public class CartDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	public static void main(String[] args) {
+		CartDAO dao = new CartDAO();
+		// int check = user1.checkSignup("Nguyen","Kieu Thanh
+		// Thi","nguyenkieuchauanh0908@gmail.com","0966732750","123 Le Thi Hong, Ho Chi
+		// Minh","123456");
+//		Cart u_id = dao.SearchByUserId("1");
+//		System.out.println(u_id.get_id());
+		dao.Insert("11");
+	}
 }

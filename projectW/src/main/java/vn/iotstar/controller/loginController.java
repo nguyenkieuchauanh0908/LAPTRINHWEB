@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.iotstar.DAO.UserDAO;
+import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns  = "/login")

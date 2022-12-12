@@ -35,7 +35,8 @@
 				<li class="nav-item"><a class="nav-link" href="contact.html">Liên
 						hệ</a></li>
 				<c:if test="${sessionScope.uId != null}">
-					<li class="nav-item"><a class="nav-link"  ${tagactive==sessionScope.uId ? "
+					<li class="nav-item"><a class="nav-link"
+						${tagactive==sessionScope.uId ? "
 								active":""}" href="user">${sessionScope.uEmail}</a></li>
 					<li class="nav-item"><a class="nav-link" href="logout">Đăng
 							xuất</a></li>
@@ -56,10 +57,18 @@
 						</button>
 					</div>
 				</div>
-				<a class="btn btn-success btn-sm ml-3" href="cart"> <i
-					class="fa fa-shopping-cart"></i> Cart <span
-					class="badge badge-light">0</span>
-				</a>
+				<c:if test="${sessionScope.uId != null}">
+					<a class="btn btn-success btn-sm ml-3" href="cart"> <i
+						class="fa fa-shopping-cart"></i> Cart <!--<span
+						 class="badge badge-light">0</span> -->
+					</a>
+				</c:if>
+				<c:if test="${sessionScope.uId == null}">
+					<a class="btn btn-success btn-sm ml-3" href="login"> <i
+						class="fa fa-shopping-cart"></i> Cart<!-- <span
+						 class="badge badge-light">0</span> -->
+					</a>
+				</c:if>
 			</form>
 		</div>
 	</div>
@@ -77,8 +86,8 @@
 	</div>
 </section>
   -->
-<div class="item">
+<div class="item mb-3" style="box-shadow: 0px 0px 11px 1px rgb(0 0 0 / 10%)">
 	<img class="d-block w-100"
-		src="https://thumbs.dreamstime.com/z/welcome-back-to-sc…illustration-welcome-back-to-school-172576180.jpg"
+		src="https://vanphongphamhaiduong.vn/files/assets/banner.jpg" width="1535" height="365" 
 		alt="">
 </div>

@@ -48,7 +48,7 @@
 					<div class="col-12 col-sm-3">
 						<div class="card">
 							<img class="card-img-top"
-								src="https://dummyimage.com/600x400/55595c/fff"
+								src="${pageContext.request.contextPath}${p.image}" width="200" height="200" 
 								alt="Card image cap">
 							<div class="card-body">
 								<h4 class="card-title"${tagactive==p._id ? "active":""}>
@@ -59,8 +59,14 @@
 										<p class="btn btn-danger btn-block">${p.price }đồng</p>
 									</div>
 									<div class="col">
-										<a href="#" class="btn btn-success btn-block">Thêm vào giỏ
-											hàng</a>
+										<c:if test="${sessionScope.uId != null}">
+											<a href="cartadd?pid=${p._id}"
+												class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
+										</c:if>
+										<c:if test="${sessionScope.uId == null}">
+											<a href="login" class="btn btn-success btn-block">Thêm
+												vào giỏ hàng</a>
+										</c:if>
 									</div>
 								</div>
 							</div>

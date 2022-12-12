@@ -1,6 +1,7 @@
 package vn.iotstar.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import vn.iotstar.DAO.CategoryDAO;
 import vn.iotstar.DAO.UserDAO;
+import vn.iotstar.model.Category;
 import vn.iotstar.model.User;
 
 @WebServlet(urlPatterns = "/edituserinfo")
@@ -31,12 +34,16 @@ public class EditUserInfoController extends HttpServlet {
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("uId");
 		String uid = String.valueOf(obj);
+		
 		// B1:khỏi tạo DAO
 		UserDAO userInfoDao = new UserDAO();
+		CategoryDAO categoryDao = new CategoryDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ profileUSerDAO
 		User list1 = userInfoDao.getUser(uid);
+		List<Category> listC = categoryDao.getAll();
 		// B3:thiết lập dữ liệu trên jsp
 		req.setAttribute("getUserEdit", list1);
+		req.setAttribute("listcate", listC);
 		RequestDispatcher rq = req.getRequestDispatcher("views/user/editUserInfo.jsp");
 		rq.forward(req, resp);
 	}
