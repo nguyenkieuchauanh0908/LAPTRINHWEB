@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.iotstar.connection.DBconnect;
+import vn.iotstar.model.Cart;
 import vn.iotstar.model.CartItem;
 import vn.iotstar.model.Product;
 
@@ -100,6 +101,11 @@ public class CartItemDAO {
 
 	public void addItem(String uid, String pid) {
 		CartDAO cartDAO = new CartDAO();
+		Cart cart = cartDAO.SearchByUserId(uid);
+		if(cart == null)
+		{
+			cartDAO.Insert(uid);
+		}
 		String cartId = String.valueOf(cartDAO.SearchByUserId(uid).get_id());
 		int check = existItem(uid, pid);
 		if (check == 0) {
@@ -122,6 +128,11 @@ public class CartItemDAO {
 	}
 	public void addItemWithQuan(String uid, String pid, String quantity) {
 		CartDAO cartDAO = new CartDAO();
+		Cart cart = cartDAO.SearchByUserId(uid);
+		if(cart == null)
+		{
+			cartDAO.Insert(uid);
+		}
 		String cartId = String.valueOf(cartDAO.SearchByUserId(uid).get_id());
 		int check = existItem(uid, pid);
 		if (check == 0) {
@@ -168,11 +179,11 @@ public class CartItemDAO {
 		// int check = user1.checkSignup("Nguyen","Kieu Thanh
 		// Thi","nguyenkieuchauanh0908@gmail.com","0966732750","123 Le Thi Hong, Ho Chi
 		// Minh","123456");
-//		List<CartItem> list = dao.getAllCartItemByUserId("1");
-//		for (CartItem o : list) {
-//			System.out.println(o.getProduct().get_id());
-//		}
-		int check = dao.existItem("1", "4");
-		System.out.println(check);
+		List<CartItem> list = dao.getAllCartItemByUserId("13");
+		for (CartItem o : list) {
+			System.out.println(o);
+		}
+//		int check = dao.existItem("1", "4");
+//		System.out.println(check);
 	}
 }
