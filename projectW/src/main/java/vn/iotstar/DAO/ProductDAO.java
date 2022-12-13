@@ -268,6 +268,24 @@ public class ProductDAO {
 		}
 		return 0;
 	}
+	public int countAllProbyKeyWord(String keyword) {
+		String sql= "SELECT count(*) FROM Product WHERE [name] like ?";
+		try {
+			conn = new DBconnect().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + keyword + "%");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				return (rs.getInt(1));
+			}
+			
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+		return 0;
+	}
 	public List<Product> getAllProbyPage(int index){
 		index=(index-1)*8;
 		List<Product> list = new ArrayList<Product>();
@@ -317,9 +335,34 @@ public class ProductDAO {
 		}
 		return list;
 	}
+	public List<Product> getAllProbyPagebyKeyWord(int index, String keyword){
+		index=(index-1)*8;
+		List<Product> list = new ArrayList<Product>();
+		// khai báo chuỗi truy vấn
+		String sql = "select * from Product where [name] like ? ORDER BY _id ASC OFFSET ? rows fetch next 8 rows only";
+		try {
+			// mở kết nối
+			conn = new DBconnect().getConnection();
+			// ném câu query qua sql
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + keyword + "%");
+			ps.setInt(2,index);
+			// chạy query và nhận kết quả
+			rs = ps.executeQuery();
+			// lấy ResultSet đổ vào list
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getBoolean(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		return list;
+	}
 	public static void main(String[] args) { //hàm check
 		ProductDAO pDAO =  new ProductDAO();
-		List<Product> check = pDAO.getAllProbyPagebyCate(1,"1");
+		List<Product> check = pDAO.getAllProbyPagebyKeyWord(1,"dao");
 		//int check = pDAO.countAllPro();
 		//System.out.print(check);
 		for(Product p: check)
