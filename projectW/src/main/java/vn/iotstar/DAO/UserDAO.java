@@ -3,6 +3,8 @@ package vn.iotstar.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -15,7 +17,7 @@ public class UserDAO {
 	static ResultSet rs = null;
 	static String new_pass = null;
 
-	public User getUser(String userId) {
+	public User getUser(String userId) { //lấy thông tin của user theo ID nhận vào
 		// khai báo chuỗi truy vấn
 		String sql = "select * from [_User] where _id = ?";
 		try {
@@ -38,8 +40,7 @@ public class UserDAO {
 		}
 		return null;
 	}
-
-	public User checkLogin(String email, String pass) {
+	public User checkLogin(String email, String pass) {//kiểm tra mật khẩu và password có đúng không
 		User a = null;
 		try {
 			// select * from [_User] where email = '20110234@student.hcmute.edu.vn' and
@@ -50,7 +51,6 @@ public class UserDAO {
 			ps.setString(1, email);
 			ps.setString(2, pass);
 			rs = ps.executeQuery();
-
 			while (rs.next()) {
 				a = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), rs.getString(7), rs.getByte(8), rs.getByte(9), rs.getString(10),
@@ -67,24 +67,20 @@ public class UserDAO {
 		return a;
 	}
 
-	public int checkSignup(String fname, String lname, String email, String phone, String address, String password) {
+	public int checkSignup(String email, String password) { //kiểm tra đăng kí có thành công hay không
 		int check = 0;
 		try {
 			// insert into [_User](firstname,lastname, email, phone, hashed_password,
 			// _role,addresses) values('Nguyen','Kieu Chau
 			// Anh','20110234@student.hcmute.edu.vn','0913935810','chauanh123',1,'123 Le Thi
 			// Hong, Ho Chi Minh')
-			String query = "insert into [_User](firstname,lastname, email, phone, hashed_password, _role,addresses) values(?,?,?,?,?,?,?)";
+			String query = "insert into [_User](email, hashed_password, _role) values(?,?,?)";
 			conn = new DBconnect().getConnection();
 			ps = conn.prepareStatement(query);
 			// rs = ps.executeQuery();
-			ps.setString(1, fname);
-			ps.setString(2, lname);
-			ps.setString(3, email);
-			ps.setString(4, phone);
-			ps.setString(5, password);
-			ps.setInt(6, 1);
-			ps.setString(7, address);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ps.setInt(3, 1);//Role:1 là khách hàng, chức năng đăng ký chỉ dành cho khách hàng, các role khác admin thêm thủ công
 			check = ps.executeUpdate();
 			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
 			{
@@ -106,11 +102,10 @@ public class UserDAO {
 		try {
 			// select * from [_User] where email = '20110234@student.hcmute.edu.vn' and
 			// [_role] = 1
-			String query = "select * from [_User] where email = ? and [_role] = ?";
+			String query = "select * from [_User] where email = ?";
 			conn = new DBconnect().getConnection();
 			ps = conn.prepareStatement(query);
 			ps.setString(1, email);
-			ps.setInt(2, 1);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				uId = rs.getInt(1);
@@ -124,14 +119,15 @@ public class UserDAO {
 		return uId;
 	}
 
-	public String resetCustomerPassword(String email) // tạo mật khẩu mới random
+	public String resetCustomerPassword(String email) // sinh mật khẩu mới ngẫu nhiên
 	{
 		String randomPassword = RandomStringUtils.randomAlphanumeric(10);
 		return randomPassword;
 	}
 
-	public void update(String randomPassword, int u_id) // cập nhật mật khẩu người dùng theo id
+	public int updatePass(String randomPassword, int u_id) // cập nhật mật khẩu người dùng theo id
 	{
+		int check = 0; //Nếu thành công thì check = 1
 		try {
 			// update [_User] set hashed_password= 'èakfakjfa' where _id = 13
 			String query = "update [_User] set hashed_password= ? where _id = ?";
@@ -139,12 +135,15 @@ public class UserDAO {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, randomPassword);
 			ps.setInt(2, u_id);
-			rs = ps.executeQuery();
-		} catch (Exception e) {
+			check = ps.executeUpdate();
+			return check;
+		} 
+		catch (Exception e) {
+			return check;
 		}
 
 	}
-	public int checkUpdateInfo(String uid, String fname, String lname, String email, String phone, String addresses)
+	public int checkUpdateInfo(String uid, String fname, String lname, String email, String phone, String addresses) //kiểm tra cập nhật thông tin khách hàng thành công hay không
 	{
 		int check = 0;
 		try {
@@ -167,7 +166,6 @@ public class UserDAO {
 				return 1;
 			} else // Nếu thất bại trả về check = 0
 			{
-
 				return 0;
 			}
 		} catch (Exception e) {
@@ -175,15 +173,114 @@ public class UserDAO {
 		}
 
 	}
-	
-
-	public static void main(String[] args) {
-		UserDAO user1 = new UserDAO();
-		// int check = user1.checkSignup("Nguyen","Kieu Thanh
-		// Thi","nguyenkieuchauanh0908@gmail.com","0966732750","123 Le Thi Hong, Ho Chi
-		// Minh","123456");
-		int u_id = user1.checkUpdateInfo("11", "my","tran","my123456@gmail.com","1234567","01 vvn");
-		System.out.println(u_id);
+	public List<User> getCustomer() {//lấy ra danh sách toàn bộ khách hàng (role=1)
+		List<User> userList = new ArrayList<User>();
+		try {
+			String sql = "SELECT * FROM _User where _role=1";
+			conn = new DBconnect().getConnection(); 
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.set_id(rs.getInt("_id"));
+				user.setEmail(rs.getString("email"));
+				user.setFirstname(rs.getString("firstname"));
+				user.setLastname(rs.getString("lastname"));
+				user.setPhone(rs.getString("phone"));
+				user.setHashed_password(rs.getString("hashed_password"));
+				user.set_role(rs.getString("_role"));
+				user.setAddresses(rs.getString("addresses"));
+				userList.add(user);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userList;
 	}
+	public int insertUser(User user) //Insert user và kiểm tra có thành công hay không
+	{
+		int check = 0;
+		try {
+			String query = "insert into [_User](firstname,lastname, email, phone, hashed_password, _role,addresses) values(?,?,?,?,?,?,?)";
+			conn = new DBconnect().getConnection();
+			ps = conn.prepareStatement(query);
+			// rs = ps.executeQuery();
+			ps.setString(1, user.getFirstname());
+			ps.setString(2, user.getLastname());
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getPhone());
+			ps.setString(5, user.getHashed_password());
+			ps.setString(6, user.get_role());
+			ps.setString(7, user.getAddresses());
+			check = ps.executeUpdate();
+			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
+			{
+				return 1;
+			} else // Nếu thất bại trả về check = 0
+			{
+
+				return 0;
+			}
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	
+	public List<User> getEmployee() {//lấy ra danh sách toàn bộ nhân viên (role=2)
+		List<User> userList = new ArrayList<User>();
+		try {
+			String sql = "SELECT * FROM _User where _role=2";
+			conn = new DBconnect().getConnection(); 
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.set_id(rs.getInt("_id"));
+				user.setEmail(rs.getString("email"));
+				user.setFirstname(rs.getString("firstname"));
+				user.setLastname(rs.getString("lastname"));
+				user.setPhone(rs.getString("phone"));
+				user.setHashed_password(rs.getString("hashed_password"));
+				user.set_role(rs.getString("_role"));
+				user.setAddresses(rs.getString("addresses"));
+				userList.add(user);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userList;
+	}
+	public int deleteEmployee(int uid) {//Xóa nhân viên theo id của nhân viên đó
+		int check = 0;
+		try {
+			//delete from _User where _id=9 and _role=2
+			String query = "delete from _User where _id=? and _role=?";
+			conn = new DBconnect().getConnection();
+			ps = conn.prepareStatement(query);
+			// rs = ps.executeQuery();
+			ps.setInt(1, uid);
+			ps.setInt(2, 2);
+			check = ps.executeUpdate();
+			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
+			{
+				return 1;
+			} else // Nếu thất bại trả về check = 0
+			{
+
+				return 0;
+			}
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	public static void main(String[] args) { //hàm check
+		UserDAO uDAO = new UserDAO();
+		int check = uDAO.deleteEmployee(9);
+		System.out.print(check);
+	}
+
+
 
 }
