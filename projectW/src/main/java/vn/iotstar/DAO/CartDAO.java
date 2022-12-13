@@ -55,6 +55,6 @@ public class CartDAO {
 		// Minh","123456");
 //		Cart u_id = dao.SearchByUserId("1");
 //		System.out.println(u_id.get_id());
-		dao.Insert("11");
+		System.out.println(dao.SearchByUserId("1"));
 	}
 }
