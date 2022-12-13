@@ -31,17 +31,30 @@ public class CategoryController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		// lay tham so tu JSP
 		String cid = req.getParameter("cid");
+		// lay tham so tu jsp
+		String index = req.getParameter("index");
+		if (index == null) {
+			index = "1";
+		}
+		int indexpage = Integer.parseInt(index);
 		// B1:khỏi tạo DAO
 		ProductDAO productDao = new ProductDAO();
 		CategoryDAO categoryDao = new CategoryDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ ProductDAO
-		List<Product> list = productDao.getAllProductByIdC(cid);
+		int countPro = productDao.countAllProbyCateId(cid);
+		int countPage= countPro/6;
+		if(countPro % 6 !=0) {
+			countPage++;
+		}
+		List<Product> list = productDao.getAllProbyPagebyCate(indexpage,cid);
 		List<Category> listC = categoryDao.getAll();
 		Category cate = categoryDao.getCateByIdC(cid);
 		// B3:thiết lập dữ liệu trên jsp
 		req.setAttribute("cate", cate);
 		req.setAttribute("listprobycate", list);
 		req.setAttribute("listcate", listC);
+		req.setAttribute("CountPa", countPage);
+		req.setAttribute("tag", indexpage);
 		RequestDispatcher rq = req.getRequestDispatcher("views/user/category.jsp");
 		rq.forward(req, resp);
 	}
