@@ -55,7 +55,8 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th style="width: 200px">Mã sản phẩm</th>
+										<th style="width: 100px">Mã SP</th>
+										<th style="width: 20px">Hình</th>
 										<th style="width: 200px">Tên sản phẩm</th>
 										<th style="width: 200px">Gía bán</th>
 										<th style="width: 200px">Đã bán</th>
@@ -70,6 +71,9 @@
 									<c:forEach items="${producList}" var="product">
 										<tr>
 											<td>${product._id}</td>
+											<td><img class="card-img-top"
+											src="${pageContext.request.contextPath}/${product.image}" width="20" height="20" 
+											alt="Card image cap"></td>
 											<td>${product.name}</td>
 											<td>${product.price}</td>
 											<td>${product.sold}</td>
@@ -82,7 +86,7 @@
 													</c:when>
 													<c:when test="${product.categoryId == 4 }">Văn phòng phẩm
 													</c:when>
-													<c:when test="${product.categoryId  == 5}">Đồng phục đi học
+													<c:when test="${product.categoryId  == 5}">Văn phòng phẩm
 													</c:when>
 													<c:when test="${product.categoryId  == 6}">Máy tính tay
 													</c:when>
@@ -100,7 +104,7 @@
 											</td>
 											<%-- <td>${product.isDeleted}</td> --%>
 											<td class="center"><c:choose>
-													<c:when test="${product.isDeleted == 'false'}">Đang kinh doanh
+													<c:when test="${product.isDeleted eq false}">Đang kinh doanh
 													</c:when>
 													<c:otherwise>Ngưng bán
 													</c:otherwise>
