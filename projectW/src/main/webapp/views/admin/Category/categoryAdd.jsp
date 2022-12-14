@@ -58,6 +58,13 @@
 											<button type="reset" class="btn btn-warning"
 												style="width: 100px; margin-top: 20px;">Reset</button>
 										</form>
+										<a href="categoryList">
+												<button
+													style="float: right;  border: none; text-align: center; margin-top:5px;"
+													class="btn btn-success">
+													<h6>Về lại danh sách</h6>
+												</button>
+											</a>
 									</div>
 								</div>
 							</div>
