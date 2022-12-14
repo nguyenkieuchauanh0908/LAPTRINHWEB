@@ -15,8 +15,10 @@ public class Order {
 	private int amountFromUser;
 	private int amountFromStore;
 	private int amountToGD;
+	private int amountToStore;
 	private Date createdAt;
 	private Date updatedAt;
+	private User user;
 	public Order() {
 		super();
 	}
@@ -123,13 +125,26 @@ public class Order {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+public int getAmountToStore() {
+		return amountToStore;
+	}
+	public void setAmountToStore(int amountToStore) {
+		this.amountToStore = amountToStore;
+	}
+	
 	@Override
 	public String toString() {
 		return "Order [_id=" + _id + ", userId=" + userId + ", storeId=" + storeId + ", deliveryId=" + deliveryId
 				+ ", commissionId=" + commissionId + ", address=" + address + ", phone=" + phone + ", status=" + status
 				+ ", isPaidBefore=" + isPaidBefore + ", amountFromUser=" + amountFromUser + ", amountFromStore="
-				+ amountFromStore + ", amountToGD=" + amountToGD + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
+				+ amountFromStore + ", amountToGD=" + amountToGD + ", amountToStore=" + amountToStore + ", createdAt="
+				+ createdAt + ", updatedAt=" + updatedAt + ", user=" + user + "]";
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }
