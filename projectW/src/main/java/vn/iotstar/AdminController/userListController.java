@@ -1,7 +1,6 @@
 package vn.iotstar.AdminController;
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,17 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.User;
-
-/**
- * Servlet implementation class userListController
- */
 @WebServlet(urlPatterns  = "/userList")
 public class userListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public userListController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -48,5 +42,4 @@ public class userListController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

@@ -88,6 +88,14 @@
 												style="width: 100px; margin-top: 10px;">Reset</button>
 
 										</form>
+										<a href="employeeList">
+											<button
+												style="float: right; border: none; text-align: center; margin-top: 15px;"
+												class="btn btn-success">
+												<h6>Về lại danh sách</h6>
+											</button>
+										</a>
+
 									</div>
 								</div>
 							</div>

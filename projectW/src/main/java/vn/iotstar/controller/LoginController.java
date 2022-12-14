@@ -43,7 +43,7 @@ public class LoginController extends HttpServlet {
 					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);
 				}
 				else // Nếu role là vendor thì chuyển hướng về trang vendor
-					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);
+					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);//thay thành trang chủ của vendor
 			}
 		}
 		catch (Exception e){

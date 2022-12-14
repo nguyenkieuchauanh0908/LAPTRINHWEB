@@ -34,7 +34,6 @@ public class ProductDAO {
 			return null;
 		}
 		return list;
-
 	}
 
 	public List<Product> getTop4Product() {
@@ -58,9 +57,7 @@ public class ProductDAO {
 			// TODO: handle exception
 		}
 		return list;
-
 	}
-
 	public Product getTop1Product() {
 		// khai báo chuỗi truy vấn
 		String sql = "select TOP 1 * from Product order by sold DESC";
@@ -153,12 +150,12 @@ public class ProductDAO {
 		}
 		return null;
 	}
-	public int insertProduct(Product product) //Insert user và kiểm tra có thành công hay không
+	public int insertProduct(Product product) //Insert product và kiểm tra có thành công hay không
 	{
 		int check = 0;
 		try {
-			//insert into Product ([name],[description],price,sold,categoryId,quantity) values('Bút chì Muji','Bút chính hãng','15000','0',1,50)
-			String query = "insert into Product ([name],[description],price,sold,categoryId,quantity,isDeleted) values(?,?,?,?,?,?,?)";
+			//insert into Product ([name],[description],price,sold,categoryId,quantity,isDeleted) values('Bút chì Muji','Bút chính hãng','15000','0',1,50,0)
+			String query = "insert into Product ([name],[description],price,sold,categoryId,quantity,isDeleted,image) values(?,?,?,?,?,?,?,?)";
 			conn = new DBconnect().getConnection();
 			ps = conn.prepareStatement(query);
 			ps.setString(1, product.getName());
@@ -167,7 +164,8 @@ public class ProductDAO {
 			ps.setInt(4, 0);
 			ps.setInt(5, product.getCategoryId());
 			ps.setInt(6, 50);
-			ps.setByte(7, (byte) 0);
+			ps.setBoolean(7, false);
+			ps.setString(8, product.getImage());
 			check = ps.executeUpdate();
 			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
 			{
@@ -187,16 +185,34 @@ public class ProductDAO {
 		int check = 0;
 		try {
 			//update Product set [name] = 'Bút chì Mây', description = 'Chất lượng tuyệt vời', price=15000, categoryId=1 where _id=1
-			String query = "update Product set [name] = ?, description = ?, price=?, categoryId=?, isDeleted = ? where _id=?";
-			conn = new DBconnect().getConnection();
-			ps = conn.prepareStatement(query);
-			ps.setString(1, product.getName());
-			ps.setString(2, product.getDescription());
-			ps.setFloat(3, product.getPrice());
-			ps.setInt(4, product.getCategoryId());
-			ps.setBoolean(5,product.getIsDeleted());
-			ps.setInt(6, product.get_id());
-			check = ps.executeUpdate();
+			if(!product.getImage().equals(null))
+			{
+				String query = "update Product set [name] = ?, description = ?, price=?, categoryId=?, isDeleted = ?,image=? where _id=?";
+				conn = new DBconnect().getConnection();
+				ps = conn.prepareStatement(query);
+				ps.setString(1, product.getName());
+				ps.setString(2, product.getDescription());
+				ps.setFloat(3, product.getPrice());
+				ps.setInt(4, product.getCategoryId());
+				ps.setBoolean(5,product.getIsDeleted());
+				ps.setString(6, product.getImage());
+				ps.setInt(7, product.get_id());
+				check = ps.executeUpdate();
+			}
+			else
+			{
+				String query = "update Product set [name] = ?, description = ?, price=?, categoryId=?, isDeleted = ? where _id=?";
+				conn = new DBconnect().getConnection();
+				ps = conn.prepareStatement(query);
+				ps.setString(1, product.getName());
+				ps.setString(2, product.getDescription());
+				ps.setFloat(3, product.getPrice());
+				ps.setInt(4, product.getCategoryId());
+				ps.setBoolean(5,product.getIsDeleted());
+				ps.setInt(6, product.get_id());
+				check = ps.executeUpdate();
+			}
+			
 			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
 			{
 				return 1;

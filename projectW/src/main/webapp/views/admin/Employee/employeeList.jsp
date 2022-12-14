@@ -70,7 +70,7 @@
 									<c:forEach items="${employeeList}" var="user">
 										<tr>
 											<td>${user._id}</td>
-											<td>${user.lastname}${user.firstname}</td>
+											<td>${user.lastname} ${user.firstname}</td>
 											<td>${user.phone}</td>
 											<td>${user.email}</td>
 											<td class="center"><c:choose>

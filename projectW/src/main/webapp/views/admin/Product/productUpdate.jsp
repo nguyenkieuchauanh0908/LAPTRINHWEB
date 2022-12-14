@@ -1,14 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Admin</title>
-
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
@@ -45,7 +42,8 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="" style="padding: 70px; margin-top: -50px;">
-										<form method="post" action="productUpdate">
+										<form method="post" action="productUpdate"
+											enctype=multipart/form-data>
 											<div class="form-group">
 												<label>Tên sản phẩm</label> <input style="margin-top: 15px;"
 													class="form-control" name="pname" type="text"
@@ -59,8 +57,7 @@
 														<c:forEach var="category" items="${cateList}">
 															<option
 																${product.categoryId == category._id ? "selected" : ""}
-																value="${category._id}">${category._name}
-															</option>
+																value="${category._id}">${category._name}</option>
 														</c:forEach>
 													</select>
 												</div>
@@ -81,21 +78,49 @@
 												<div class="col-sm-10" style="width: 100%">
 													<select required id="isDeleted" name="isDeleted"
 														class="form-select form-control">
-															<option
-																${product.isDeleted eq product.isDeleted ? "selected" : ""}
-																value="${product.isDeleted=='false'}">Đang kinh doanh
-															</option>
-															<option
-																${product.isDeleted eq product.isDeleted ? "selected" : ""}
-																value="${product.isDeleted=='true'}">Ngưng bán
-															</option>
+														<option
+															${product.isDeleted == product.isDeleted ? "selected" : ""}
+															value="${product.isDeleted eq false }">
+															<c:choose>
+																<c:when test="${product.isDeleted eq false}">Ngưng bán
+																</c:when>
+																<c:otherwise>Đang kinh doanh
+																</c:otherwise>
+															</c:choose>
+														</option>
+														<option
+															${product.isDeleted == product.isDeleted ? "selected" : ""}
+															value="${product.isDeleted eq true }">
+															<c:choose>
+																<c:when test="${product.isDeleted eq true}">Ngưng bán
+																</c:when>
+																<c:otherwise>Đang kinh doanh
+																</c:otherwise>
+															</c:choose>
+														</option>
+
 													</select>
 												</div>
 											</div>
+											<div class="form-group">
+												<label style="margin-top: 15px;">Hình ảnh</label> <input
+													style="margin-top: 15px;" class="form-control"
+													value="${product.image}" name="image" type="file" /> <img
+													class="card-img-top"
+													src="${pageContext.request.contextPath}/${product.image}"
+													width="100px" height="100px" alt="Card image cap">
+											</div>
+
 											<button type="submit" class="btn btn-primary"
 												style="width: 100px; margin-top: 20px; padding-right: 7px;">Cập
 												nhật</button>
-
+											<a href="productList">
+												<button
+													style="float: right; border: none; text-align: center; margin-top: 15px;"
+													class="btn btn-success">
+													<h6>Về lại danh sách</h6>
+												</button>
+											</a>
 										</form>
 									</div>
 								</div>

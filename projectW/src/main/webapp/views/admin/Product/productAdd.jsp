@@ -45,7 +45,8 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="" style="padding: 70px; margin-top: -50px;">
-										<form method="post" action="productAdd">
+										<form method="post" action="productAdd"
+											enctype=multipart/form-data>
 											<div class="form-group">
 												<label>Tên sản phẩm</label> <input class="form-control"
 													placeholder="Bút chì Muji" name="pname" type="text"
@@ -73,12 +74,25 @@
 												<label>Gía bán (VNĐ)</label> <input class="form-control"
 													placeholder="150000" type="text" name="price" required />
 											</div>
+											<div class="form-group">
+												<label style="margin-top: 15px;">Hình ảnh</label> <input
+													style="margin-top: 15px;" class="form-control" name="image"
+													type="file" required />
+											</div>
 											<button type="submit" class="btn btn-primary"
 												style="width: 100px; margin-top: 20px; padding-right: 7px;">Thêm
 											</button>
 											<button type="reset" class="btn btn-warning"
 												style="width: 100px; margin-top: 20px;">Reset</button>
+
 										</form>
+										<a href="productList">
+											<button
+												style="float: right; border: none; text-align: center; margin-top: 15px;"
+												class="btn btn-success">
+												<h6>Về lại danh sách</h6>
+											</button>
+										</a>
 									</div>
 								</div>
 							</div>
