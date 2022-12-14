@@ -47,12 +47,12 @@
 				</c:if>
 			</ul>
 
-			<form class="form-inline my-2 my-lg-0">
+			<form action="searchproduct" method="get" class="form-inline my-2 my-lg-0">
 				<div class="input-group input-group-sm">
-					<input type="text" class="form-control" aria-label="Small"
-						aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+					<input type="text" class="form-control" name="keyword" aria-label="Small" 
+						aria-describedby="inputGroup-sizing-sm" placeholder="Search..." value="${key }">
 					<div class="input-group-append">
-						<button type="button" class="btn btn-secondary btn-number">
+						<button type="sumit" class="btn btn-secondary btn-number">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
