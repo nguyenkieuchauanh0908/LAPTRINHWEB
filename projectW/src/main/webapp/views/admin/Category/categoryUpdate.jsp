@@ -54,6 +54,13 @@
 											<button type="submit" class="btn btn-primary"
 												style="width: 100px; margin-top: 20px; padding-right: 7px;">Cập
 												nhật</button>
+											<a href="productList">
+												<button
+													style="float: right;  border: none; text-align: center; margin-top:15px;"
+													class="btn btn-success">
+													<h6>Về lại danh sách</h6>
+												</button>
+											</a>
 
 										</form>
 									</div>

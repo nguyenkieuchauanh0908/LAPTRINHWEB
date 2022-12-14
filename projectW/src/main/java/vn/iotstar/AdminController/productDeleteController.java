@@ -7,12 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import vn.iotstar.DAO.ProductDAO;
-
-/**
- * Servlet implementation class productDeleteController
- */
 @WebServlet("/productDelete")
 public class productDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

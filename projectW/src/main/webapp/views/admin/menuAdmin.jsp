@@ -15,7 +15,6 @@
 		</button>
 		<div class="collapse navbar-collapse order-last" id="nav">
 			<ul class="navbar-nav flex-column w-100 justify-content-center">
-
 				<li><a href="user"> <img style="margin-right:30px;"
 						src="https://bootdey.com/img/Content/avatar/avatar7.png"
 						alt="Admin" class="rounded-circle" width="150">

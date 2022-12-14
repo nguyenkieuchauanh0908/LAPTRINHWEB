@@ -28,7 +28,6 @@ public class categoryListController extends HttpServlet {
 			dispatcher.forward(req, resp);
 		}
 		catch (Exception e){
-			
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
