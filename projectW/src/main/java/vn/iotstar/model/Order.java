@@ -19,6 +19,7 @@ public class Order {
 	private Date createdAt;
 	private Date updatedAt;
 	private User user;
+	private Date deliveryAt;
 	public Order() {
 		super();
 	}
@@ -125,7 +126,8 @@ public class Order {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-public int getAmountToStore() {
+	
+	public int getAmountToStore() {
 		return amountToStore;
 	}
 	public void setAmountToStore(int amountToStore) {
@@ -145,6 +147,12 @@ public int getAmountToStore() {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public Date getDeliveryAt() {
+		return deliveryAt;
+	}
+	public void setDeliveryAt(Date deliveryAt) {
+		this.deliveryAt = deliveryAt;
 	}
 	
 }
