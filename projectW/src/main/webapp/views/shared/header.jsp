@@ -71,6 +71,6 @@
   -->
 <div class="item">
 	<img class="d-block w-100"
-		src="https://thumbs.dreamstime.com/z/welcome-back-to-sc…illustration-welcome-back-to-school-172576180.jpg"
+		src="https://img.freepik.com/free-vector/back-school-sale-background_23-2149027990.jpg?w=1060&t=st=1670136486~exp=1670137086~hmac=7122993f39cbcd2df61dff187f2f535528de8677bdac2b22bde2d311fa6429f6"
 		alt="">
 </div>

@@ -13,17 +13,19 @@ public class Product {
 	private int sold;
 	private byte isActive;
 	private byte isSelling;
+	private String image ;
 	private int categoryId;
 	private int storeId;
 	private byte isDeteled;
 	private int rating;
 	private Date createdAt;
 	private Date updatedAt;
+	private Category category;
 	public Product() {
 		super();
 	}
 	public Product(int _id, String name, String slug, String description, Float price, Float promotionalPrice,
-			int quantity, int sold, byte isActive, byte isSelling, int categoryId, int storeId, byte isDeteled,
+			int quantity, int sold, byte isActive, byte isSelling,String image, int categoryId, int storeId, byte isDeteled,
 			int rating, Date createdAt, Date updatedAt) {
 		super();
 		this._id = _id;
@@ -36,6 +38,7 @@ public class Product {
 		this.sold = sold;
 		this.isActive = isActive;
 		this.isSelling = isSelling;
+		this.image = image;
 		this.categoryId = categoryId;
 		this.storeId = storeId;
 		this.isDeteled = isDeteled;
@@ -143,9 +146,21 @@ public class Product {
 	public String toString() {
 		return "Product [_id=" + _id + ", name=" + name + ", slug=" + slug + ", description=" + description + ", price="
 				+ price + ", promotionalPrice=" + promotionalPrice + ", quantity=" + quantity + ", sold=" + sold
-				+ ", isActive=" + isActive + ", isSelling=" + isSelling + ", categoryId=" + categoryId + ", storeId="
-				+ storeId + ", isDeteled=" + isDeteled + ", rating=" + rating + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + "]";
+				+ ", isActive=" + isActive + ", isSelling=" + isSelling + ", image=" + image + ", categoryId="
+				+ categoryId + ", storeId=" + storeId + ", isDeteled=" + isDeteled + ", rating=" + rating
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", category=" + category + "]";
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 }

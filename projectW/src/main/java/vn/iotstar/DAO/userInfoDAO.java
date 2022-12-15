@@ -151,10 +151,47 @@ public class userInfoDAO {
 		  int u_id = user1.findByEmail("20110234@student.hcmute.edu.vn");
 		  System.out.println(u_id);
 	  }
-	public User getUser(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	  
+	  
+	  
+	  
+	  
+	public User getUser(String i) {// t đổi sang string 
+		 String query = "Select * from [_User] WHERE _id LIKE ?";
+
+	        try {
+	            conn = new DBconnect().getConnection();
+	            ps = conn.prepareStatement(query);
+	            ps.setString(1, "%" + i + "%");
+	            rs = ps.executeQuery();
+
+	            while (rs.next()) {
+	                return new User(
+	                	  rs.getInt(1), 
+	   					  rs.getString(2),
+	   					  rs.getString(3), 
+	   					  rs.getString(4), 
+	   					  rs.getString(5), 
+	   					  rs.getString(6),
+	   					  rs.getString(7), 
+	   					  rs.getByte(8), 
+	   					  rs.getByte(9), 
+	   					  rs.getString(10),
+	   					  rs.getString(11), 
+	   					  rs.getString(12), 
+	   					  rs.getString(13), 
+	   					  rs.getString(14),
+	   					  rs.getString(15), 
+	   					  rs.getInt(16), 
+	   					  rs.getFloat(17), 
+	   					  rs.getDate(18),
+	   					  rs.getDate(19) ); 
+	            }
+	        } catch (Exception e) {
+	            // TODO: handle exception
+	        }
+	        return null;
+	    }
 	 
 	 
 	 
