@@ -9,6 +9,9 @@ public class OrderItem {
 	private int count_SP;
 	private Date createdAt;
 	private Date updatedAt;
+	private Product product;
+
+	
 	public OrderItem() {
 		super();
 	}
@@ -57,10 +60,17 @@ public class OrderItem {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
 	@Override
 	public String toString() {
 		return "OrderItem [_id=" + _id + ", orderId=" + orderId + ", productId=" + productId + ", count_SP=" + count_SP
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", product=" + product + "]";
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	
 }
