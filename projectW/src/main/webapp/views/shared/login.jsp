@@ -5,6 +5,9 @@
 <head>
 <title>Đăng nhập</title>
 <link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	rel="stylesheet">
 <style>
@@ -19,7 +22,7 @@ form {
 	border: 5px solid #f1f1f1;
 }
 
-input[type=email],input[type=text], input[type=password] {
+input[type=email], input[type=text], input[type=password] {
 	width: 100%;
 	padding: 16px 8px;
 	margin: 8px 0;
@@ -36,7 +39,7 @@ button {
 	border: none;
 	cursor: grabbing;
 	width: 100%;
-	font-size:17px;
+	font-size: 17px;
 }
 
 h1 {
@@ -62,7 +65,7 @@ span.psw {
 	float: right;
 	padding-top: -8px;
 	padding-right: 15px;
-	padding-bottom:3px;
+	padding-bottom: 3px;
 }
 /* Change styles for span on extra small screens */
 @media screen and (max-width: 300px) {
@@ -82,14 +85,18 @@ span.psw {
 				<label for="uname"><strong>Email</strong></label> <input
 					type="email" placeholder="Nhập email" name="email" required>
 				<label for="psw"><strong>Mật khẩu</strong></label> <input
-					type="password" placeholder="Nhập password" name="password" required>
+					type="password" placeholder="Nhập password" name="password"
+					required>
+				<div class="text-${messageType }">${message }</div>
 			</div>
+
 			<button type="submit">Đăng nhập</button>
 			<div class="container" style="background-color: white">
-				<span class="psw" style = "margin-bottom:10px;"><a href="registration"> Chưa có tài khoản</a></span>
-				<span class="psw"><a href="forgetPassword"> Quên mật khẩu</a></span>
+				<span class="psw" style="margin-bottom: 10px;"><a
+					href="registration"> Chưa có tài khoản</a></span> <span class="psw"><a
+					href="forgetPassword"> Quên mật khẩu</a></span>
 			</div>
-			</div>
+		</div>
 	</form>
 </body>
 </html>

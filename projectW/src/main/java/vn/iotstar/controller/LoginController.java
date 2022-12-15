@@ -22,8 +22,12 @@ public class LoginController extends HttpServlet {
 			String password = req.getParameter("password");
 			UserDAO loginDAO =new UserDAO(); 
 			User a = loginDAO.checkLogin(email, password);
+			String alert = "";
 			if(a == null) //Người dùng không tồn tại
 			{
+				alert="Email hoặc mật khẩu không chính xác!";
+				req.setAttribute("message", alert);
+				req.setAttribute("messageType", "danger");
 				req.getRequestDispatcher("/views/shared/login.jsp").forward(req,resp);
 			}
 			else //Người dùng tồn tại
