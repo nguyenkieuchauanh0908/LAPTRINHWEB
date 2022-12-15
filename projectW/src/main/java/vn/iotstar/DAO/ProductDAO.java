@@ -304,17 +304,18 @@ public class ProductDAO {
 		}
 		return 0;
 	}
-	public List<Product> getAllProbyPage(int index){
-		index=(index-1)*8;
+	public List<Product> getAllProbyPage(int index,int n){//Trả về list các sản phẩm của trang thứ index
+		index=(index-1)*n;//Số lượng sản phẩm ở phía trước trang index
 		List<Product> list = new ArrayList<Product>();
 		// khai báo chuỗi truy vấn
-		String sql = "select * from Product ORDER BY _id ASC OFFSET ? rows fetch next 8 rows only";
+		String sql = "select * from Product ORDER BY _id ASC OFFSET ? rows fetch next ? rows only"; //Lấy các sản phẩm (xếp _id tăng dần) của 8 dòng tiếp theo
 		try {
 			// mở kết nối
 			conn = new DBconnect().getConnection();
 			// ném câu query qua sql
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1,index);
+			ps.setInt(2, n);
 			// chạy query và nhận kết quả
 			rs = ps.executeQuery();
 			// lấy ResultSet đổ vào list
@@ -328,11 +329,11 @@ public class ProductDAO {
 		}
 		return list;
 	}
-	public List<Product> getAllProbyPagebyCate(int index, String cateId){
-		index=(index-1)*8;
+	public List<Product> getAllProbyPagebyCate(int index, String cateId,int n){//Lấy sản phẩm id loại sp, n là số dòng muốn lấy, trang thứ index
+		index=(index-1)*n;
 		List<Product> list = new ArrayList<Product>();
 		// khai báo chuỗi truy vấn
-		String sql = "select * from Product where categoryId=? ORDER BY _id ASC OFFSET ? rows fetch next 6 rows only";
+		String sql = "select * from Product where categoryId=? ORDER BY _id ASC OFFSET ? rows fetch next ? rows only";
 		try {
 			// mở kết nối
 			conn = new DBconnect().getConnection();
@@ -340,6 +341,7 @@ public class ProductDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1,cateId);
 			ps.setInt(2,index);
+			ps.setInt(3,n);
 			// chạy query và nhận kết quả
 			rs = ps.executeQuery();
 			// lấy ResultSet đổ vào list
@@ -353,11 +355,11 @@ public class ProductDAO {
 		}
 		return list;
 	}
-	public List<Product> getAllProbyPagebyKeyWord(int index, String keyword){
-		index=(index-1)*8;
+	public List<Product> getAllProbyPagebyKeyWord(int index, String keyword,int n){//Lấy tất cả sản phẩm theo từ khóa, n là số item muốn lấy, trang thứ index
+		index=(index-1)*n;
 		List<Product> list = new ArrayList<Product>();
 		// khai báo chuỗi truy vấn
-		String sql = "select * from Product where [name] like ? ORDER BY _id ASC OFFSET ? rows fetch next 8 rows only";
+		String sql = "select * from Product where [name] like ? ORDER BY _id ASC OFFSET ? rows fetch next ? rows only";
 		try {
 			// mở kết nối
 			conn = new DBconnect().getConnection();
@@ -365,6 +367,7 @@ public class ProductDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, "%" + keyword + "%");
 			ps.setInt(2,index);
+			ps.setInt(2,n);
 			// chạy query và nhận kết quả
 			rs = ps.executeQuery();
 			// lấy ResultSet đổ vào list
@@ -378,20 +381,6 @@ public class ProductDAO {
 		}
 		return list;
 	}
-	public static void main(String[] args) { //hàm check
-		ProductDAO pDAO =  new ProductDAO();
-		List<Product> check = pDAO.getAllProbyPagebyKeyWord(1,"dao");
-		//int check = pDAO.countAllPro();
-		//System.out.print(check);
-		for(Product p: check)
-		{
-			System.out.print(p);
-			System.out.print("\n");
-		}
-	}
-
-
-
 	public Product findById(int _id) {
 		Product product = new Product();
 		String sql = "Select Product._id,\r\n" + "Product.name,\r\n" + "Product.description,\r\n" + "Product.price,\r\n"
@@ -577,6 +566,17 @@ public class ProductDAO {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) { //hàm check
+		ProductDAO pDAO =  new ProductDAO();
+		List<Product> check = pDAO.getAllProbyPagebyKeyWord(1,"dao",7);
+		//int check = pDAO.countAllPro();
+		//System.out.print(check);
+		for(Product p: check)
+		{
+			System.out.print(p);
+			System.out.print("\n");
 		}
 	}
 }

@@ -72,9 +72,13 @@
 										<tr>
 											<td>${product._id}</td>
 											<td><img class="card-img-top"
-											src="${pageContext.request.contextPath}/${product.image}" width="20" height="20" 
-											alt="Card image cap"></td>
-											<td>${product.name}</td>
+												src="${pageContext.request.contextPath}/${product.image}"
+												width="20" height="20" alt="Card image cap"></td>
+											<td>
+												<div class="py-3">
+													${product.name}
+												</div>
+											</td>
 											<td>${product.price}</td>
 											<td>${product.sold}</td>
 											<td class="center"><c:choose>
@@ -100,16 +104,14 @@
 													</c:when>
 													<c:otherwise>Hết hàng
 													</c:otherwise>
-												</c:choose>
-											</td>
+												</c:choose></td>
 											<%-- <td>${product.isDeleted}</td> --%>
 											<td class="center"><c:choose>
 													<c:when test="${product.isDeleted eq false}">Đang kinh doanh
 													</c:when>
 													<c:otherwise>Ngưng bán
 													</c:otherwise>
-												</c:choose>
-											</td>
+												</c:choose></td>
 											<td><a href="productUpdate?pid=${product._id}">
 													<button class="btn btn-info">Sửa</button>
 											</a></td>
@@ -123,11 +125,41 @@
 											</td>
 										</tr>
 									</c:forEach>
-
-
 								</tbody>
-
 							</table>
+							<div class="col-12">
+								<nav aria-label="...">
+									<ul class="pagination">
+										<c:if test="${tag == 1}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#" tabindex="-1">Previous</a></li>
+										</c:if>
+										<c:if test="${tag > 1}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/productList?index=${tag-1}">Previous</a></li>
+										</c:if>
+										<c:forEach begin="1" end="${CountPa}" var="i">
+											<c:if test="${i==tag}">
+												<li class="page-item active"><a class="page-link"
+													href="#">${i} <span class="sr-only">(current)</span>
+												</a></li>
+											</c:if>
+											<c:if test="${i!=tag}">
+												<li class="page-item"><a class="page-link"
+													href="${pageContext.request.contextPath}/productList?index=${i}">${i}</a></li>
+											</c:if>
+										</c:forEach>
+										<c:if test="${tag == CountPa}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#">Next</a></li>
+										</c:if>
+										<c:if test="${tag < CountPa}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/productList?index=${tag+1}">Next</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
 							<div class="clearfix"></div>
 						</div>
 					</div>

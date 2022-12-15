@@ -17,12 +17,8 @@ import vn.iotstar.model.Product;
 
 @WebServlet(urlPatterns = "/searchproduct")
 public class SearchProductController extends HttpServlet {
-
-	/**
-	 * 
-	 */
+	int n = 8;
 	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// thiết lập tiếng việt
@@ -41,11 +37,11 @@ public class SearchProductController extends HttpServlet {
 		CategoryDAO categoryDao = new CategoryDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ ProductDAO
 		int countPro = productDao.countAllProbyKeyWord(keyword);
-		int countPage = countPro / 8;
-		if (countPro % 8 != 0) {
+		int countPage = countPro / n;
+		if (countPro % n != 0) {
 			countPage++;
 		}
-		List<Product> list = productDao.getAllProbyPagebyKeyWord(indexpage,keyword);
+		List<Product> list = productDao.getAllProbyPagebyKeyWord(indexpage,keyword,n);
 		List<Category> listC = categoryDao.getAll();
 		req.setAttribute("listpro", list);
 		req.setAttribute("listcate", listC);

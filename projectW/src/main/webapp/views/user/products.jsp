@@ -91,7 +91,8 @@
 									</a></li>
 								</c:if>
 								<c:if test="${i!=tag}">
-									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/products?index=${i}">${i}</a></li>
+									<li class="page-item"><a class="page-link"
+										href="${pageContext.request.contextPath}/products?index=${i}">${i}</a></li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${tag == CountPa}">
