@@ -3,6 +3,7 @@ package vn.iotstar.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,7 +59,7 @@ public class CartAddController extends HttpServlet {
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("uId");
 		String uid = String.valueOf(obj);
-		if(uid != null) {
+		if(obj != null) {
 			// get cart by user id
 			// Cart cart = ...
 			// Get data from form 
@@ -84,7 +85,7 @@ public class CartAddController extends HttpServlet {
 			resp.sendRedirect("cart");
 			
 		} else {
-			resp.sendRedirect(req.getContextPath() + "/login");
+			resp.sendRedirect("login");
 		}
 	}
 

@@ -44,7 +44,7 @@
 								<div class="mt-3">
 									<c:choose>
 										<c:when test="${getUser._role == 1}">
-											<a class="btn btn-outline-secondary" href="welcome">Lịch
+											<a class="btn btn-outline-secondary" href="myorder">Lịch
 												sử đơn hàng</a>
 										</c:when>
 										<c:when test="${getUser._role == 0 or getUser._role == 2}"> <!-- Nếu là admin hoặc vendor thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
