@@ -14,7 +14,7 @@ public class CategoryDAO {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 
-	public List<Category> getAll() {
+	public List<Category> getAll() { //lấy danh sách tất cả loại sản phẩm
 		// Khai bao List de luu danh sach sp
 		List<Category> list = new ArrayList<Category>();
 		// khai bao chuoi truy van
@@ -38,7 +38,7 @@ public class CategoryDAO {
 		return list;
 	}
 
-	public Category getCateByIdC(String cid) {
+	public Category getCateByIdC(String cid) { //lấy loại sản phẩm theo id
 		// Khai bao List de luu danh sach sp
 		Category cate = new Category();
 		// khai bao chuoi truy van
@@ -63,8 +63,7 @@ public class CategoryDAO {
 		return cate;
 
 	}
-
-	public Category getCateByIdPro(String pid) {
+	public Category getCateByIdPro(String pid) { //lấy loại sản phẩm dựa vào id của sản phẩm
 		// Khai bao List de luu danh sach sp
 		Category cate = new Category();
 		// khai bao chuoi truy van
@@ -89,6 +88,59 @@ public class CategoryDAO {
 		return cate;
 
 	}
+
+	public int insertCategory(Category cate) { //Insert category và kiểm tra xem thực thi có thành công hay không
+		int check = 0;
+		try {
+			//Insert into Category (_name) values ('Giáo trình')
+			String query = "Insert into Category (_name) values (?)";
+			conn = new DBconnect().getConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, cate.get_name());
+			check = ps.executeUpdate();
+			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
+			{
+				return 1;
+			} 
+			else // Nếu thất bại trả về check = 0
+			{
+				return 0;
+			}
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	public static void main(String[] args) { //hàm check
+		CategoryDAO cateDAO = new CategoryDAO();
+		Category cate = new Category();
+		cate.set_name("Dụng cụ học tập");
+		int check = cateDAO.insertCategory(cate);
+		System.out.print(check);
+	}
+
+	public int updateCategory(Category cate) {//Cập nhật thông tin loại sản phẩm 
+		int check = 0;
+		try {
+			//update Category set _name = 'Bút chì' where _id=1
+			String query = "update Category set _name = ? where _id = ?";
+			conn = new DBconnect().getConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, cate.get_name());
+			ps.setInt(2, cate.get_id());
+			check = ps.executeUpdate();
+			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
+			{
+				return 1;
+			} 
+			else // Nếu thất bại trả về check = 0
+			{
+				return 0;
+			}
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	
 	public Category findOne(int _id) {
 		// TODO Auto-generated method stub
 		Category category = new Category();

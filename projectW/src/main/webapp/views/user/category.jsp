@@ -63,7 +63,7 @@
 						<div class="col-12 col-md-6 col-lg-4">
 							<div class="card">
 								<img class="card-img-top"
-									src="https://dummyimage.com/600x400/55595c/fff"
+									src="${pageContext.request.contextPath}${p.image}" width="200" height="200"
 									alt="Card image cap">
 								<div class="card-body">
 									<h4 class="card-title" ${tagactive==p._id ? "active":""}">
@@ -85,15 +85,32 @@
 				<div class="col-12">
 					<nav aria-label="...">
 						<ul class="pagination">
-							<li class="page-item disabled"><a class="page-link" href="#"
-								tabindex="-1">Previous</a></li>
-							<li class="page-item active"><a class="page-link" href="#">1
-									<span class="sr-only">(current)</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">2 </a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">Next</a>
-							</li>
+							<c:if test="${tag == 1}">
+								<li class="page-item disabled"><a class="page-link"
+									href="#" tabindex="-1">Previous</a></li>
+							</c:if>
+							<c:if test="${tag > 1}">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/products?index=${tag-1}">Previous</a></li>
+							</c:if>
+							<c:forEach begin="1" end="${CountPa}" var="i">
+								<c:if test="${i==tag}">
+									<li class="page-item active"><a class="page-link" href="#">${i}
+											<span class="sr-only">(current)</span>
+									</a></li>
+								</c:if>
+								<c:if test="${i!=tag}">
+									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/products?index=${i}">${i}</a></li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${tag == CountPa}">
+								<li class="page-item disabled"><a class="page-link"
+									href="#">Next</a></li>
+							</c:if>
+							<c:if test="${tag < CountPa}">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/products?index=${tag+1}">Next</a></li>
+							</c:if>
 						</ul>
 					</nav>
 				</div>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 	<div class="container">
-		<a class="navbar-brand" href="welcome">STATIONERY</a>
+		<a class="navbar-brand" href="welcome">VĂN PHÒNG PHẨM</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarsExampleDefault"
 			aria-controls="navbarsExampleDefault" aria-expanded="false"
@@ -34,24 +34,41 @@
 						phẩm</a></li>
 				<li class="nav-item"><a class="nav-link" href="contact.html">Liên
 						hệ</a></li>
-				<li class="nav-item"><a class="nav-link" href="login">Đăng
-						nhập</a></li>
+				<c:if test="${sessionScope.uId != null}">
+					<li class="nav-item"><a class="nav-link"
+						${tagactive==sessionScope.uId ? "
+								active":""}" href="user">${sessionScope.uFirstname} ${sessionScope.uLastname}</a></li>
+					<li class="nav-item"><a class="nav-link" href="logout">Đăng
+							xuất</a></li>
+				</c:if>
+				<c:if test="${sessionScope.uId == null}">
+					<li class="nav-item"><a class="nav-link" href="login">Đăng
+							nhập</a></li>
+				</c:if>
 			</ul>
 
-			<form class="form-inline my-2 my-lg-0">
+			<form action="searchproduct" method="get" class="form-inline my-2 my-lg-0">
 				<div class="input-group input-group-sm">
-					<input type="text" class="form-control" aria-label="Small"
-						aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+					<input type="text" class="form-control" name="keyword" aria-label="Small" 
+						aria-describedby="inputGroup-sizing-sm" placeholder="Search..." value="${key }">
 					<div class="input-group-append">
-						<button type="button" class="btn btn-secondary btn-number">
+						<button type="sumit" class="btn btn-secondary btn-number">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
 				</div>
-				<a class="btn btn-success btn-sm ml-3" href="cart.html"> <i
-					class="fa fa-shopping-cart"></i> Cart <span
-					class="badge badge-light">0</span>
-				</a>
+				<c:if test="${sessionScope.uId != null}">
+					<a class="btn btn-success btn-sm ml-3" href="cart"> <i
+						class="fa fa-shopping-cart"></i> Cart <!--<span
+						 class="badge badge-light">0</span> -->
+					</a>
+				</c:if>
+				<c:if test="${sessionScope.uId == null}">
+					<a class="btn btn-success btn-sm ml-3" href="login"> <i
+						class="fa fa-shopping-cart"></i> Cart<!-- <span
+						 class="badge badge-light">0</span> -->
+					</a>
+				</c:if>
 			</form>
 		</div>
 	</div>
@@ -69,8 +86,8 @@
 	</div>
 </section>
   -->
-<div class="item">
+<div class="item mb-3" style="box-shadow: 0px 0px 11px 1px rgb(0 0 0 / 10%)">
 	<img class="d-block w-100"
-		src="https://img.freepik.com/free-vector/back-school-sale-background_23-2149027990.jpg?w=1060&t=st=1670136486~exp=1670137086~hmac=7122993f39cbcd2df61dff187f2f535528de8677bdac2b22bde2d311fa6429f6"
+		src="https://vanphongphamhaiduong.vn/files/assets/banner.jpg" width="1535" height="365" 
 		alt="">
 </div>

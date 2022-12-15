@@ -29,15 +29,28 @@ public class ProductsController extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
+		//lay tham so tu jsp
+		String index = req.getParameter("index");
+		if(index == null) {
+			index ="1";
+		}
+		int indexpage = Integer.parseInt(index); 
 		// B1:khỏi tạo DAO
 		ProductDAO productDao = new ProductDAO();
 		CategoryDAO categoryDao = new CategoryDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ ProductDAO
-		List<Product> list = productDao.getAll();
+		int countPro = productDao.countAllPro();
+		int countPage= countPro/8;
+		if(countPro % 8 !=0) {
+			countPage++;
+		}
+		List<Product> list = productDao.getAllProbyPage(indexpage);
 		List<Category> listC = categoryDao.getAll();
 		// B3:thiết lập dữ liệu trên jsp
 		req.setAttribute("listpro", list);
 		req.setAttribute("listcate", listC);
+		req.setAttribute("CountPa", countPage);
+		req.setAttribute("tag", indexpage);
 		RequestDispatcher rq = req.getRequestDispatcher("views/user/products.jsp");
 		rq.forward(req, resp);
 	}

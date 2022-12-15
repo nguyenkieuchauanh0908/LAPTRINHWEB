@@ -20,13 +20,11 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body>
-
-	<!-- header -->
-	<%@ include file="/views/shared/header.jsp"%>
-	<!-- end header -->
-
-	<!-- content -->
-	<div class="container">
+	<c:choose>
+		<c:when test="${getUser._role == 1}"><%@ include file="/views/shared/header.jsp"%>
+													</c:when>
+	</c:choose>
+	<div class="container" style="margin-top:50px; margin-bottom:30px;">
 		<div class="main-body">
 			<div class="row gutters-sm">
 				<div class="col-md-4 mb-3">
@@ -35,14 +33,25 @@
 							<div class="d-flex flex-column align-items-center text-center">
 								<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
 									alt="Admin" class="rounded-circle" width="150">
-								<div class="mt-3" >
-									<a class="btn btn-outline-primary" href="welcome">Sửa thông tin</a>
+								<div class="mt-3">
+									<a class="btn btn-outline-primary" href="edituserinfo">Sửa
+										thông tin</a>
 								</div>
 								<div class="mt-3">
-									<a class="btn btn-outline-danger" href="welcome">Thay đổi mật khẩu</a>
+									<a class="btn btn-outline-danger" href="forgetPassword">Thay
+										đổi mật khẩu</a>
 								</div>
 								<div class="mt-3">
-									<a class="btn btn-outline-secondary" href="welcome">Lịch sử đơn hàng</a>
+									<c:choose>
+										<c:when test="${getUser._role == 1}">
+											<a class="btn btn-outline-secondary" href="welcome">Lịch
+												sử đơn hàng</a>
+										</c:when>
+										<c:when test="${getUser._role == 0 or getUser._role == 2}"> <!-- Nếu là admin hoặc vendor thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
+											<a class="btn btn-success" href="welcomeAdmin">Trang chủ</a>
+										</c:when>
+										
+									</c:choose>
 								</div>
 							</div>
 						</div>
@@ -80,14 +89,6 @@
 								<div class="col-sm-9 text-secondary">${getUser.addresses }</div>
 							</div>
 							<hr>
-							<!-- 
-							<div class="row">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Tên đăng nhập</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">${getUser.username}</div>
-							</div>
-							<hr> -->
 							<div class="row">
 								<div class="col-sm-3">
 									<h6 class="mb-0">Mật khẩu</h6>
@@ -105,7 +106,11 @@
 	<!-- end content -->
 
 	<!-- Footer -->
-	<%@ include file="/views/shared/footer.jsp"%>
+	<c:choose>
+		<c:when test="${getUser._role == 1}"><%@ include file="/views/shared/footer.jsp"%>
+													</c:when>
+	</c:choose>
+	
 	<!-- end footer -->
 
 	<!-- JS -->
