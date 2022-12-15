@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Đăng ký</title>
+<title>Đổi mật khẩu</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	rel="stylesheet">
@@ -76,7 +76,7 @@ span.psw {
 </head>
 <body>
 	<form action="forgetPassword" method=post>
-		<h2>Quên mật khẩu</h2>
+		<h2>Đổi mật khẩu</h2>
 		<div class="formcontainer">
 			<hr />
 			<div class="container">
