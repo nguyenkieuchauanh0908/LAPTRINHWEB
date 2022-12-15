@@ -54,8 +54,7 @@ public class OrderController extends HttpServlet {
 			
 		}
 		cartItemDao.removeAllItemInCart(uid);
-		RequestDispatcher rq = req.getRequestDispatcher("views/user/myorder.jsp");
-		rq.forward(req, resp);
+		resp.sendRedirect("myorder");
 		
 	}
 

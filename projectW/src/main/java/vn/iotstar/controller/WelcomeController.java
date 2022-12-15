@@ -15,7 +15,7 @@ import vn.iotstar.DAO.ProductDAO;
 import vn.iotstar.model.Category;
 import vn.iotstar.model.Product;
 
-@WebServlet(urlPatterns = "/welcome")
+@WebServlet(urlPatterns = {"/welcome"})
 public class WelcomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
