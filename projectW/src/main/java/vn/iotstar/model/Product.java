@@ -18,6 +18,7 @@ public class Product {
 	private int rating;
 	private Date createdAt;
 	private Date updatedAt;
+	private Category category;
 	public Product() {
 		super();
 	}
@@ -151,8 +152,15 @@ public class Product {
 				+ price + ", promotionalPrice=" + promotionalPrice + ", quantity=" + quantity + ", sold=" + sold
 				+ ", isActive=" + isActive + ", isSelling=" + isSelling + ", image=" + image + ", categoryId="
 				+ categoryId + ", storeId=" + storeId + ", isDeteled=" + isDeleted + ", rating=" + rating
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", category=" + category + "]";
 	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	
 	
 }

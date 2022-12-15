@@ -141,4 +141,28 @@ public class CategoryDAO {
 		}
 	}
 	
+	public Category findOne(int _id) {
+		// TODO Auto-generated method stub
+		Category category = new Category();
+		String sql = "SELECT * FROM Category where _id = ?";
+		try {
+			// mo ket noi DB
+			conn = new DBconnect().getConnection();
+			// nem cau querry qua SQL
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, _id);
+			// chay querry va nhan ket qua
+			rs = ps.executeQuery();
+			// lay tu resultset do vao list
+			while (rs.next()) {
+				return (new Category(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
+						rs.getByte(6), rs.getDate(7), rs.getDate(8)));
+
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			}
+		return category;
+	}
 }
