@@ -173,16 +173,30 @@ public class CartItemDAO {
 			// TODO: handle exception
 		}
 	}
+	public void removeAllItemInCart(String uid) {
+		CartDAO cartDAO = new CartDAO();
+		String cartId = String.valueOf(cartDAO.SearchByUserId(uid).get_id());
+		String sql = "DELETE FROM CartItem WHERE CartItem.cartId = ?";
+		try {
+			// mở kết nối
+			conn = new DBconnect().getConnection();
+			// ném câu query qua sql
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, cartId);
+			// chạy query và nhận kết quả
+			ps.executeUpdate();
+			// lấy ResultSet đổ vào list
 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	public static void main(String[] args) {
 		CartItemDAO dao = new CartItemDAO();
 		// int check = user1.checkSignup("Nguyen","Kieu Thanh
 		// Thi","nguyenkieuchauanh0908@gmail.com","0966732750","123 Le Thi Hong, Ho Chi
 		// Minh","123456");
-		List<CartItem> list = dao.getAllCartItemByUserId("13");
-		for (CartItem o : list) {
-			System.out.println(o);
-		}
+		dao.removeAllItemInCart("1");
 //		int check = dao.existItem("1", "4");
 //		System.out.println(check);
 	}

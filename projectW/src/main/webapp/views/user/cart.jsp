@@ -121,7 +121,7 @@
 							hàng</a>
 					</div>
 					<div class="col-sm-12 col-md-6 text-right">
-						<button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+						<a class="btn btn-lg btn-block btn-success text-uppercase" href="payment">Tiến hành đặt hàng</a>
 					</div>
 				</div>
 			</div>

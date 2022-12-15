@@ -7,13 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.iotstar.connection.DBconnect;
+import vn.iotstar.model.Order;
 import vn.iotstar.model.OrderItem;
 import vn.iotstar.model.Product;
 
 public class OrderItemDAO {
-	Connection conn = null;
-	PreparedStatement ps = null;
-	ResultSet rs = null;
 	public List<OrderItem> search (int orderId) {
 		
 		List<OrderItem> ordersItems = new ArrayList<OrderItem>();
@@ -56,6 +54,6 @@ public class OrderItemDAO {
 			}
 		return ordersItems;
 	}
-	
-	
 }
+
+
