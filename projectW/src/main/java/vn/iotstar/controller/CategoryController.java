@@ -18,9 +18,7 @@ import vn.iotstar.model.Product;
 @WebServlet(urlPatterns = "/category")
 public class CategoryController extends HttpServlet {
 
-	/**
-	 * 
-	 */
+	int n= 6;
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -42,11 +40,11 @@ public class CategoryController extends HttpServlet {
 		CategoryDAO categoryDao = new CategoryDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ ProductDAO
 		int countPro = productDao.countAllProbyCateId(cid);
-		int countPage= countPro/6;
-		if(countPro % 6 !=0) {
+		int countPage= countPro/n;
+		if(countPro % n !=0) {
 			countPage++;
 		}
-		List<Product> list = productDao.getAllProbyPagebyCate(indexpage,cid);
+		List<Product> list = productDao.getAllProbyPagebyCate(indexpage,cid,n);
 		List<Category> listC = categoryDao.getAll();
 		Category cate = categoryDao.getCateByIdC(cid);
 		// B3:thiết lập dữ liệu trên jsp
@@ -64,5 +62,4 @@ public class CategoryController extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.doPost(req, resp);
 	}
-
 }
