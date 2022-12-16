@@ -182,6 +182,7 @@ public class ProductDAO {
 		}
 	}
 
+
 	public int updateProduct(Product product) //cập nhật sản phẩm và kiểm tra xem có thành công hay không
 	{
 		int check = 0;
