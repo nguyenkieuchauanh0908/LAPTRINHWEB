@@ -10,7 +10,6 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
 		<div class="collapse navbar-collapse justify-content-end"
 			id="navbarsExampleDefault">
 			<ul class="navbar-nav m-auto">
@@ -52,7 +51,7 @@
 					<input type="text" class="form-control" name="keyword" aria-label="Small" 
 						aria-describedby="inputGroup-sizing-sm" placeholder="Search..." value="${key }">
 					<div class="input-group-append">
-						<button type="sumit" class="btn btn-secondary btn-number">
+						<button type="submit" class="btn btn-secondary btn-number">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>

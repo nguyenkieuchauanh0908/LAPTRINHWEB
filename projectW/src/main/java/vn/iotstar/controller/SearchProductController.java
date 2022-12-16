@@ -41,7 +41,7 @@ public class SearchProductController extends HttpServlet {
 		if (countPro % n != 0) {
 			countPage++;
 		}
-		List<Product> list = productDao.getAllProbyPagebyKeyWord(indexpage,keyword,n);
+		List<Product> list = productDao.getAllProbyPagebyKeyWord(indexpage,keyword,n);//Lấy list tất cả sản phẩm theo keywword truyền vào
 		List<Category> listC = categoryDao.getAll();
 		req.setAttribute("listpro", list);
 		req.setAttribute("listcate", listC);
