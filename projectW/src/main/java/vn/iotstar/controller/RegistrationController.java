@@ -49,7 +49,9 @@ public class RegistrationController extends HttpServlet {
 					String uId = Integer.toString(userDAO.findByEmail(email));
 					CartDAO cartDAO = new CartDAO();
 					cartDAO.Insert((String)(uId));
-					req.getRequestDispatcher("/views/shared/login.jsp").forward(req,resp);
+					req.setAttribute("message", "Đăng ký thành công!");
+					req.setAttribute("messageType", "success");
+					req.getRequestDispatcher("/views/shared/registration.jsp").forward(req, resp);
 				}
 				else //nếu thất bại
 				{
