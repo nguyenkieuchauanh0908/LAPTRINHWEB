@@ -367,7 +367,7 @@ public class ProductDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, "%" + keyword + "%");
 			ps.setInt(2,index);
-			ps.setInt(2,n);
+			ps.setInt(3,n);
 			// chạy query và nhận kết quả
 			rs = ps.executeQuery();
 			// lấy ResultSet đổ vào list
