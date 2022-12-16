@@ -4,14 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBconnect {
-<<<<<<< Updated upstream
-	private final String serverName = "DESKTOP-052B03D";
-	//private final String serverName = "DESKTOP-7CJHVGV";
-=======
 	//private final String serverName = "DESKTOP-052B03D";
-	//private final String serverName = "DESKTOP-S151P30";
 	private final String serverName = "DESKTOP-7CJHVGV";
->>>>>>> Stashed changes
 	private final String dbName = "STATIONERYv3";
 	private final String portNumber = "1433";
 	private final String instance = "\\SQLEXPRESS";
