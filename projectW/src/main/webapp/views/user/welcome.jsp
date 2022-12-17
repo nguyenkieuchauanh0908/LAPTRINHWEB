@@ -82,7 +82,7 @@
 						<i class="fa fa-heart"></i> Bán chạy nhất
 					</div>
 					<img class="card-img-top"
-						src="${pageContext.request.contextPath}${list1product.image}"
+						src="${pageContext.request.contextPath}/${list1product.image}"
 						style="width: 250px; height: 150px;" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title text-center"${tagactive==list1product._id ? "active":""}">
@@ -127,7 +127,7 @@
 								<div class="col-sm">
 									<div class="card">
 										<img class="card-img-top"
-											src="${pageContext.request.contextPath}${p.image}"
+											src="${pageContext.request.contextPath}/${p.image}"
 											width="200" height="200" alt="Card image cap">
 										<div class="card-body"${tagactive==p._id ? "active":""}">
 											<h4 class="card-title">
@@ -174,7 +174,7 @@
 							<div class="col-sm">
 								<div class="card">
 									<img class="card-img-top"
-										src="${pageContext.request.contextPath}${p.image}" width="200"
+										src="${pageContext.request.contextPath}/${p.image}" width="200"
 										height="200" alt="Card image cap">
 									<div class="card-body">
 										<h4 class="card-title"${tagactive==p._id ? "active":""}">

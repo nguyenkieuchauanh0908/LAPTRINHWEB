@@ -53,7 +53,7 @@
 					<div class="col-12 col-sm-3">
 						<div class="card">
 							<img class="card-img-top"
-								src="${pageContext.request.contextPath}${p.image}" width="200"
+								src="${pageContext.request.contextPath}/${p.image}" width="200"
 								height="200" alt="Card image cap">
 							<div class="card-body">
 								<h4 class="card-title" ${tagactive==p._id ? "active":""}>

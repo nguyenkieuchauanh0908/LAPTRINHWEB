@@ -87,7 +87,7 @@
 					<div class="card-body">
 						<a href="" data-toggle="modal" data-target="#productModal"> <img
 							class="img-fluid"
-							src="${pageContext.request.contextPath}${getPro.image}"
+							src="${pageContext.request.contextPath}/${getPro.image}"
 							width="800" height="800" />
 						</a>
 					</div>
