@@ -9,6 +9,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Trang chủ</title>
+<link rel="icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/images/banner/ico_1.ico">
 <!-- CSS -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -27,7 +29,12 @@
 	<!-- header -->
 	<%@ include file="/views/shared/header.jsp"%>
 	<!-- end header -->
-
+	<div class="item mb-3"
+		style="box-shadow: 0px 0px 11px 1px rgb(0 0 0/ 10%)">
+		<img class="d-block w-100"
+			src="${pageContext.request.contextPath}/images/banner/banner_1.jpg"
+			width="1535" height="365" alt="">
+	</div>
 	<!-- content -->
 
 	<div class="container">
@@ -44,18 +51,18 @@
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img class="d-block w-100"
-								src="	https://vanphongphambaoan.vn/wp-content/uploads/2022/10/dung-cu-hoc-tap-van-phong-pham-bao-an.jpg" width="855" height="365"
-								alt="First slide">
+								src="${pageContext.request.contextPath}/images/banner/banner_2.jpg"
+								width="855" height="365" alt="First slide">
 						</div>
 						<div class="carousel-item">
 							<img class="d-block w-100"
-								src="https://cdn0.fahasa.com/media/wysiwyg/NGOAI-VAN-2018/JULY-2018/VPP-cao-cap-915x423-1.jpg" width="855" height="365"
-								alt="Second slide">
+								src="${pageContext.request.contextPath}/images/banner/banner_3.jpg"
+								width="855" height="365" alt="Second slide">
 						</div>
 						<div class="carousel-item">
 							<img class="d-block w-100"
-								src="https://thienlong.com.vn/vnt_upload/weblink/bannerweb40nam_TL1366x576.png" width="855" height="365"
-								alt="Third slide">
+								src="${pageContext.request.contextPath}/images/banner/banner_4.png"
+								width="855" height="365" alt="Third slide">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#carouselExampleIndicators"
@@ -74,13 +81,21 @@
 					<div class="card-header bg-success text-white text-uppercase">
 						<i class="fa fa-heart"></i> Bán chạy nhất
 					</div>
-					<img class="img-fluid border-0"
-						src="${pageContext.request.contextPath}${list1product.image}" width="200" height="200" 
-						alt="Card image cap">
+					<img class="card-img-top"
+						src="${pageContext.request.contextPath}/${list1product.image}"
+						style="width: 250px; height: 150px;" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title text-center"${tagactive==list1product._id ? "active":""}">
-							<a href="productDetail?pid=${list1product._id}"
-								title="View Product">${list1product.name}</a>
+							<a style="
+									overflow: hidden; 
+									text-overflow: ellipsis; 
+									-webkit-line-clamp: 2; 
+									-webkit-box-orient: vertical; 
+									display: -webkit-box; 
+									height: 60px"
+							 	href="productDetail?pid=${list1product._id}"
+								title="View Product">${list1product.name}
+							</a>
 						</h4>
 						<div class="row">
 							<div class="col">
@@ -112,11 +127,13 @@
 								<div class="col-sm">
 									<div class="card">
 										<img class="card-img-top"
-											src="${pageContext.request.contextPath}${p.image}" width="200" height="200" 
-											alt="Card image cap">
+											src="${pageContext.request.contextPath}/${p.image}"
+											width="200" height="200" alt="Card image cap">
 										<div class="card-body"${tagactive==p._id ? "active":""}">
 											<h4 class="card-title">
-												<a href="productDetail?pid=${p._id}" title="View Product">${p.name}</a>
+												<a
+													style="overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; display: -webkit-box; height: 60px;"
+													href="productDetail?pid=${p._id}" title="View Product">${p.name}</a>
 											</h4>
 											<div class="row">
 												<div class="col">
@@ -157,11 +174,18 @@
 							<div class="col-sm">
 								<div class="card">
 									<img class="card-img-top"
-										src="${pageContext.request.contextPath}${p.image}" width="200" height="200" 
-										alt="Card image cap">
+										src="${pageContext.request.contextPath}/${p.image}" width="200"
+										height="200" alt="Card image cap">
 									<div class="card-body">
 										<h4 class="card-title"${tagactive==p._id ? "active":""}">
-											<a href="productDetail?pid=${p._id}" title="View Product">${p.name}</a>
+											<a style="
+												overflow: hidden; 
+												text-overflow: ellipsis; 
+												-webkit-line-clamp: 2; 
+												-webkit-box-orient: vertical; 
+												display: -webkit-box; 
+												height: 60px"
+												href="productDetail?pid=${p._id}" title="View Product">${p.name}</a>
 										</h4>
 										<div class="row">
 											<div class="col">

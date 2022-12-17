@@ -29,8 +29,8 @@
 	<!-- end header -->
 
 	<!-- content -->
-	<div class="container mb-4">
-
+	<div style="min-height: 400px" class="container mt-4 mb-4">
+		<h1 style="text-align: center">GIỎ HÀNG</h1>
 		<div class="row">
 			<div class="col-12">
 				<div class="table-responsive">
@@ -51,7 +51,7 @@
 									<input hidden value="${cI.product._id }" name="productId" />
 									<tr>
 										<td><img
-											src="${pageContext.request.contextPath}${cI.product.image}"
+											src="${pageContext.request.contextPath}//images${cI.product.image}"
 											width="50" height="50" /></td>
 										<td>${cI.product.name}</td>
 										<td><c:if test="${cI.product.quantity > 0 }">Còn hàng</c:if>
@@ -121,7 +121,8 @@
 							hàng</a>
 					</div>
 					<div class="col-sm-12 col-md-6 text-right">
-						<a class="btn btn-lg btn-block btn-success text-uppercase" href="payment">Tiến hành đặt hàng</a>
+						<a class="btn btn-lg btn-block btn-success text-uppercase"
+							href="payment">Tiến hành đặt hàng</a>
 					</div>
 				</div>
 			</div>

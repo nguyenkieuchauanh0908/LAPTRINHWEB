@@ -8,7 +8,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Danh mục</title>
+<title>Lịch sử đơn hàng</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 <!-- CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -32,11 +33,12 @@
 	<!-- end header -->
 
 	<!-- content -->
-
+	<h1 style="text-align: center; margin: 16px 0">LỊCH SỬ ĐƠN HÀNG</h1>
 	<hr />
 	<c:forEach items="${orderList}" var="o">
-		<div class="row d-flex justify-content-center">
-			<div class="mx-4 col-8">
+		<div class="row d-flex justify-content-center"
+			style="margin-bottom: 12px">
+			<div class="mx-4 col-8" style="border: 2px solid #cccccc">
 				<h5 style="font-weight: 500; margin-bottom: 16px;">
 					Mã đơn hàng: <strong>#${o._id}</strong>
 				</h5>
@@ -73,10 +75,11 @@
 						</p>
 					</div>
 					<div class="col-3">
-						<p>${o.status}</p>
+					<c:if test="${o.status == 'Cần xử lí' }"><p>Chờ xác nhận</p></c:if>
+					<c:if test="${o.status != 'Cần xử lí' }"><p>${o.status}</p></c:if>
 					</div>
 					<div class="col-3">
-						<p>20/02/2022</p>
+						<p>${o.updatedAt}</p>
 					</div>
 				</div>
 				<h6>Chi tiết đơn hàng</h6>
@@ -85,7 +88,7 @@
 						<c:if test="${o._id == Item.orderId}">
 							<div class="row">
 								<div class="tabe-responsive text-nowrap">
-									<table class="table table-hover">
+									<table class="table table-striped">
 										<thead>
 											<tr>
 												<th></th>
@@ -96,9 +99,9 @@
 											</tr>
 										</thead>
 										<tbody>
-											<td><img style="width: 150px" class="card-img-top"
-												src="${pageContext.request.contextPath}${Item.product.image }"
-												alt="Card image" width="50" height="50"></td>
+											<td><img
+												src="${pageContext.request.contextPath}/${Item.product.image}"
+												width="50" height="50" /></td>
 											<td class="card-title">${Item.product.name }</td>
 											<td class="card-text">${Item.product.price }</td>
 											<td class="card-text">${Item.count_SP }</td>

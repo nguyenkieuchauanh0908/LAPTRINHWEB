@@ -21,6 +21,43 @@
 <link
 	href="<c:url value="/templates/Bootstrap-4-Ecommerce-Theme-master/css/style.css" />"
 	rel="stylesheet" type="text/css">
+<style>
+.rating {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+}
+
+.rating>input {
+	display: none;
+}
+
+.rating>label {
+	position: relative;
+	width: 1em;
+	font-size: 6vw;
+	color: #FFD600;
+	cursor: pointer;
+}
+
+.rating>label::before {
+	content: "\2605";
+	position: absolute;
+	opacity: 0;
+}
+
+.rating>label:hover:before, .rating>label:hover ~ label:before {
+	opacity: 1 !important;
+}
+
+.rating>input:checked ~ label:before {
+	opacity: 1;
+}
+
+.rating:hover>input:checked ~ label:before {
+	opacity: 0.4;
+}
+</style>
 </head>
 <body>
 
@@ -49,7 +86,9 @@
 				<div class="card bg-light mb-3">
 					<div class="card-body">
 						<a href="" data-toggle="modal" data-target="#productModal"> <img
-							class="img-fluid" src="${pageContext.request.contextPath}${getPro.image}" width="800" height="800"  />
+							class="img-fluid"
+							src="${pageContext.request.contextPath}/${getPro.image}"
+							width="800" height="800" />
 						</a>
 					</div>
 				</div>
@@ -69,7 +108,7 @@
 						<br />
 						<p class="btn btn-danger btn-block">${getPro.price }đồng</p>
 						<form method="post" action="cartadd">
-							<input hidden value="${getPro._id }" name="productId"/>
+							<input hidden value="${getPro._id }" name="productId" />
 							<div class="form-group">
 								<label>Số lượng :</label>
 								<div class="input-group mb-3">
@@ -126,51 +165,64 @@
 				</div>
 			</div>
 
-			<!-- Reviews 
+			<!-- Reviews         -->
 			<div class="col-12" id="reviews">
 				<div class="card border-light mb-3">
 					<div class="card-header bg-primary text-white text-uppercase">
 						<i class="fa fa-comment"></i> Đánh giá
 					</div>
 					<div class="card-body">
-						<div class="review">
-							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-							<meta itemprop="datePublished" content="01-01-2016">
-							January 01, 2018 <span class="fa fa-star"></span> <span
-								class="fa fa-star"></span> <span class="fa fa-star"></span> <span
-								class="fa fa-star"></span> <span class="fa fa-star"></span> by
-							Paul Smith
-							<p class="blockquote">
-								<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="review">
-                        <span class="glyphicon glyphicon-calendar"
-								aria-hidden="true"></span>
-                        <meta itemprop="datePublished"
-								content="01-01-2016">January 01, 2018
+						<c:forEach items="${listReview }" var="review">
+							<div class="review">
+								<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+								${review.createdAt}
+								<c:forEach begin="1" end="${review.stars}" var="s">
+									<span class="fa fa-star"></span> 
+								</c:forEach>
+								by ${review.user.firstname} ${review.user.lastname}
+								<p class="blockquote">
+								<p class="mb-0">${review.content }</p>
+							</div>
+							<hr>
 
-                        <span class="fa fa-star" aria-hidden="true"></span>
-                        <span class="fa fa-star" aria-hidden="true"></span>
-                        <span class="fa fa-star" aria-hidden="true"></span>
-                        <span class="fa fa-star" aria-hidden="true"></span>
-                        <span class="fa fa-star" aria-hidden="true"></span>
-                        by Paul Smith
-                        <p class="blockquote">
-                            
-							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        </p>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
+						</c:forEach>
+					</div>
+					<hr>
+					<c:if test="${sessionScope.uId != null}">
+						<div class="col-md-12">
+							<form accept-charset="UTF-8" action="productDetail" method="post">
+								<input hidden name="pid" value="${getPro._id }">
+								<textarea class="form-control animated" cols="50"
+									id="new-review" name="comment"
+									placeholder="Nhập đánh giá của bạn..." rows="5"></textarea>
+								<div class="rating">
+
+									<input type="radio" name="rating" value="5" id="5"><label
+										for="5">☆</label> <input type="radio" name="rating" value="4"
+										id="4"><label for="4">☆</label> <input type="radio"
+										name="rating" value="3" id="3"><label for="3">☆</label>
+									<input type="radio" name="rating" value="2" id="2"><label
+										for="2">☆</label> <input type="radio" name="rating" value="1"
+										id="1"><label for="1">☆</label>
+								</div>
+								<div class="text-right">
+
+									<button class="btn btn-success btn-lg" type="submit">Save</button>
+								</div>
+							</form>
+						</div>
+					</c:if>
+					<c:if test="${sessionScope.uId == null}">
+						<p>Đăng nhập và để lại đánh giá cho sản phẩm</p>
+					</c:if>
+				</div>
+			</div>
 		</div>
 	</div>
-	<!-- end content -->
 
+	</div>
+	</div>
+	<!-- end content -->
 	<!-- Footer -->
 	<%@ include file="/views/shared/footer.jsp"%>
 	<!-- end footer -->
@@ -184,6 +236,7 @@
 	<script
 		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		type="text/javascript"></script>
+
 
 
 </body>

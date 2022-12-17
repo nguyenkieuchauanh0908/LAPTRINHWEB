@@ -15,7 +15,7 @@
     color: #ffffff;
 }
 .category_block li a {
-    color: #343a40;
+    color: inherit;
 }
 .add_to_cart_block .price {
     color: #c01508;

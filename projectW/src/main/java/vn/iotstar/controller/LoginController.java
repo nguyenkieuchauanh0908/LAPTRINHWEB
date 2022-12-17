@@ -1,6 +1,8 @@
 package vn.iotstar.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +24,7 @@ public class LoginController extends HttpServlet {
 			String password = req.getParameter("password");
 			UserDAO loginDAO =new UserDAO(); 
 			User a = loginDAO.checkLogin(email, password);
-			String alert = "";
+			String alert = null;
 			if(a == null) //Người dùng không tồn tại
 			{
 				alert="Email hoặc mật khẩu không chính xác!";
@@ -55,7 +57,7 @@ public class LoginController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+		RequestDispatcher rq = request.getRequestDispatcher("/views/shared/login.jsp");
+		rq.forward(request, response);
 	}
 }
