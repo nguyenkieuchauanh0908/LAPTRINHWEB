@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Trang chủ</title>
+<title>Thông tin đặt hàng</title>
 <!-- CSS -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -33,7 +33,7 @@
 		<div class="row">
 			<div class="col-md-4 order-md-2 mb-4">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
-					<span class="text-muted">Sản phẩm</span>
+					<span class="text-muted mt-3">Sản phẩm</span>
 					<!--<span
 						class="badge badge-secondary badge-pill">3</span>-->
 				</h4>
@@ -56,7 +56,7 @@
 				</ul>
 			</div>
 			<div class="col-md-8 order-md-1">
-				<h4 class="mb-3">Thanh toán</h4>
+				<h1 class="mt-3 mb-3">Thông tin đặt hàng</h1>
 				<form class="needs-validation mb-5" action="order" method="get">
 					<div class="mb-3">
 						<label for="phone">Số điện thoại</label> <input type="text"

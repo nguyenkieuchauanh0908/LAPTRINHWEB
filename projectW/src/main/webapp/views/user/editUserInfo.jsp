@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Trang chủ</title>
+<title>Chỉnh sửa thông tin cá nhân</title>
 <!-- CSS -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -25,13 +25,13 @@
 <body>
 
 	<c:choose>
-		<c:when test="${getUser._role == 1}"><%@ include
+		<c:when test="${getUserEdit._role == 1}"><%@ include
 				file="/views/shared/header.jsp"%>
 		</c:when>
 	</c:choose>
 	<!-- content -->
 	<form method="post" action="edituserinfo">
-		<div class="container" style="margin-top:50px; margin-bottom:30px;">
+		<div class="container" style="margin-top: 50px; margin-bottom: 30px;">
 			<div class="main-body">
 				<div class="row gutters-sm">
 					<!-- 			<form method="post" action="edituserinfo"> -->
@@ -122,8 +122,9 @@
 
 	<!-- Footer -->
 	<c:choose>
-		<c:when test="${getUser._role == 1}"><%@ include file="/views/shared/footer.jsp"%>
-													</c:when>
+		<c:when test="${getUserEdit._role == 1}"><%@ include
+				file="/views/shared/footer.jsp"%>
+		</c:when>
 	</c:choose>
 	<!-- end footer -->
 

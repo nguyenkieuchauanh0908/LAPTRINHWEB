@@ -47,7 +47,7 @@ public class OrderDAO {
 	// }
 
 	public void insert(String userId, String address, String phone) {
-		String sql = "insert into _Order (userId,address, phone,status,createdAt,updatedAT) values (?,?,?,N'Chờ xác nhận',getdate(),getdate())";
+		String sql = "insert into _Order (userId,address, phone,status,createdAt,updatedAT) values (?,?,?,N'Cần xử lí',getdate(),DATEADD(day , 3, getdate()))";
 		try {
 			// mo ket noi DB
 			conn = new DBconnect().getConnection();
@@ -86,7 +86,7 @@ public class OrderDAO {
 
 	public List<Order> getAllOrderbyUserId(String uid) {
 		List<Order> list = new ArrayList<Order>();
-		String sql = "select * from _Order where userId = ?";
+		String sql = "select * from _Order where userId = ? order by _id DESC";
 		try {
 			// mo ket noi DB
 			conn = new DBconnect().getConnection();

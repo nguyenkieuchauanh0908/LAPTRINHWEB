@@ -12,11 +12,12 @@ public class Review {
 	private int stars;
 	private Date createdAt;
 	private Date updatedAt;
+	private User user;
 	public Review() {
 		super();
 	}
 	public Review(int _id, int userId, int productId, int storeId, int orderId, String content, int stars,
-			Date createdAt, Date updatedAt) {
+			Date createdAt, Date updatedAt, User user) {
 		super();
 		this._id = _id;
 		this.userId = userId;
@@ -27,6 +28,7 @@ public class Review {
 		this.stars = stars;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.user = user;
 	}
 	public int get_id() {
 		return _id;
@@ -82,11 +84,17 @@ public class Review {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@Override
 	public String toString() {
 		return "Review [_id=" + _id + ", userId=" + userId + ", productId=" + productId + ", storeId=" + storeId
 				+ ", orderId=" + orderId + ", content=" + content + ", stars=" + stars + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + "]";
+				+ ", updatedAt=" + updatedAt + ", user=" + user + "]";
 	}
 	
 }

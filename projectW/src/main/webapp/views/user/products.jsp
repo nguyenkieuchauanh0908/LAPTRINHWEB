@@ -27,7 +27,12 @@
 	<!-- header -->
 	<%@ include file="/views/shared/header.jsp"%>
 	<!-- end header -->
-
+	<div class="item mb-3"
+		style="box-shadow: 0px 0px 11px 1px rgb(0 0 0/ 10%)">
+		<img class="d-block w-100"
+			src="${pageContext.request.contextPath}/images/banner/banner_1.jpg"
+			width="1535" height="365" alt="">
+	</div>
 	<!-- content -->
 	<div class="container">
 		<div class="row">
@@ -52,7 +57,15 @@
 								height="200" alt="Card image cap">
 							<div class="card-body">
 								<h4 class="card-title" ${tagactive==p._id ? "active":""}>
-									<a href="productDetail?pid=${p._id}" title="View Product">${p.name }</a>
+									<a style="
+												overflow: hidden; 
+												text-overflow: ellipsis; 
+												-webkit-line-clamp: 2; 
+												-webkit-box-orient: vertical; 
+												display: -webkit-box; 
+												height: 60px;
+											"
+									 href="productDetail?pid=${p._id}" title="View Product">${p.name }</a>
 								</h4>
 								<div class="row">
 									<div class="col">

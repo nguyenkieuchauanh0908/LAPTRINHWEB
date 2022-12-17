@@ -27,7 +27,12 @@
 	<!-- header -->
 	<%@ include file="/views/shared/header.jsp"%>
 	<!-- end header -->
-
+	<div class="item mb-3"
+		style="box-shadow: 0px 0px 11px 1px rgb(0 0 0/ 10%)">
+		<img class="d-block w-100"
+			src="${pageContext.request.contextPath}/images/banner/banner_1.jpg"
+			width="1535" height="365" alt="">
+	</div>
 	<!-- content -->
 	<div class="container">
 		<div class="row">
@@ -51,8 +56,13 @@
 					</div>
 					<ul class="list-group category_block">
 						<c:forEach items="${listcate}" var="c">
-							<li class="list-group-item"${tagactive==c._id ? "active":""}"><a
-								href="category?cid=${c._id}">${c._name}</a></li>
+							<c:if test="${c._id == cid}">
+								<li class="list-group-item active"><a href="#">${c._name}</a></li>
+							</c:if>
+							<c:if test="${c._id != cid}">
+								<li class="list-group-item"${tagactive==c._id ? "active":""}"><a
+									href="category?cid=${c._id}">${c._name}</a></li>
+							</c:if>
 						</c:forEach>
 					</ul>
 				</div>
@@ -66,15 +76,18 @@
 									src="${pageContext.request.contextPath}/${p.image}" width="200" height="200"
 									alt="Card image cap">
 								<div class="card-body">
-									<h4 class="card-title" ${tagactive==p._id ? "active":""}">
-										<a href="productDetail?pid=${p._id}" title="View Product">${p.name }</a>
+									<h4 class="card-title"${tagactive==p._id ? "active":""}">
+										<a
+											style="overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; display: -webkit-box; height: 60px"
+											href="productDetail?pid=${p._id}" title="View Product">${p.name }</a>
 									</h4>
 									<div class="row">
 										<div class="col">
-											<p class="btn btn-danger btn-block">${p.price } đồng</p>
+											<p class="btn btn-danger btn-block">${p.price }đồng</p>
 										</div>
 										<div class="col">
-											<a href="#" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
+											<a href="#" class="btn btn-success btn-block">Thêm vào
+												giỏ hàng</a>
 										</div>
 									</div>
 								</div>
@@ -100,7 +113,8 @@
 									</a></li>
 								</c:if>
 								<c:if test="${i!=tag}">
-									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/products?index=${i}">${i}</a></li>
+									<li class="page-item"><a class="page-link"
+										href="${pageContext.request.contextPath}/products?index=${i}">${i}</a></li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${tag == CountPa}">
