@@ -106,9 +106,9 @@
 												<label style="margin-top: 15px;">Hình ảnh</label> <input
 													style="margin-top: 15px;" class="form-control"
 													value="${product.image}" name="image" type="file" /> <img
-													class="card-img-top"
+													
 													src="${pageContext.request.contextPath}/${product.image}"
-													width="100px" height="100px" alt="Card image cap">
+													width=30% height=30%>
 											</div>
 
 											<button type="submit" class="btn btn-primary"

@@ -76,7 +76,9 @@
 					</div>
 					<div class="col-3">
 					<c:if test="${o.status == 'Cần xử lí' }"><p>Chờ xác nhận</p></c:if>
-					<c:if test="${o.status != 'Cần xử lí' }"><p>${o.status}</p></c:if>
+					<c:if test="${o.status != 'Đã bán' }"><p>Giao hàng thành công</p></c:if>
+					<c:if test="${o.status != 'Cần xử lí' and o.status != 'Đã bán'}"><p>${o.status}</p></c:if>
+					
 					</div>
 					<div class="col-3">
 						<p>${o.updatedAt}</p>
