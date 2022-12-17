@@ -12,7 +12,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+	rel='stylesheet'>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
@@ -40,19 +41,33 @@
 							<div class="table-title">
 								<div class="row">
 									<div class="col-sm-6">
-										<h2 style="margin-top:30px;">
+										<h2 style="margin-top: 30px;">
 											<b>Quản lý người dùng</b>
-										</h2>								
+										</h2>
 									</div>
 								</div>
 							</div>
-							<a href="">							
-							<button style = "float:right;margin-right:30px;margin-top:-10px;background-color: #FF6347;border: none;text-align:center;padding:5px 10px;" class="btn btn-info"><h6>Lọc</h6></button>
-							</a>
+							<div>
+								<form action="searchUserAdmin" method="get"
+									style="float: right;">
+									<div class="input-group" style="padding-top: 0px;">
+										<div class="form-outline">
+											<input id="search-focus" type="search" id="form2"
+												class="form-control" placeholder="Tìm kiếm..."
+												name="keyword" value="${key}" />
+										</div>
+										<button
+											style="float: right; border-radius: 6px; margin-right: 10px; margin-left: 10px; background-color: #228B22; hover: Green; border: none; text-align: center;"
+											class="btn btn-info" type="submit">
+											<h6>Tìm kiếm</h6>
+										</button>
+									</div>
+								</form>
+							</div>
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th style="width: 100px">Mã khách hàng</th>
+										<th style="width: 100px">Mã KH</th>
 										<th style="width: 170px">Tên khách hàng</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
@@ -61,31 +76,59 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach items="${userList}" var="user">
-								<tr>
-										<td>${user._id}</td>
-										<td>${user.lastname} ${user.firstname}</td>
-										<td>${user.phone}</td>
-										<td>${user.email}</td>
-										<td class="center">
-											<c:choose>
+									<c:forEach items="${userList}" var="user">
+										<tr>
+											<td>${user._id}</td>
+											<td>${user.lastname} ${user.firstname}</td>
+											<td>${user.phone}</td>
+											<td>${user.email}</td>
+											<td class="center"><c:choose>
 													<c:when test="${user._role == 0}">Quản trị viên
 													</c:when>
 													<c:when test="${user._role == 1}">Khách hàng
 													</c:when>
 													<c:otherwise>Nhân viên
 													</c:otherwise>
-											</c:choose>
-										</td>
-										<td>${user.addresses}</td>
-										
-									</tr>
-								</c:forEach>
-									
+												</c:choose></td>
+											<td>${user.addresses}</td>
 
+										</tr>
+									</c:forEach>
 								</tbody>
-
 							</table>
+							<div class="col-12">
+								<nav aria-label="...">
+									<ul class="pagination">
+										<c:if test="${tag == 1}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#" tabindex="-1">Previous</a></li>
+										</c:if>
+										<c:if test="${tag > 1}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/userList?index=${tag-1}">Previous</a></li>
+										</c:if>
+										<c:forEach begin="1" end="${CountPa}" var="i">
+											<c:if test="${i==tag}">
+												<li class="page-item active"><a class="page-link"
+													href="#">${i} <span class="sr-only">(current)</span>
+												</a></li>
+											</c:if>
+											<c:if test="${i!=tag}">
+												<li class="page-item"><a class="page-link"
+													href="${pageContext.request.contextPath}/userList?index=${i}">${i}</a></li>
+											</c:if>
+										</c:forEach>
+										<c:if test="${tag == CountPa}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#">Next</a></li>
+										</c:if>
+										<c:if test="${tag < CountPa}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/userList?index=${tag+1}">Next</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
 							<div class="clearfix"></div>
 						</div>
 					</div>
@@ -94,6 +137,6 @@
 		</div>
 
 	</div>
-	
-	<script src ="./Builder/js/vendor.js" type="text/javascript"></script>
+
+	<script src="./Builder/js/vendor.js" type="text/javascript"></script>
 </body>

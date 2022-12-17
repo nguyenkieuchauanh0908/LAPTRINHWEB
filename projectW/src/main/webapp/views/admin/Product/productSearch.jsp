@@ -33,7 +33,6 @@
 			<%@ include file="/views/admin/menuAdmin.jsp"%>
 			<!-- end menu bar -->
 			<div class="container-fluid col-12 col-md-9 col-xl-10">
-			
 				<section id="table">
 					<div class="container">
 						<div class="table-wrapper">
@@ -46,14 +45,28 @@
 									</div>
 								</div>
 							</div>
-							
-							<a href="productAdd">
-								<button
-									style="float: right; margin-right: 30px; margin-top: -10px; background-color: #FF6347; border: none; text-align: center; padding: 5px 10px;"
-									class="btn btn-info">
-									<h6>Thêm</h6>
-								</button>
-							</a>
+							<div></div>
+							<div>
+								<form action="searchProductAdmin" method="get" style="float: right;">
+									<div class="input-group" style="padding-top: 0px;">
+										<div class="form-outline">
+											<input id="search-focus" type="search" id="form2"
+												class="form-control" placeholder="Tìm kiếm..."name="keyword"
+												value="${keyword}" />
+										</div>
+										<a href="">
+											<button
+												style="float: right; margin-right: 10px; margin-left: 10px; background-color: #228B22; hover: Green; border: none; text-align: center;"
+												class="btn btn-info" type="submit">
+												<h6>Tìm kiếm</h6>
+											</button>
+										</a> <a href="productAdd"
+											style="float: right; background-color: #FF6347; border: none; text-align: center; border-radius: 6px;"
+											class="btn btn-info"> Thêm </a>
+									</div>
+								</form>
+							</div>
+
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
@@ -70,7 +83,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${producList}" var="product">
+									<c:forEach items="${listpro}" var="product">
 										<tr>
 											<td>${product._id}</td>
 											<td><img class="card-img-top"

@@ -13,7 +13,6 @@ import vn.iotstar.model.User;
 @WebServlet(urlPatterns  = "/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		try 

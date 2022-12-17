@@ -8,13 +8,13 @@ public class Category {
 	private String slug;
 	private int categoryId;
 	private String _image;
-	private byte isDeteled;
+	private boolean isDeteled;
 	private Date createdAt;
 	private Date updatedAt;
 	public Category() {
 		super();
 	}
-	public Category(int _id, String _name, String slug, int categoryId, String _image, byte isDeteled, Date createdAt,
+	public Category(int _id, String _name, String slug, int categoryId, String _image, boolean isDeteled, Date createdAt,
 			Date updatedAt) {
 		super();
 		this._id = _id;
@@ -56,10 +56,10 @@ public class Category {
 	public void set_image(String _image) {
 		this._image = _image;
 	}
-	public byte getIsDeteled() {
+	public boolean getIsDeteled() {
 		return isDeteled;
 	}
-	public void setIsDeteled(byte isDeteled) {
+	public void setIsDeteled(boolean isDeteled) {
 		this.isDeteled = isDeteled;
 	}
 	public Date getCreatedAt() {

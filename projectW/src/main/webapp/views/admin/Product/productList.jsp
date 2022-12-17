@@ -47,41 +47,35 @@
 							</div>
 							<div></div>
 							<div>
-								<form action="" method="get" style="float:right;">
+								<form action="searchProductAdmin" method="get"
+									style="float: right;">
 									<div class="input-group" style="padding-top: 0px;">
 										<div class="form-outline">
 											<input id="search-focus" type="search" id="form2"
-												class="form-control" />
+												class="form-control" placeholder="Tìm kiếm..." name="keyword"
+												value="${key}"/>
 										</div>
-								
-										<a href="">
-											<button
-												style="float: right; margin-right:10px; margin-left:10px; background-color: #228B22; hover:Green;border: none; text-align: center;"
-												class="btn btn-info" type="submit">
-												<h6>Tìm kiếm</h6>
-											</button>
-										</a>
-										<a href="productAdd">
-											<button
-												style="float: right; background-color: #FF6347; border: none; text-align: center;"
-												class="btn btn-info">
-												<h6>Thêm</h6>
-											</button>
-										</a>
+										<button
+											style="float: right;border-radius: 6px; margin-right: 10px; margin-left: 10px; background-color: #228B22; hover: Green; border: none; text-align: center;"
+											class="btn btn-info" type="submit">
+											<h6>Tìm kiếm</h6>
+										</button>
+										<a href="productAdd"
+											style="float: right; background-color: #FF6347; border: none; text-align: center; border-radius: 6px;"
+											class="btn btn-info"> Thêm </a>
 									</div>
 								</form>
 							</div>
-
-							<table class="table table-striped table-hover">
+							<table class="table table-striped table-hover" style="top:20px;">
 								<thead>
 									<tr>
-										<th style="width: 100px">Mã SP</th>
+										<th style="width: 100px; ">Mã SP</th>
 										<th style="width: 20px">Hình</th>
 										<th style="width: 200px">Tên sản phẩm</th>
 										<th style="width: 200px">Gía bán</th>
 										<th style="width: 200px">Đã bán</th>
 										<th style="width: 300px">Loại sản phẩm</th>
-										<th style="width: 300px">Trạng thái sản phẩm</th>
+										<th style="width: 300px">Trạng thái SP</th>
 										<th style="width: 400px">Trạng thái kinh doanh</th>
 										<th>Sửa</th>
 										<th>Xóa</th>
