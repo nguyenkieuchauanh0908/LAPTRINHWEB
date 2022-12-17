@@ -31,8 +31,6 @@
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="products">Sản
 						phẩm</a></li>
-				<li class="nav-item"><a class="nav-link" href="contact.html">Liên
-						hệ</a></li>
 				<c:if test="${sessionScope.uId != null}">
 					<li class="nav-item"><a class="nav-link"
 						${tagactive==sessionScope.uId ? "
@@ -85,8 +83,4 @@
 	</div>
 </section>
   -->
-<div class="item mb-3" style="box-shadow: 0px 0px 11px 1px rgb(0 0 0 / 10%)">
-	<img class="d-block w-100"
-		src="https://vanphongphamhaiduong.vn/files/assets/banner.jpg" width="1535" height="365" 
-		alt="">
-</div>
+

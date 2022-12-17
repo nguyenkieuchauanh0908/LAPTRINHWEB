@@ -53,6 +53,7 @@ public class CategoryController extends HttpServlet {
 		req.setAttribute("listcate", listC);
 		req.setAttribute("CountPa", countPage);
 		req.setAttribute("tag", indexpage);
+		req.setAttribute("cid", cid);
 		RequestDispatcher rq = req.getRequestDispatcher("views/user/category.jsp");
 		rq.forward(req, resp);
 	}
