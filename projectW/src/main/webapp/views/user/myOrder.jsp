@@ -97,7 +97,7 @@
 										</thead>
 										<tbody>
 											<td><img style="width: 150px" class="card-img-top"
-												src="${pageContext.request.contextPath}${Item.product.image }"
+												src="${pageContext.request.contextPath}/${Item.product.image }"
 												alt="Card image" width="50" height="50"></td>
 											<td class="card-title">${Item.product.name }</td>
 											<td class="card-text">${Item.product.price }</td>

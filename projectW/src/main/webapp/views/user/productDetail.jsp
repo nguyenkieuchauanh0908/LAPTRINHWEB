@@ -49,7 +49,7 @@
 				<div class="card bg-light mb-3">
 					<div class="card-body">
 						<a href="" data-toggle="modal" data-target="#productModal"> <img
-							class="img-fluid" src="${pageContext.request.contextPath}${getPro.image}" width="800" height="800"  />
+							class="img-fluid" src="${pageContext.request.contextPath}/${getPro.image}" width="800" height="800"  />
 						</a>
 					</div>
 				</div>

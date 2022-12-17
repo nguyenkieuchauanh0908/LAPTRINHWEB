@@ -1,5 +1,4 @@
 package vn.iotstar.controller;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,7 +45,7 @@ public class LoginController extends HttpServlet {
 					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);
 				}
 				else // Nếu role là vendor thì chuyển hướng về trang vendor
-					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);//thay thành trang chủ của vendor
+					req.getRequestDispatcher("/views/vendor/welcomevendor.jsp").forward(req,resp);//thay thành trang chủ của vendor
 			}
 		}
 		catch (Exception e){
