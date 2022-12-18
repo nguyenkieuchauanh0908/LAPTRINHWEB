@@ -1,7 +1,5 @@
 package vn.iotstar.controller;
-
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +13,6 @@ import vn.iotstar.model.User;
 @WebServlet(urlPatterns  = "/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		try 
@@ -40,6 +37,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("uId", a.get_id());
 				session.setAttribute("uFirstname", a.getFirstname());
 				session.setAttribute("uLastname", a.getLastname());
+				session.setAttribute("role",a.get_role());
 				if (a.get_role().equals("1")) // Nếu role là user thì chuyển hướng về trang khách hàng
 				{
 					resp.sendRedirect("welcome"); 
@@ -49,13 +47,12 @@ public class LoginController extends HttpServlet {
 					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);
 				}
 				else // Nếu role là vendor thì chuyển hướng về trang vendor
-					req.getRequestDispatcher("/views/admin/welcomeAdmin.jsp").forward(req,resp);//thay thành trang chủ của vendor
+					req.getRequestDispatcher("/views/vendor/welcomevendor.jsp").forward(req,resp);//thay thành trang chủ của vendor
 			}
 		}
 		catch (Exception e){
 		}
 	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rq = request.getRequestDispatcher("/views/shared/login.jsp");
 		rq.forward(request, response);

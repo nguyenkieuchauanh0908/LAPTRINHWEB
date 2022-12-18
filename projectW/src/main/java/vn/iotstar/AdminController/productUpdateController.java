@@ -28,7 +28,7 @@ public class productUpdateController extends HttpServlet {
 	public productUpdateController() {
 		super();
 	}
-
+	//public static int role = -1;
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
@@ -50,46 +50,54 @@ public class productUpdateController extends HttpServlet {
 																									// chuyển sang trang
 																									// update loại sp
 	}
-
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
 		int check = 0;// Nếu thêm thành công thì check = 1
 		String pname = req.getParameter("pname");
-		int categoryId = Integer.parseInt(req.getParameter("categoryId"));
-		boolean isDeleted = Boolean.parseBoolean(req.getParameter("isDeleted"));
-		String description = req.getParameter("description");
-		float price = Float.parseFloat(req.getParameter("price"));
-		Part part = req.getPart("image");
-		if (part.getSubmittedFileName().isEmpty() == false) //Kiểm tra nếu có file nộp về thì mới cập nhật ảnh
+		HttpSession session = req.getSession(false);
+		Integer role = Integer.parseInt((String) session.getAttribute("role"));
+		//role = (Integer)(session.getAttribute("role"));
+		if (role == 0) //nếu là admin
 		{
-			String realPath = req.getServletContext().getRealPath("/images/products/"); //lấy đường dẫn thực tế
-			String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString(); //lấy tên filename
-			Path oldImagePath = Paths.get(req.getServletContext().getRealPath(product.getImage()));//lấy đường dẫn của ảnh cũ
-			if (!Files.exists(Paths.get(realPath))) //Nếu đường dẫn thực tế chưa có thì tạo đường dẫn
+			int categoryId = Integer.parseInt(req.getParameter("categoryId"));
+			boolean isDeleted = Boolean.parseBoolean(req.getParameter("isDeleted"));
+			String description = req.getParameter("description");
+			float price = Float.parseFloat(req.getParameter("price"));
+			Part part = req.getPart("image");
+			if (part.getSubmittedFileName().isEmpty() == false) //Kiểm tra nếu có file nộp về thì mới cập nhật ảnh
 			{
-				Files.createDirectories(Paths.get(realPath));
+				String realPath = req.getServletContext().getRealPath("/images/products/"); //lấy đường dẫn thực tế
+				String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString(); //lấy tên filename
+				Path oldImagePath = Paths.get(req.getServletContext().getRealPath(product.getImage()));//lấy đường dẫn của ảnh cũ
+				if (!Files.exists(Paths.get(realPath))) //Nếu đường dẫn thực tế chưa có thì tạo đường dẫn
+				{
+					Files.createDirectories(Paths.get(realPath));
+				}
+				part.write(realPath + "/" + filename); //Lưu ảnh vô vị trí
+				String image = "images/products/" + filename;
+				Files.deleteIfExists(oldImagePath);
+				product.setImage(image);
 			}
-			part.write(realPath + "/" + filename); //Lưu ảnh vô vị trí
-			String image = "images/products/" + filename;
-			Files.deleteIfExists(oldImagePath);
-			product.setImage(image);
+			//Cập nhật các thuộc tính khác của product
+			product.setName(pname);
+			product.setCategoryId(categoryId);
+			product.setDescription(description);
+			product.setPrice(price);
+			product.setIsDeleted(isDeleted);
 		}
-		//Cập nhật các thuộc tính khác của product
-		product.setName(pname);
-		product.setCategoryId(categoryId);
-		product.setDescription(description);
-		product.setPrice(price);
-		product.setIsDeleted(isDeleted);
+		if (role == 2) //nếu là vendor
+		{
+			int quantity = Integer.parseInt(req.getParameter("quantity"));
+			product.setQuantity(quantity);		
+		}
 		ProductDAO productDAO = new ProductDAO();
-		check = productDAO.updateProduct(product);
-		//req.setAttribute("pid", Session);
+		check = productDAO.updateProduct(product,role);
 		if (check == 1) {
 			resp.sendRedirect("productList"); // Nếu thêm thành công thì về lại trang List, thay thành hiện thông báo
-		} else
-			doGet(req,resp);
-			//req.getRequestDispatcher("/views/shared/test.jsp").forward(req, resp); // Thêm thất bại thì chuyển sang test
+		} 
 	}
+
 
 }

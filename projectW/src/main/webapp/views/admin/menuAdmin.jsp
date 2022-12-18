@@ -6,8 +6,13 @@
 		class="navbar navbar-expand-md navbar-dark bd-dark flex-md-column flex-row align-items-center py-2 sticky-top "
 		id="sidebar">
 		<div class="text-center" style="color: white">
-			<h6 style="margin-top: 25px;">${sessionScope.uFirstname} ${sessionScope.uLastname}</h6>
+			<h6 style="margin-top: 25px;">${sessionScope.uFirstname}
+				${sessionScope.uLastname}</h6>
 		</div>
+		<a href="user"> <img style="margin-right: 30px;"
+			src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+			class="rounded-circle" width="150">
+		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#nav" aria-expanded="false"
 			aria-label="Toggle navigation">
@@ -15,10 +20,6 @@
 		</button>
 		<div class="collapse navbar-collapse order-last" id="nav">
 			<ul class="navbar-nav flex-column w-100 justify-content-center">
-				<li><a href="user"> <img style="margin-right:30px;"
-						src="https://bootdey.com/img/Content/avatar/avatar7.png"
-						alt="Admin" class="rounded-circle" width="150">
-				</a></li>
 				<li class="nav-item"><a href="welcomeAdmin"
 					class="nav-link pt-3 pb-3 ps-5 pe-5">Trang chủ</a></li>
 				<li class="nav-item"><a href="userList"
@@ -41,5 +42,6 @@
 			</ul>
 
 		</div>
+	
 	</nav>
 </div>
