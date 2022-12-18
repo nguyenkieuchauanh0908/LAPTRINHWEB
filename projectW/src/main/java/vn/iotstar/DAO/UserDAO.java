@@ -145,35 +145,38 @@ public class UserDAO {
 		}
 
 	}
-
-	public int checkUpdateInfo(String uid, String fname, String lname, String email, String phone, String addresses) // kiểm
-																														// tra
-																														// cập
-																														// nhật
-																														// thông
-																														// tin
-																														// khách
-																														// hàng
-																														// thành
-																														// công
-																														// hay
-																														// không
+	//Cập nhật thông tin người dùng và kiểm tra xem có thành công hay không
+	public int checkUpdateInfo(User user) 
 	{
 		int check = 0;
 		try {
-			// insert into [_User](firstname,lastname, email, phone, hashed_password,
-			// _role,addresses) values('Nguyen','Kieu Chau
-			// Anh','20110234@student.hcmute.edu.vn','0913935810','chauanh123',1,'123 Le Thi
-			// Hong, Ho Chi Minh')
-			String query = "update _User set firstname = ? , lastname = ?,email = ?, phone = ?, addresses = ? where _id = ? ";
-			conn = new DBconnect().getConnection();
-			ps = conn.prepareStatement(query);
-			ps.setString(1, fname);
-			ps.setString(2, lname);
-			ps.setString(3, email);
-			ps.setString(4, phone);
-			ps.setString(5, addresses);
-			ps.setString(6, uid);
+			
+			if(!user.getAvatar().equals(null))//Nếu có cập nhật avatar
+			{
+				String query = "update _User set firstname = ? , lastname = ?,email = ?, phone = ?, addresses = ?,avatar=? where _id = ? ";
+				conn = new DBconnect().getConnection();
+				ps = conn.prepareStatement(query);
+				ps.setString(1, user.getFirstname());
+				ps.setString(2, user.getLastname());
+				ps.setString(3, user.getEmail());
+				ps.setString(4, user.getPhone());
+				ps.setString(5, user.getAddresses());
+				ps.setString(6, user.getAvatar());
+				ps.setInt(7, user.get_id());
+			}
+			if(user.getAvatar().isEmpty())
+				//Nếu không cập nhật avatar
+				{
+					String query = "update _User set firstname = ? , lastname = ?,email = ?, phone = ?, addresses = ? where _id = ? ";
+					conn = new DBconnect().getConnection();
+					ps = conn.prepareStatement(query);
+					ps.setString(1, user.getFirstname());
+					ps.setString(2, user.getLastname());
+					ps.setString(3, user.getEmail());
+					ps.setString(4, user.getPhone());
+					ps.setString(5, user.getAddresses());
+					ps.setInt(6, user.get_id());
+				}
 			check = ps.executeUpdate();
 			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
 			{
@@ -218,7 +221,7 @@ public class UserDAO {
 	{
 		int check = 0;
 		try {
-			String query = "insert into [_User](firstname,lastname, email, phone, hashed_password, _role,addresses) values(?,?,?,?,?,?,?)";
+			String query = "insert into [_User](firstname,lastname, email, phone, hashed_password, _role,addresses,avatar) values(?,?,?,?,?,?,?,?)";
 			conn = new DBconnect().getConnection();
 			ps = conn.prepareStatement(query);
 			// rs = ps.executeQuery();
@@ -229,6 +232,7 @@ public class UserDAO {
 			ps.setString(5, user.getHashed_password());
 			ps.setString(6, user.get_role());
 			ps.setString(7, user.getAddresses());
+			ps.setString(8, "images/avatar/default.png");
 			check = ps.executeUpdate();
 			if (check != 0) // Nếu thực thi query thành công thì trả về check = 1
 			{
@@ -405,17 +409,17 @@ public class UserDAO {
 		}
 	}
 	public static void main(String[] args) { // hàm check
-		//List<User> uList = new ArrayList<User>();
+		User user = new User();
+		user.set_id(17);
+		user.setFirstname("Nguyễn");
+		user.setLastname("Kiều Châu Anh");
+		user.setPhone("0913935811");
+		user.setEmail("nguyenkieuchauanh0908@gmail.com");
+		user.setAddresses("1 Nguyễn Thái Sơn, phường 17, quận Gò Vấp");
+		//user.setAvatar("images/avatar/chauanh.jpg");
 		UserDAO uDAO = new UserDAO();
-		int check = uDAO.countAllUserByKeyWord("Phan", 2);
-		List<User> uList = uDAO.getAllUserbyPagebyKeyWord(1,"Phan", 5, 2);
-		//uList = uDAO.getAllUserByPage(1, 5, 2);
-		for (User u : uList)
-		{
-			System.out.print(u);
-		}
-		 
-		//System.out.print(check);
+		int check = uDAO.checkUpdateInfo(user);
+		System.out.print(check);
 	}
 }
 

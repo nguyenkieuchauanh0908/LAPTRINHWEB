@@ -72,7 +72,7 @@ h1,h2 {
 			</div>
 			<div class="form-group">
                     <label for="uname"><strong>Số điện thoại</strong></label> 
-                    <input class="form-control" type="text" placeholder="Nhập email" name="phone" required>
+                    <input class="form-control" type="text" placeholder="Nhập số điện thoại" name="phone" required>
 			</div>
 			<div class="form-group">
                     <label for="uname"><strong>Địa chỉ</strong></label> 
@@ -86,7 +86,7 @@ h1,h2 {
                     <label for="psw"><strong>Nhập lại mật khẩu</strong></label> 
                     <input class="form-control" type="password" placeholder="Nhập lại mật khẩu" name="re_pass" required>
                     <div class="text-${messageType }">${message }</div>
-                    <div style = "text-align: end; margin: 8px 0;"><a href="login"> Đã có tài khoản</a></span>
+                    <div style = "text-align: end; margin: 8px 0;"><a href="login"> Đăng nhập</a></span>
 			</div>	
 			<div class="form-group"><input class="w-100 btn btn-primary" type="submit" value="Đăng ký" /></div>
 			</div>
