@@ -44,7 +44,7 @@
 							<div>
 								<h6 class="my-0">${cI.product.name}</h6>
 								<small class="text-muted">Số lượng: ${cI.count_SP}</small>
-							</div> <span class="text-muted">${cI.product.price * cI.count_SP}</span>
+							</div> <span class="text-muted">${cI.product.price}</span>
 						</li>
 					</c:forEach>
 					<li class="list-group-item d-flex justify-content-between"><c:set
@@ -57,7 +57,9 @@
 			</div>
 			<div class="col-md-8 order-md-1">
 				<h1 class="mt-3 mb-3">Thông tin đặt hàng</h1>
-				<form class="needs-validation mb-5" action="order" method="get">
+				<form
+					onsubmit="return confirm('Bạn có thực sự muốn đặt hàng?')"
+					class="needs-validation mb-5" action="order" method="get">
 					<div class="mb-3">
 						<label for="phone">Số điện thoại</label> <input type="text"
 							class="form-control" name="phone" id="phone" value="${infoUser.phone}"

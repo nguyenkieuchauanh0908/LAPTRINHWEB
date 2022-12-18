@@ -3,7 +3,6 @@ package vn.iotstar.controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,15 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import vn.iotstar.DAO.CategoryDAO;
 import vn.iotstar.DAO.OrderDAO;
 import vn.iotstar.DAO.OrderItemDAO;
-import vn.iotstar.model.Category;
 import vn.iotstar.model.Order;
 import vn.iotstar.model.OrderItem;
-
-@WebServlet(urlPatterns = {"/myorder"})
-public class MyOrderController extends HttpServlet {
+@WebServlet(urlPatterns = "/ordersuccess")
+public class OrderSuccessController extends HttpServlet {
 
 	/**
 	 * 
@@ -40,25 +36,18 @@ public class MyOrderController extends HttpServlet {
 		Object obj = session.getAttribute("uId");
 		String uid = String.valueOf(obj);
 		// B1:khỏi tạo DAO
-		CategoryDAO categoryDao = new CategoryDAO();
-		OrderDAO orderDao=new OrderDAO();
+		OrderDAO orderDao = new OrderDAO();
 		OrderItemDAO orderItemDao = new OrderItemDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ ProductDAO
-		List<Category> listC = categoryDao.getAll();
-		List<Order> orders = orderDao.getAllOrderbyUserId(uid);
-		List<List<OrderItem>> listorderItems = new ArrayList<>();
-		for(Order o: orders) {
-			LocalDate localDate = o.getUpdatedAt().toLocalDate();
-			LocalDate newDate = LocalDate.of(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth()).plusDays(5);
-			
-			o.setDeliveryAt(Date.valueOf(newDate));
-			List<OrderItem> orderItems = orderItemDao.getAllOrderItembyUserId(o.get_id());
-			listorderItems.add(orderItems);
-		}
-		req.setAttribute("orderList", orders);
-		req.setAttribute("orderItemList", listorderItems);
-		req.setAttribute("listcate", listC);
-		RequestDispatcher rq = req.getRequestDispatcher("/views/user/myOrder.jsp");
+		int orderId = orderDao.getIDMaxbyUser(uid);
+		List<OrderItem> orderItems = orderItemDao.getAllOrderItembyUserId(orderId);
+		Order order = orderDao.findtoOid(orderId);
+		LocalDate localDate = order.getUpdatedAt().toLocalDate();
+		LocalDate newDate = LocalDate.of(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth()).plusDays(5);
+		order.setDeliveryAt(Date.valueOf(newDate));
+		req.setAttribute("order", order);
+		req.setAttribute("orderItems", orderItems);
+		RequestDispatcher rq = req.getRequestDispatcher("/views/user/orderSuccess.jsp");
 		rq.forward(req, resp);
 	}
 
