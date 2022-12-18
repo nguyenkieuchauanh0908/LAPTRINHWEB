@@ -34,95 +34,118 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th scope="col"></th>
-								<th scope="col">Sản phẩm</th>
-								<th scope="col">Tình trạng</th>
-								<th scope="col" class="text-center">Số lượng</th>
-								<th scope="col" class="text-center">Giá</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<form action="cartremove" method="get">
-								<c:forEach items="${getAllCartItem }" var="cI">
-									<input hidden value="${cI.product._id }" name="productId" />
-									<tr>
-										<td><img
-											src="${pageContext.request.contextPath}//images${cI.product.image}"
-											width="50" height="50" /></td>
-										<td>${cI.product.name}</td>
-										<td><c:if test="${cI.product.quantity > 0 }">Còn hàng</c:if>
-											<c:if test="${cI.product.quantity == 0 }">Hết hàng</c:if> <c:if
-												test="${cI.product.quantity < 0 }">Hết hàng</c:if></td>
-										<td>
-											<div class="col d-flex flex-row align-items-center qty"
-												style="justify-content: center">
-												<!-- <input class="form-control" type="text"
-										value="${cI.count_SP }" /> -->
-												<c:if test="${cI.count_SP ==1 }">
-													<a href="#" value="-" class="fa fa-minus text-danger"></a>
-												</c:if>
-												<c:if test="${cI.count_SP >1}">
-													<a
-														href="cartadd?MinusPro=${cI.product._id }&&MinusCart=${cI.cartId }"
-														value="-" class="fa fa-minus text-danger"></a>
-												</c:if>
-												<h6 class="text-grey mt-1 mr-1 ml-1">
-													<input type="text" name="quantity" value="${cI.count_SP}"
-														style="width: 50px; text-align: center"
-														readonly="readonly">
-												</h6>
-												<c:if test="${cI.product.quantity == cI.count_SP }">
-													<a href="#" value="+" class="fa fa-plus text-success"></a>
-												</c:if>
-												<c:if test="${cI.product.quantity > cI.count_SP }">
-													<a
-														href="cartadd?PlusPro=${cI.product._id }&&PlusCart=${cI.cartId }"
-														value="+" class="fa fa-plus text-success"></a>
-												</c:if>
-											</div>
-										</td>
-										<td class="text-right"
-											style="display: flex; justify-content: center">${cI.product.price * cI.count_SP}
-											đồng</td>
-										<td class="text-right"><button type="submit"
-												class="btn btn-sm btn-danger">
-												<i class="fa fa-trash"></i>
-											</button></td>
-
-									</tr>
-								</c:forEach>
-							</form>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><strong>Tổng</strong></td>
-								<td class="text-right"><strong><c:set var="total"
-											value="${0}" /> <c:forEach items="${getAllCartItem }"
-											var="cI">
-											<c:set var="total"
-												value="${total + cI.count_SP * cI.product.price}" />
-										</c:forEach> <span class="pull-right subtotal-cost">${total } đồng</span>
-								</strong></td>
-							</tr>
-						</tbody>
-					</table>
+					<c:if test="${empty getAllCartItem }">
+						<div style="
+								margin: 49px 0;
+							    text-align: center;
+							    font-size: 24px;
+							    font-weight: 500;
+							    color: #dc3545!important;
+							"
+						>Giỏ hàng rỗng</div>
+					</c:if>
+					<c:if test="${not empty getAllCartItem }">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">Sản phẩm</th>
+									<th scope="col">Tình trạng</th>
+									<th scope="col" class="text-center">Số lượng</th>
+									<th scope="col" class="text-center">Giá</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								
+									<c:forEach items="${getAllCartItem }" var="cI">
+										<tr>
+											<td>
+												<img src="${pageContext.request.contextPath}/${cI.product.image}"
+												width="50" height="50" />
+											</td>
+											<td>${cI.product.name}</td>
+											<td>
+												<c:if test="${cI.product.quantity > 0 }">Còn hàng</c:if>
+												<c:if test="${cI.product.quantity == 0 }">Hết hàng</c:if> 
+												<c:if test="${cI.product.quantity < 0 }">Hết hàng</c:if>
+											</td>
+											<td>
+												<div class="col d-flex flex-row align-items-center qty" style="justify-content: center">
+													<c:if test="${cI.count_SP ==1 }">
+														<a href="#" value="-" class="fa fa-minus text-danger"></a>
+													</c:if>
+													<c:if test="${cI.count_SP >1}">
+														<a
+															href="cartadd?MinusPro=${cI.product._id }&&MinusCart=${cI.cartId }"
+															value="-" class="fa fa-minus text-danger"></a>
+													</c:if>
+													<h6 class="text-grey mt-1 mr-1 ml-1">
+														<input type="text" name="quantity" value="${cI.count_SP}"
+															style="width: 50px; text-align: center"
+															readonly="readonly">
+													</h6>
+													<c:if test="${cI.product.quantity == cI.count_SP }">
+														<a href="#" value="+" class="fa fa-plus text-success"></a>
+													</c:if>
+													<c:if test="${cI.product.quantity > cI.count_SP }">
+														<a
+															href="cartadd?PlusPro=${cI.product._id }&&PlusCart=${cI.cartId }"
+															value="+" class="fa fa-plus text-success"></a>
+													</c:if>
+												</div>
+											</td>
+											<td class="text-right"
+												style="display: flex; justify-content: center">${cI.product.price * cI.count_SP}
+												đồng</td>
+											<td class="text-right">
+												<form
+													onsubmit="return confirm('Bạn có thực sự muốn xóa sản phẩm này khỏi giỏ hàng?')"
+													action="cartremove" 
+													method="get"
+												>
+													<input name="productId" type="hidden" value="${cI.product._id }" } />
+													<button type="submit" class="btn btn-sm btn-danger">
+														<i class="fa fa-trash"></i>
+													</button>
+												</form>
+											</td>
+										</tr>
+									</c:forEach>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><strong>Tổng</strong></td>
+									<td class="text-right"><strong><c:set var="total"
+												value="${0}" /> <c:forEach items="${getAllCartItem }"
+												var="cI">
+												<c:set var="total"
+													value="${total + cI.count_SP * cI.product.price}" />
+											</c:forEach> <span class="pull-right subtotal-cost">${total } đồng</span>
+									</strong></td>
+								</tr>
+							</tbody>
+						</table>
+					</c:if>
+					
 				</div>
 			</div>
 			<div class="col mb-2">
-				<div class="row">
+				<div class="row"> 
 					<div class="col-sm-12  col-md-6">
-						<a class="btn btn-block btn-light" href="welcome">Tiếp tục mua
+						<a class="btn btn-lg btn-block btn-light text-uppercase" href="welcome">Tiếp tục mua
 							hàng</a>
 					</div>
 					<div class="col-sm-12 col-md-6 text-right">
-						<a class="btn btn-lg btn-block btn-success text-uppercase"
-							href="payment">Tiến hành đặt hàng</a>
+						<c:if test="${empty getAllCartItem }">
+							<div class="btn btn-lg disabled btn-block btn-success text-uppercase" href="payment">Tiến hành đặt hàng</div>
+						</c:if>
+						<c:if test="${not empty getAllCartItem }">
+							<a class="btn btn-lg btn-block btn-success text-uppercase" href="payment">Tiến hành đặt hàng</a>
+						</c:if>
+						
 					</div>
 				</div>
 			</div>

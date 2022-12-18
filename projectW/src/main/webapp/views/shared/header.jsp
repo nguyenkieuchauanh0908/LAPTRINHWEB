@@ -35,8 +35,7 @@
 					<li class="nav-item"><a class="nav-link"
 						${tagactive==sessionScope.uId ? "
 								active":""}" href="user">${sessionScope.uFirstname} ${sessionScope.uLastname}</a></li>
-					<li class="nav-item"><a class="nav-link" href="logout">Đăng
-							xuất</a></li>
+					<li class="nav-item"><a class="nav-link" href="logout" onclick="return confirm('Bạn có thực sự muốn đăng xuất?')">Đăng xuất</a></li>
 				</c:if>
 				<c:if test="${sessionScope.uId == null}">
 					<li class="nav-item"><a class="nav-link" href="login">Đăng
@@ -47,7 +46,7 @@
 			<form action="searchproduct" method="get" class="form-inline my-2 my-lg-0">
 				<div class="input-group input-group-sm">
 					<input type="text" class="form-control" name="keyword" aria-label="Small" 
-						aria-describedby="inputGroup-sizing-sm" placeholder="Search..." value="${key }">
+						aria-describedby="inputGroup-sizing-sm" placeholder="Nhập tên sản phẩm ..." value="${key }">
 					<div class="input-group-append">
 						<button type="submit" class="btn btn-secondary btn-number">
 							<i class="fa fa-search"></i>
@@ -56,13 +55,13 @@
 				</div>
 				<c:if test="${sessionScope.uId != null}">
 					<a class="btn btn-success btn-sm ml-3" href="cart"> <i
-						class="fa fa-shopping-cart"></i> Cart <!--<span
+						class="fa fa-shopping-cart"></i> Giỏ hàng <!--<span
 						 class="badge badge-light">0</span> -->
 					</a>
 				</c:if>
 				<c:if test="${sessionScope.uId == null}">
 					<a class="btn btn-success btn-sm ml-3" href="login"> <i
-						class="fa fa-shopping-cart"></i> Cart<!-- <span
+						class="fa fa-shopping-cart"></i> Giỏ hàng<!-- <span
 						 class="badge badge-light">0</span> -->
 					</a>
 				</c:if>

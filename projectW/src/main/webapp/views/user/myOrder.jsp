@@ -46,7 +46,7 @@
 					<div class="col-3">
 						<h6>Ngày đặt đơn</h6>
 					</div>
-					<div class="col-3">
+					<div class="col-2">
 						<h6>Tổng tiền</h6>
 					</div>
 					<div class="col-3">
@@ -55,12 +55,15 @@
 					<div class="col-3">
 						<h6>Ngày giao dự kiến</h6>
 					</div>
+					<div class="col-1">
+						<h6></h6>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-3">
 						<p>${o.createdAt}</p>
 					</div>
-					<div class="col-3">
+					<div class="col-2">
 						<p>
 							<c:set var="total" value="${0}" />
 							<c:forEach items="${orderItemList}" var="ItemLists">
@@ -75,12 +78,39 @@
 						</p>
 					</div>
 					<div class="col-3">
-					<c:if test="${o.status == 'Cần xử lí' }"><p>Chờ xác nhận</p></c:if>
-					<c:if test="${o.status != 'Cần xử lí' }"><p>${o.status}</p></c:if>
+						<c:if test="${o.status == 'Cần xử lí' }">
+							<p>Chờ xác nhận</p>
+						</c:if>
+						<c:if test="${o.status == 'Đã bán' }">
+							<p>Giao hàng thành công</p>
+						</c:if>
+						<c:if test="${o.status != 'Cần xử lí' && o.status !='Đã bán' }">
+							<p>${o.status}</p>
+						</c:if>
 					</div>
 					<div class="col-3">
-						<p>${o.updatedAt}</p>
+						<p>${o.deliveryAt}</p>
 					</div>
+					<c:if test="${o.status == 'Cần xử lí'}">
+						<div class="col-1">
+							<form onsubmit="return confirm('Bạn có thực sự muốn hủy đơn hàng?')" action="${pageContext.request.contextPath}/cancelorder" method="post">
+								<input name="orderId" type="hidden" value="${o._id}" } />
+								<button type="submit" class="btn btn-sm btn-danger">
+									Hủy
+								</button>
+							</form>
+						</div>
+					</c:if>
+					<c:if test="${o.status != 'Cần xử lí'}">
+						<div class="col-1">
+							<form onsubmit="return confirm('Bạn có thực sự muốn hủy đơn hàng?')" action="${pageContext.request.contextPath}/cancelorder" method="post">
+								<input name="orderId" type="hidden" value="${o._id}" } />
+								<button type="submit" class="btn disabled btn-sm btn-danger">
+									Hủy
+								</button>
+							</form>
+						</div>
+					</c:if>
 				</div>
 				<h6>Chi tiết đơn hàng</h6>
 				<c:forEach items="${orderItemList}" var="ItemList">

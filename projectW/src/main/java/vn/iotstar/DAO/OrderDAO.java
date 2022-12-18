@@ -43,7 +43,7 @@ public class OrderDAO {
 	// }
 
 	public void insert(String userId, String address, String phone) {
-		String sql = "insert into _Order (userId,address, phone,status,createdAt,updatedAT) values (?,?,?,N'Cần xử lí',getdate(),DATEADD(day , 3, getdate()))";
+		String sql = "insert into _Order (userId,address, phone,status,createdAt,updatedAT) values (?,?,?,N'Cần xử lí',getdate(), getdate())";
 		try {
 			// mo ket noi DB
 			conn = new DBconnect().getConnection();
@@ -294,6 +294,18 @@ public class OrderDAO {
 			e.printStackTrace();
 		}
 		return orders;
+	}
+	public void cancelOrder(String oid) {
+		String sql = "Update _Order Set status = 'Đã hủy' where _id = ?"; 
+		try {
+			conn = new DBconnect().getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, oid);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 	
 

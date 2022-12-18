@@ -54,8 +54,7 @@ public class OrderController extends HttpServlet {
 			
 		}
 		cartItemDao.removeAllItemInCart(uid);
-		resp.sendRedirect("myorder");
-		
+		resp.sendRedirect("ordersuccess");
 	}
 
 	@Override
