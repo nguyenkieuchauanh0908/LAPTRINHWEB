@@ -76,7 +76,9 @@
 					</div>
 					<div class="col-3">
 					<c:if test="${o.status == 'Cần xử lí' }"><p>Chờ xác nhận</p></c:if>
-					<c:if test="${o.status != 'Cần xử lí' }"><p>${o.status}</p></c:if>
+					<c:if test="${o.status != 'Đã bán' }"><p>Giao hàng thành công</p></c:if>
+					<c:if test="${o.status != 'Cần xử lí' and o.status != 'Đã bán'}"><p>${o.status}</p></c:if>
+					
 					</div>
 					<div class="col-3">
 						<p>${o.updatedAt}</p>
@@ -99,9 +101,9 @@
 											</tr>
 										</thead>
 										<tbody>
-											<td><img
-												src="${pageContext.request.contextPath}/${Item.product.image}"
-												width="50" height="50" /></td>
+											<td><img style="width: 150px" class="card-img-top"
+												src="${pageContext.request.contextPath}/${Item.product.image }"
+												alt="Card image" width="50" height="50"></td>
 											<td class="card-title">${Item.product.name }</td>
 											<td class="card-text">${Item.product.price }</td>
 											<td class="card-text">${Item.count_SP }</td>

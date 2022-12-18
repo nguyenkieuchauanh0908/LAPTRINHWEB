@@ -28,7 +28,6 @@
 </head>
 
 <body>
-
 	<div class="container-fluid" id="content">
 		<div class="row min-vh-100 flex-column flex-md-row">
 			<!-- menu bar -->
@@ -47,17 +46,30 @@
 									</div>
 								</div>
 							</div>
-							<a href="userAdd">
-								<button
-									style="float: right; margin-right: 30px; margin-top: -10px; background-color: #FF6347; border: none; text-align: center; padding: 5px 10px;"
-									class="btn btn-info">
-									<h6>Thêm</h6>
-								</button>
-							</a>
+							<div>
+								<form action="searchEmployeeAdmin" method="get"
+									style="float: right;">
+									<div class="input-group" style="padding-top: 0px;">
+										<div class="form-outline">
+											<input id="search-focus" type="search" id="form2"
+												class="form-control" placeholder="Tìm kiếm..."
+												name="keyword" value="${key}" />
+										</div>
+										<button
+											style="float: right; border-radius: 6px; margin-right: 10px; margin-left: 10px; background-color: #228B22; hover: Green; border: none; text-align: center;"
+											class="btn btn-info" type="submit">
+											<h6>Tìm kiếm</h6>
+										</button>
+										<a href="userAdd"
+											style="float: right; background-color: #FF6347; border: none; text-align: center; border-radius: 6px;"
+											class="btn btn-info"> Thêm </a>
+									</div>
+								</form>
+							</div>
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th style="width: 150px">Mã nhân viên</th>
+										<th style="width: 150px">Mã NV</th>
 										<th style="width: 170px">Tên nhân viên</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
@@ -97,6 +109,39 @@
 								</tbody>
 
 							</table>
+							<div class="col-12">
+								<nav aria-label="...">
+									<ul class="pagination">
+										<c:if test="${tag == 1}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#" tabindex="-1">Previous</a></li>
+										</c:if>
+										<c:if test="${tag > 1}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/employeeList?index=${tag-1}">Previous</a></li>
+										</c:if>
+										<c:forEach begin="1" end="${CountPa}" var="i">
+											<c:if test="${i==tag}">
+												<li class="page-item active"><a class="page-link"
+													href="#">${i} <span class="sr-only">(current)</span>
+												</a></li>
+											</c:if>
+											<c:if test="${i!=tag}">
+												<li class="page-item"><a class="page-link"
+													href="${pageContext.request.contextPath}/employeeList?index=${i}">${i}</a></li>
+											</c:if>
+										</c:forEach>
+										<c:if test="${tag == CountPa}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#">Next</a></li>
+										</c:if>
+										<c:if test="${tag < CountPa}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/employeeList?index=${tag+1}">Next</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
 							<div class="clearfix"></div>
 						</div>
 					</div>

@@ -42,13 +42,13 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<h2 style="margin-top: 30px;">
-											<b>Quản lý đơn hàng</b>
+											<b>Quản lý người dùng</b>
 										</h2>
 									</div>
 								</div>
 							</div>
 							<div>
-								<form action="" method="get"
+								<form action="searchUserAdmin" method="get"
 									style="float: right;">
 									<div class="input-group" style="padding-top: 0px;">
 										<div class="form-outline">
@@ -67,20 +67,30 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th style="width: 100px">Mã đơn</th>
-										<th style="width: 150px">Mã KH</th>
-										<th style="width: 900px">Trạng thái</th>
-										<th style="margin-right: 30px">Chi tiết</th>
+										<th style="width: 100px">Mã KH</th>
+										<th style="width: 170px">Tên khách hàng</th>
+										<th>Số điện thoại</th>
+										<th>Email</th>
+										<th>Vai trò</th>
+										<th style="width: 200px">Địa chỉ</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${orderList}" var="order">
+									<c:forEach items="${uList}" var="user">
 										<tr>
-											<td>${order._id}</td>
-											<td>${order.userId}</td>
-											<td>${order.status}</td>
-											<td><button class="btn btn-info"
-													onclick="loadVendorOrderdetail(${order._id})">Xem</button></td>
+											<td>${user._id}</td>
+											<td>${user.lastname} ${user.firstname}</td>
+											<td>${user.phone}</td>
+											<td>${user.email}</td>
+											<td class="center"><c:choose>
+													<c:when test="${user._role == 0}">Quản trị viên
+													</c:when>
+													<c:when test="${user._role == 1}">Khách hàng
+													</c:when>
+													<c:otherwise>Nhân viên
+													</c:otherwise>
+												</c:choose></td>
+											<td>${user.addresses}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -94,7 +104,7 @@
 										</c:if>
 										<c:if test="${tag > 1}">
 											<li class="page-item"><a class="page-link"
-												href="${pageContext.request.contextPath}/orderList?index=${tag-1}">Previous</a></li>
+												href="${pageContext.request.contextPath}/userList?index=${tag-1}">Previous</a></li>
 										</c:if>
 										<c:forEach begin="1" end="${CountPa}" var="i">
 											<c:if test="${i==tag}">
@@ -104,7 +114,7 @@
 											</c:if>
 											<c:if test="${i!=tag}">
 												<li class="page-item"><a class="page-link"
-													href="${pageContext.request.contextPath}/orderList?index=${i}">${i}</a></li>
+													href="${pageContext.request.contextPath}/userList?index=${i}">${i}</a></li>
 											</c:if>
 										</c:forEach>
 										<c:if test="${tag == CountPa}">
@@ -113,7 +123,7 @@
 										</c:if>
 										<c:if test="${tag < CountPa}">
 											<li class="page-item"><a class="page-link"
-												href="${pageContext.request.contextPath}/orderList?index=${tag+1}">Next</a></li>
+												href="${pageContext.request.contextPath}/userList?index=${tag+1}">Next</a></li>
 										</c:if>
 									</ul>
 								</nav>

@@ -51,7 +51,7 @@
 									<input hidden value="${cI.product._id }" name="productId" />
 									<tr>
 										<td><img
-											src="${pageContext.request.contextPath}//images${cI.product.image}"
+											src="${pageContext.request.contextPath}/${cI.product.image}"
 											width="50" height="50" /></td>
 										<td>${cI.product.name}</td>
 										<td><c:if test="${cI.product.quantity > 0 }">Còn hàng</c:if>
