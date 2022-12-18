@@ -34,7 +34,6 @@
 		<div class="container" style="margin-top: 50px; margin-bottom: 30px;">
 			<div class="main-body">
 				<div class="row gutters-sm">
-					<!-- 			<form method="post" action="edituserinfo"> -->
 					<div class="col-md-4 mb-3">
 						<div class="card">
 							<div class="card-body">
@@ -53,6 +52,84 @@
 						</div>
 					</div>
 					<div class="col-md-8">
+						<div class="card mb-3">
+							<div class="card-body">
+								<div class="row">
+									<div class="form-group col-2">
+										<div class="form-group">
+											<input class="form-control" type="hidden" name="id" id="id"
+												value="${getUserEdit._id }" readonly="readonly">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Họ</h6>
+									</div>
+									<div class="form-group col-sm-6">
+										<input class="form-control" type="text" name="firstname"
+											id="firstname" value="${getUserEdit.firstname }"
+											required="required">
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Tên</h6>
+									</div>
+									<div class="form-group col-sm-6">
+										<input class="form-control" type="text" name="lastname"
+											id="firstname" value="${getUserEdit.lastname }"
+											required="required">
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Email</h6>
+									</div>
+									<div class="form-group col-sm-6">
+										<input class="form-control" type="text" name="email"
+											id="firstname" value="${getUserEdit.email }"
+											required="required">
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Số điện thoại</h6>
+									</div>
+									<div class="form-group col-sm-6">
+										<input class="form-control" type="text" name="phone"
+											id="firstname" value="${getUserEdit.phone }"
+											required="required">
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Địa chỉ</h6>
+									</div>
+									<div class="form-group col-sm-6">
+										<input class="form-control" type="text" name="addresses"
+											id="firstname" value="${getUserEdit.addresses }"
+											required="required">
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Mật khẩu</h6>
+									</div>
+									<div class="form-group col-sm-6 text-secondary">******</div>
+								</div>
+								<hr>
+							</div>
+						</div>
+					</div>
+
+
+					<%-- <div class="col-md-8">
 						<div class="form-horizontal">
 
 							<div class="row">
@@ -111,7 +188,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 					<!-- 				</form> -->
 				</div>
 
