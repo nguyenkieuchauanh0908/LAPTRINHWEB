@@ -45,7 +45,7 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="" style="padding: 70px; margin-top: -50px;">
-										<form method="post" action="categoryAdd">
+										<form onsubmit="return confirm('Bạn có chắc muốn thêm mới loại sản phẩm này?');" method="post" action="categoryAdd">
 											<div class="form-group">
 												<label>Loại sản phẩm</label> <input
 													style="margin-top: 15px;" class="form-control"

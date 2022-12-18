@@ -45,7 +45,7 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="" style="padding: 70px; margin-top: -50px;">
-										<form method="post" action="userAdd">
+										<form onsubmit="return confirm('Bạn có chắc muốn thêm nhân viên này?');" method="post" action="userAdd">
 											<div class="form-group">
 												<label>Họ</label> <input class="form-control"
 													placeholder="Nguyễn" name="fname" type="text" required />

@@ -78,19 +78,19 @@
 								<tbody>
 									<c:forEach items="${userList}" var="user">
 										<tr>
-											<td>${user._id}</td>
-											<td>${user.lastname} ${user.firstname}</td>
-											<td>${user.phone}</td>
-											<td>${user.email}</td>
-											<td class="center"><c:choose>
+											<td><div class="py-3">${user._id}</div></td>
+											<td><div class="py-3">${user.lastname} ${user.firstname}</div></td>
+											<td><div class="py-3">${user.phone}</div></td>
+											<td><div class="py-3">${user.email}</div></td>
+											<td class="center"><div class="py-3"><c:choose>
 													<c:when test="${user._role == 0}">Quản trị viên
 													</c:when>
 													<c:when test="${user._role == 1}">Khách hàng
 													</c:when>
 													<c:otherwise>Nhân viên
 													</c:otherwise>
-												</c:choose></td>
-											<td>${user.addresses}</td>
+												</c:choose></div></td>
+											<td><div class="py-3">${user.addresses}</div></td>
 
 										</tr>
 									</c:forEach>

@@ -81,27 +81,31 @@
 								<tbody>
 									<c:forEach items="${employeeList}" var="user">
 										<tr>
-											<td>${user._id}</td>
-											<td>${user.lastname} ${user.firstname}</td>
-											<td>${user.phone}</td>
-											<td>${user.email}</td>
-											<td class="center"><c:choose>
-													<c:when test="${user._role == 0}">Quản trị viên
+											<td><div class="py-3">${user._id}</div></td>
+											<td><div class="py-3">${user.lastname}
+													${user.firstname}</div></td>
+											<td><div class="py-3">${user.phone}</div></td>
+											<td><div class="py-3">${user.email}</div></td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${user._role == 0}">Quản trị viên
 													</c:when>
-													<c:when test="${user._role == 1}">Khách hàng
+														<c:when test="${user._role == 1}">Khách hàng
 													</c:when>
-													<c:otherwise>Nhân viên
+														<c:otherwise>Nhân viên
 													</c:otherwise>
-												</c:choose></td>
+													</c:choose>
+												</div></td>
 											<td>${user.addresses}</td>
-											<td>
-												<form
-													action="${pageContext.request.contextPath}/employeeDelete"
-													method="post">
-													<input type="hidden" name="uid" value="${user._id}">
-													<button type="submit" class="btn btn-info">Xóa</button>
-												</form>
-											</td>
+											<td><div class="py-3">
+													<form
+														onsubmit="return confirm('Bạn có chắc muốn sa thải nhân viên này?');"
+														action="${pageContext.request.contextPath}/employeeDelete"
+														method="post">
+														<input type="hidden" name="uid" value="${user._id}">
+														<button type="submit" class="btn btn-info">Xóa</button>
+													</form>
+												</div></td>
 										</tr>
 									</c:forEach>
 
