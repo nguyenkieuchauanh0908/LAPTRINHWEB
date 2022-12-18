@@ -28,9 +28,19 @@
 
 	<div class="container-fluid" id="content">
 		<div class="row min-vh-100 flex-column flex-md-row">
-			<!-- menu bar -->
-			<%@ include file="/views/admin/menuAdmin.jsp"%>
-			<!-- end menu bar -->
+			<c:choose>
+				<c:when test="${sessionScope.role == 0}">
+					<!-- Nếu là admin -->
+					<!-- menu bar -->
+					<%@ include file="/views/admin/menuAdmin.jsp"%>
+					<!-- end menu bar -->
+				</c:when>
+				<c:otherwise>
+					<!-- menu bar -->
+					<%@ include file="/views/vendor/vendor_left.jsp"%>
+					<!-- end menu bar -->
+				</c:otherwise>
+			</c:choose>
 			<div class="container-fluid col-12 col-md-9 col-xl-10">
 				<h2 style="margin-top: 30px; margin-left: 60px;">
 					<b>Cập nhật thông tin sản phẩm</b>
@@ -42,86 +52,107 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="" style="padding: 70px; margin-top: -50px;">
-										<form method="post" action="productUpdate"
-											enctype=multipart/form-data>
-											<div class="form-group">
-												<label>Tên sản phẩm</label> <input style="margin-top: 15px;"
-													class="form-control" name="pname" type="text"
-													value="${product.name}" />
-											</div>
-											<div class="form-group" style="margin-top: 15px;">
-												<label for="category-id">Loại sản phẩm</label>
-												<div class="col-sm-10" style="width: 100%">
-													<select required id="categoryId" name="categoryId"
-														class="form-select form-control">
-														<c:forEach var="category" items="${cateList}">
+										<c:if test="${sessionScope.role == 0}">
+											<!-- Nếu là admin -->
+											<form method="post" action="productUpdate"
+												enctype=multipart/form-data>
+												<div class="form-group">
+													<label>Tên sản phẩm</label> <input
+														style="margin-top: 15px;" class="form-control"
+														name="pname" type="text" value="${product.name}" />
+												</div>
+												<div class="form-group" style="margin-top: 15px;">
+													<label for="category-id">Loại sản phẩm</label>
+													<div class="col-sm-10" style="width: 100%">
+														<select required id="categoryId" name="categoryId"
+															class="form-select form-control">
+															<c:forEach var="category" items="${cateList}">
+																<option
+																	${product.categoryId == category._id ? "selected" : ""}
+																	value="${category._id}">${category._name}</option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label style="margin-top: 15px;">Gía bán</label> <input
+														style="margin-top: 15px;" class="form-control"
+														name="price" type="text" value="${product.price}" />
+												</div>
+												<div class="form-group">
+													<label style="margin-top: 15px;">Mô tả về sản phẩm</label>
+													<input style="margin-top: 15px;" class="form-control"
+														name="description" type="text"
+														value="${product.description}" />
+												</div>
+												<div class="form-group" style="margin-top: 15px;">
+													<label for="isDeleted">Trạng thái kinh doanh</label>
+													<div class="col-sm-10" style="width: 100%">
+														<select required id="isDeleted" name="isDeleted"
+															class="form-select form-control">
 															<option
-																${product.categoryId == category._id ? "selected" : ""}
-																value="${category._id}">${category._name}</option>
-														</c:forEach>
-													</select>
-												</div>
-											</div>
-											<div class="form-group">
-												<label style="margin-top: 15px;">Gía bán</label> <input
-													style="margin-top: 15px;" class="form-control" name="price"
-													type="text" value="${product.price}" />
-											</div>
-											<div class="form-group">
-												<label style="margin-top: 15px;">Mô tả về sản phẩm</label> <input
-													style="margin-top: 15px;" class="form-control"
-													name="description" type="text"
-													value="${product.description}" />
-											</div>
-											<div class="form-group" style="margin-top: 15px;">
-												<label for="isDeleted">Trạng thái kinh doanh</label>
-												<div class="col-sm-10" style="width: 100%">
-													<select required id="isDeleted" name="isDeleted"
-														class="form-select form-control">
-														<option
-															${product.isDeleted == product.isDeleted ? "selected" : ""}
-															value="${product.isDeleted eq false }">
-															<c:choose>
-																<c:when test="${product.isDeleted eq false}">Ngưng bán
+																${product.isDeleted == product.isDeleted ? "selected" : ""}
+																value="${product.isDeleted eq false }">
+																<c:choose>
+																	<c:when test="${product.isDeleted eq false}">Ngưng bán
 																</c:when>
-																<c:otherwise>Đang kinh doanh
+																	<c:otherwise>Đang kinh doanh
 																</c:otherwise>
-															</c:choose>
-														</option>
-														<option
-															${product.isDeleted == product.isDeleted ? "selected" : ""}
-															value="${product.isDeleted eq true }">
-															<c:choose>
-																<c:when test="${product.isDeleted eq true}">Ngưng bán
+																</c:choose>
+															</option>
+															<option
+																${product.isDeleted == product.isDeleted ? "selected" : ""}
+																value="${product.isDeleted eq true }">
+																<c:choose>
+																	<c:when test="${product.isDeleted eq true}">Ngưng bán
 																</c:when>
-																<c:otherwise>Đang kinh doanh
+																	<c:otherwise>Đang kinh doanh
 																</c:otherwise>
-															</c:choose>
-														</option>
-
-													</select>
+																</c:choose>
+															</option>
+														</select>
+													</div>
 												</div>
-											</div>
-											<div class="form-group">
-												<label style="margin-top: 15px;">Hình ảnh</label> <input
-													style="margin-top: 15px;" class="form-control"
-													value="${product.image}" name="image" type="file" /> <img
-													
-													src="${pageContext.request.contextPath}/${product.image}"
-													width=30% height=30%>
-											</div>
+												<div class="form-group">
+													<label style="margin-top: 15px;">Hình ảnh</label> <input
+														style="margin-top: 15px;" class="form-control"
+														value="${product.image}" name="image" type="file" /> <img
+														src="${pageContext.request.contextPath}/${product.image}"
+														width=30% height=30%>
+												</div>
 
-											<button type="submit" class="btn btn-primary"
-												style="width: 100px; margin-top: 20px; padding-right: 7px;">Cập
-												nhật</button>
-											<a href="productList">
-												<button
-													style="float: right; border: none; text-align: center; margin-top: 15px;"
-													class="btn btn-success">
-													<h6>Về lại danh sách</h6>
-												</button>
-											</a>
-										</form>
+												<button type="submit" class="btn btn-primary"
+													style="width: 100px; margin-top: 20px; padding-right: 7px;">Cập
+													nhật</button>
+												<a href="productList">
+													<button
+														style="float: right; border: none; text-align: center; margin-top: 15px;"
+														class="btn btn-success">
+														<h6>Về lại danh sách</h6>
+													</button>
+												</a>
+											</form>
+										</c:if>
+										<c:if test="${sessionScope.role == 2}">
+											<!-- Nếu là vendor thì chỉ cho sửa số lượng sản phẩm -->
+											<form method="post" action="productUpdate">
+												<div class="form-group">
+													<label>Số lượng sản phẩm</label> <input
+														style="margin-top: 15px;" class="form-control"
+														name="quantity" type="text" value="${product.quantity}" />
+												</div>
+												<button type="submit" class="btn btn-primary"
+													style="width: 100px; margin-top: 20px; padding-right: 7px;">Cập
+													nhật</button>
+												<a href="productList">
+													<button
+														style="float: right; border: none; text-align: center; margin-top: 15px;"
+														class="btn btn-success">
+														<h6>Về lại danh sách</h6>
+													</button>
+												</a>
+											</form>
+										</c:if>
 									</div>
 								</div>
 							</div>

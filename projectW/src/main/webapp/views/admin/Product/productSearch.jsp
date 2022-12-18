@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admin</title>
-
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
@@ -29,9 +28,19 @@
 <body>
 	<div class="container-fluid" id="content">
 		<div class="row min-vh-100 flex-column flex-md-row">
-			<!-- menu bar -->
-			<%@ include file="/views/admin/menuAdmin.jsp"%>
-			<!-- end menu bar -->
+			<c:choose>
+				<c:when test="${sessionScope.role == 0}">
+					<!-- Nếu là admin -->
+					<!-- menu bar -->
+					<%@ include file="/views/admin/menuAdmin.jsp"%>
+					<!-- end menu bar -->
+				</c:when>
+				<c:otherwise>
+					<!-- menu bar -->
+					<%@ include file="/views/vendor/vendor_left.jsp"%>
+					<!-- end menu bar -->
+				</c:otherwise>
+			</c:choose>
 			<div class="container-fluid col-12 col-md-9 col-xl-10">
 				<section id="table">
 					<div class="container">
@@ -47,39 +56,53 @@
 							</div>
 							<div></div>
 							<div>
-								<form action="searchProductAdmin" method="get" style="float: right;">
+								<form action="searchProductAdmin" method="get"
+									style="float: right;">
 									<div class="input-group" style="padding-top: 0px;">
 										<div class="form-outline">
 											<input id="search-focus" type="search" id="form2"
-												class="form-control" placeholder="Tìm kiếm..."name="keyword"
-												value="${keyword}" />
+												class="form-control" placeholder="Tìm kiếm..."
+												name="keyword" value="${key}" />
 										</div>
-										<a href="">
-											<button
-												style="float: right; margin-right: 10px; margin-left: 10px; background-color: #228B22; hover: Green; border: none; text-align: center;"
-												class="btn btn-info" type="submit">
-												<h6>Tìm kiếm</h6>
-											</button>
-										</a> <a href="productAdd"
-											style="float: right; background-color: #FF6347; border: none; text-align: center; border-radius: 6px;"
-											class="btn btn-info"> Thêm </a>
+										<button
+											style="float: right; border-radius: 6px; margin-right: 10px; margin-left: 10px; background-color: #228B22; hover: Green; border: none; text-align: center;"
+											class="btn btn-info" type="submit">
+											<h6>Tìm kiếm</h6>
+										</button>
+										<c:if test="${sessionScope.role == 0}">
+											<!-- Nếu là admin thì mới cho thêm sản phẩm -->
+											<a href="productAdd"
+												style="float: right; background-color: #FF6347; border: none; text-align: center; border-radius: 6px;"
+												class="btn btn-info"> Thêm </a>
+										</c:if>
 									</div>
 								</form>
 							</div>
-
-							<table class="table table-striped table-hover">
+							<table class="table table-striped table-hover" style="top: 20px;">
 								<thead>
 									<tr>
-										<th style="width: 100px">Mã SP</th>
+										<th style="width: 100px;">Mã SP</th>
 										<th style="width: 20px">Hình</th>
 										<th style="width: 200px">Tên sản phẩm</th>
 										<th style="width: 200px">Gía bán</th>
 										<th style="width: 200px">Đã bán</th>
 										<th style="width: 300px">Loại sản phẩm</th>
-										<th style="width: 300px">Trạng thái sản phẩm</th>
+										<th style="width: 300px"><c:choose>
+												<c:when test="${sessionScope.role == 0}">
+													<!-- Nếu là admin -->
+													Trạng thái SP
+												</c:when>
+												<c:when test="${sessionScope.role == 2}">
+													<!-- Nếu là vendor -->
+													Số lượng
+												</c:when>
+											</c:choose></th>
 										<th style="width: 400px">Trạng thái kinh doanh</th>
 										<th>Sửa</th>
-										<th>Xóa</th>
+										<c:if test="${sessionScope.role == 0}">
+											<!-- Nếu là admin thì mới cột xóa sản phẩm -->
+											<th>Xóa</th>
+										</c:if>
 									</tr>
 								</thead>
 								<tbody>
@@ -113,12 +136,18 @@
 													</c:otherwise>
 												</c:choose></td>
 											<td class="center"><c:choose>
-													<c:when test="${product.quantity > 0}">Còn hàng
+													<c:when test="${sessionScope.role == 0}">
+														<!-- Nếu là admin -->
+														<c:if test="${product.quantity > 0}">Còn hàng
+														</c:if>
+														<c:if test="${product.quantity <= 0}">Hết hàng
+														</c:if>
 													</c:when>
-													<c:otherwise>Hết hàng
+													<c:otherwise>
+														<!-- Nếu là vendor -->
+													${product.quantity}
 													</c:otherwise>
 												</c:choose></td>
-											<%-- <td>${product.isDeleted}</td> --%>
 											<td class="center"><c:choose>
 													<c:when test="${product.isDeleted eq false}">Đang kinh doanh
 													</c:when>
@@ -128,14 +157,18 @@
 											<td><a href="productUpdate?pid=${product._id}">
 													<button class="btn btn-info">Sửa</button>
 											</a></td>
-											<td>
-												<form
-													action="${pageContext.request.contextPath}/productDelete"
-													method="post">
-													<input type="hidden" name="pid" value="${product._id}">
-													<button type="submit" class="btn btn-info">Xóa</button>
-												</form>
-											</td>
+											<c:if test="${sessionScope.role == 0}">
+												<!-- Nếu là admin thì mới cột xóa sản phẩm -->
+												<td>
+													<form
+														action="${pageContext.request.contextPath}/productDelete"
+														method="post">
+														<input type="hidden" name="pid" value="${product._id}">
+														<button type="submit" class="btn btn-info">Xóa</button>
+													</form>
+												</td>
+											</c:if>
+
 										</tr>
 									</c:forEach>
 								</tbody>

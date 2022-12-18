@@ -38,6 +38,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("uId", a.get_id());
 				session.setAttribute("uFirstname", a.getFirstname());
 				session.setAttribute("uLastname", a.getLastname());
+				session.setAttribute("role",a.get_role());
 				if (a.get_role().equals("1")) // Nếu role là user thì chuyển hướng về trang khách hàng
 				{
 					resp.sendRedirect("welcome"); 
@@ -53,7 +54,6 @@ public class LoginController extends HttpServlet {
 		catch (Exception e){
 		}
 	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rq = request.getRequestDispatcher("/views/shared/login.jsp");
 		rq.forward(request, response);

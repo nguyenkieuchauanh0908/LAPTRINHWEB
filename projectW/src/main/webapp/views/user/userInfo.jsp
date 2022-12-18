@@ -47,10 +47,12 @@
 											<a class="btn btn-outline-secondary" href="myorder">Lịch
 												sử đơn hàng</a>
 										</c:when>
-										<c:when test="${getUser._role == 0 or getUser._role == 2}"> <!-- Nếu là admin hoặc vendor thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
+										<c:when test="${getUser._role == 0 }"> <!-- Nếu là admin thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
 											<a class="btn btn-success" href="welcomeAdmin">Trang chủ</a>
 										</c:when>
-										
+										<c:when test="${getUser._role == 2 }"> <!-- Nếu là admin thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
+											<a class="btn btn-success" href="Vendor">Trang chủ</a>
+										</c:when>
 									</c:choose>
 								</div>
 							</div>
