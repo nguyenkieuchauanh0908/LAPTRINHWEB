@@ -54,7 +54,7 @@
 									<div class="" style="padding: 70px; margin-top: -50px;">
 										<c:if test="${sessionScope.role == 0}">
 											<!-- Nếu là admin -->
-											<form method="post" action="productUpdate"
+											<form onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật thông tin sản phẩm này?');"method="post" action="productUpdate"
 												enctype=multipart/form-data>
 												<div class="form-group">
 													<label>Tên sản phẩm</label> <input

@@ -45,7 +45,7 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="" style="padding: 70px; margin-top: -50px;">
-										<form method="post" action="productAdd"
+										<form onsubmit="return confirm('Bạn có chắc muốn thêm sản phẩm này?');" method="post" action="productAdd"
 											enctype=multipart/form-data>
 											<div class="form-group">
 												<label>Tên sản phẩm</label> <input class="form-control"

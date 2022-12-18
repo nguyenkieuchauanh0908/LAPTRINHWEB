@@ -76,11 +76,11 @@
 								<tbody>
 									<c:forEach items="${categoryList}" var="category">
 										<tr>
-											<td>${category._id}</td>
-											<td>${category._name}</td>
-											<td><a href="categoryUpdate?cid=${category._id}">
+											<td><div class="py-3">${category._id}</div></td>
+											<td><div class="py-3">${category._name}</div></td>
+											<td><div class="py-3"><a href="categoryUpdate?cid=${category._id}">
 													<button class="btn btn-info">Sửa</button>
-											</a></td>
+											</a></div></td>
 										</tr>
 									</c:forEach>
 								</tbody>

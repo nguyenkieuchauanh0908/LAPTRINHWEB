@@ -108,16 +108,16 @@
 								<tbody>
 									<c:forEach items="${producList}" var="product">
 										<tr>
-											<td>${product._id}</td>
-											<td><img class="card-img-top"
+											<td><div class="py-3"> ${product._id}</div></td>
+											<td> <div class="py-3"> <img class="card-img-top"
 												src="${pageContext.request.contextPath}/${product.image}"
-												width="20" height="20" alt="Card image cap"></td>
+												width="20" height="20" alt="Card image cap"></div></td>
 											<td>
 												<div class="py-3">${product.name}</div>
 											</td>
-											<td>${product.price}</td>
-											<td>${product.sold}</td>
-											<td class="center"><c:choose>
+											<td> <div class="py-3">${product.price}</div></td>
+											<td> <div class="py-3"> ${product.sold}</div></td>
+											<td class="center"><div class="py-3"><c:choose>
 													<c:when test="${product.categoryId == 1 }">Dụng cụ học tập
 													</c:when>
 													<c:when test="${product.categoryId  == 2 }">Tài liệu học tập
@@ -134,8 +134,8 @@
 													</c:when>
 													<c:otherwise>Văn phòng phẩm
 													</c:otherwise>
-												</c:choose></td>
-											<td class="center"><c:choose>
+												</c:choose></div></td>
+											<td class="center"><div class="py-3"><c:choose>
 													<c:when test="${sessionScope.role == 0}">
 														<!-- Nếu là admin -->
 														<c:if test="${product.quantity > 0}">Còn hàng
@@ -147,26 +147,26 @@
 														<!-- Nếu là vendor -->
 													${product.quantity}
 													</c:otherwise>
-												</c:choose></td>
-											<td class="center"><c:choose>
+												</c:choose></div></td>
+											<td class="center"><div class="py-3"><c:choose>
 													<c:when test="${product.isDeleted eq false}">Đang kinh doanh
 													</c:when>
 													<c:otherwise>Ngưng bán
 													</c:otherwise>
-												</c:choose></td>
-											<td><a href="productUpdate?pid=${product._id}">
+												</c:choose></div></td>
+											<td><div class="py-3"><a href="productUpdate?pid=${product._id}">
 													<button class="btn btn-info">Sửa</button>
-											</a></td>
+											</a></div></td>
 											<c:if test="${sessionScope.role == 0}">
 												<!-- Nếu là admin thì mới cột xóa sản phẩm -->
-												<td>
+												<td> <div class="py-3">
 													<form
 														onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');"
 														action="${pageContext.request.contextPath}/productDelete"
 														method="post">
 														<input type="hidden" name="pid" value="${product._id}">
 														<button type="submit" class="btn btn-info">Xóa</button>
-													</form>
+													</form></div>
 												</td>
 											</c:if>
 
