@@ -54,7 +54,9 @@
 									<div class="" style="padding: 70px; margin-top: -50px;">
 										<c:if test="${sessionScope.role == 0}">
 											<!-- Nếu là admin -->
-											<form onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật thông tin sản phẩm này?');"method="post" action="productUpdate"
+											<form
+												onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật thông tin sản phẩm này?');"
+												method="post" action="productUpdate"
 												enctype=multipart/form-data>
 												<div class="form-group">
 													<label>Tên sản phẩm</label> <input
@@ -114,9 +116,9 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label style="margin-top: 15px;">Hình ảnh</label> <input
+													<label for=product-img-input style="margin-top: 15px;">Hình ảnh</label> <input id="product-img-input" 
 														style="margin-top: 15px;" class="form-control"
-														value="${product.image}" name="image" type="file" /> <img
+														value="${product.image}" name="image" type="file" /> <img id="product-img"
 														src="${pageContext.request.contextPath}/${product.image}"
 														width=30% height=30%>
 												</div>
@@ -163,8 +165,14 @@
 
 			</div>
 		</div>
-
 	</div>
-
 	<script src="./Builder/js/vendor.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		document.getElementById('product-img-input').addEventListener('change', (e) => {
+			const [file] = e.target.files
+			if (file) {
+				document.getElementById('product-img').src = URL.createObjectURL(file)
+			}
+		})
+	</script>
 </body>

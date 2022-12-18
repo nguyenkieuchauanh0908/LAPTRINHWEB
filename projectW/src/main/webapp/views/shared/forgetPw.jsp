@@ -19,7 +19,7 @@ form {
 	border: 5px solid #f1f1f1;
 }
 
-input[type=email],input[type=text], input[type=password] {
+input[type=email], input[type=text], input[type=password] {
 	width: 100%;
 	padding: 16px 8px;
 	margin: 8px 0;
@@ -36,10 +36,10 @@ button {
 	border: none;
 	cursor: grabbing;
 	width: 100%;
-	font-size:17px;
+	font-size: 17px;
 }
 
-h1,h2,h3 {
+h1, h2, h3 {
 	text-align: center;
 	fone-size: 18;
 }
@@ -51,7 +51,7 @@ button:hover {
 .formcontainer {
 	text-align: left;
 	margin: 24px 50px;
-	padding-bottom:40px;
+	padding-bottom: 40px;
 }
 
 .container {
@@ -63,7 +63,7 @@ span.psw {
 	float: right;
 	padding-top: -8px;
 	padding-right: 15px;
-	padding-bottom:3px;
+	padding-bottom: 3px;
 }
 /* Change styles for span on extra small screens */
 @media screen and (max-width: 300px) {
@@ -84,10 +84,35 @@ span.psw {
 					type="email" placeholder="Nhập email" name="email" required>
 			</div>
 			<button type="submit">Tiếp tục</button>
-			<div class="container" style="background-color: white">
-				<span class="psw" style = "positiion: relative;bottom:10px;"><a href="login">Quay lại</a></span>
-			</div>
-			</div>
+			<c:choose>
+				<c:when test="${sessionScope.uId == null}">
+					<div class="container" style="background-color: white">
+						<span class="psw" style="positiion: relative; bottom: 10px;"><a
+							href="login">Quay lại</a></span>
+					</div>
+				</c:when>
+				<c:when test="${sessionScope.role == 1}">
+					<div class="container" style="background-color: white">
+						<span class="psw" style="positiion: relative; bottom: 10px;"><a
+							href="user">Quay lại</a></span>
+					</div>
+				</c:when>
+				<c:when test="${sessionScope.role == 0} and ${sessionScope.uId != null}">
+					<div class="container" style="background-color: white">
+						<span class="psw" style="positiion: relative; bottom: 10px;"><a
+							href="welcomeAdmin">Quay lại</a></span>
+					</div>
+				</c:when>
+				<c:when  test="${sessionScope.role == 2} and ${sessionScope.uId != null}">
+				<div class="container" style="background-color: white">
+					<span class="psw" style="positiion: relative; bottom: 10px;"><a
+						href="welcomeVendor">Quay lại</a></span>
+				</div>
+				</c:when>
+				
+			</c:choose>
+
+		</div>
 	</form>
 </body>
 </html>

@@ -69,7 +69,7 @@
 								</h4>
 								<div class="row">
 									<div class="col">
-										<p class="btn btn-danger btn-block">${p.price }đồng</p>
+										<p class="btn btn-danger btn-block">${p.price} đồng</p>
 									</div>
 									<div class="col">
 										<c:if test="${sessionScope.uId != null}">
