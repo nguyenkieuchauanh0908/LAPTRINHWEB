@@ -21,18 +21,20 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${getUser._role == 1}"><%@ include file="/views/shared/header.jsp"%>
-													</c:when>
+		<c:when test="${getUser._role == 1}"><%@ include
+				file="/views/shared/header.jsp"%>
+		</c:when>
 	</c:choose>
-	<div class="container" style="margin-top:50px; margin-bottom:30px;">
+	<div class="container" style="margin-top: 50px; margin-bottom: 30px;">
 		<div class="main-body">
 			<div class="row gutters-sm">
 				<div class="col-md-4 mb-3">
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex flex-column align-items-center text-center">
-								<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-									alt="Admin" class="rounded-circle" width="150">
+								<img id="avatar"
+										src="${pageContext.request.contextPath}/${sessionScope.avatar}"
+										alt="Admin" class="rounded-circle" width="150" height="150">
 								<div class="mt-3">
 									<a class="btn btn-outline-primary" href="edituserinfo">Sửa
 										thông tin</a>
@@ -47,10 +49,12 @@
 											<a class="btn btn-outline-secondary" href="myorder">Lịch
 												sử đơn hàng</a>
 										</c:when>
-										<c:when test="${getUser._role == 0 }"> <!-- Nếu là admin thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
+										<c:when test="${getUser._role == 0 }">
+											<!-- Nếu là admin thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
 											<a class="btn btn-success" href="welcomeAdmin">Trang chủ</a>
 										</c:when>
-										<c:when test="${getUser._role == 2 }"> <!-- Nếu là admin thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
+										<c:when test="${getUser._role == 2 }">
+											<!-- Nếu là admin thì thay nút 'lịch sử đơn hàng' thành nút 'Về trang chủ' -->
 											<a class="btn btn-success" href="Vendor">Trang chủ</a>
 										</c:when>
 									</c:choose>
@@ -109,10 +113,11 @@
 
 	<!-- Footer -->
 	<c:choose>
-		<c:when test="${getUser._role == 1}"><%@ include file="/views/shared/footer.jsp"%>
-													</c:when>
+		<c:when test="${getUser._role == 1}"><%@ include
+				file="/views/shared/footer.jsp"%>
+		</c:when>
 	</c:choose>
-	
+
 	<!-- end footer -->
 
 	<!-- JS -->

@@ -30,7 +30,9 @@
 		</c:when>
 	</c:choose>
 	<!-- content -->
-	<form method="post" action="edituserinfo">
+	<form
+		onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật thông tin cá nhân?');"
+		method="post" action="edituserinfo" enctype=multipart/form-data>
 		<div class="container" style="margin-top: 50px; margin-bottom: 30px;">
 			<div class="main-body">
 				<div class="row gutters-sm">
@@ -38,14 +40,20 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
-									<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-										alt="Admin" class="rounded-circle" width="150">
+									<img id="avatar"
+										src="${pageContext.request.contextPath}/${getUserEdit.avatar}"
+										alt="Admin" class="rounded-circle" width="150" height="150">
 									<p class="text-danger">${alert }</p>
-									<div class="form-group mt-3">
-										<div class="">
-											<input type="submit" value="Lưu"
-												class="btn btn-outline-danger" />
-										</div>
+									<div class="form-group">
+										<label for=avatar-input>
+											<div style="width: 150px;" class="btn btn-primary">Đổi
+												ảnh</div>
+										</label> <input id="avatar-input" style="display: none"
+											class="form-control" name="avatar" type="file" />
+									</div>
+									<div class="form-group">
+										<input style="width: 150px;" type="submit" value="Lưu"
+											class="btn btn-outline-danger" />
 									</div>
 								</div>
 							</div>
@@ -89,7 +97,7 @@
 										<h6 class="mb-0">Email</h6>
 									</div>
 									<div class="form-group col-sm-6">
-										<input class="form-control" type="text" name="email"
+										<input class="form-control" type="email" name="email"
 											id="firstname" value="${getUserEdit.email }"
 											required="required">
 									</div>
@@ -214,6 +222,15 @@
 	<script
 		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		type="text/javascript"></script>
+
+	<script type="text/javascript">
+		document.getElementById('avatar-input').addEventListener('change', (e) => {
+			const [file] = e.target.files
+			if (file) {
+				document.getElementById('avatar').src = URL.createObjectURL(file)
+			}
+		})
+	</script>
 
 </body>
 </html>

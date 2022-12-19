@@ -9,9 +9,11 @@
 			<h6 style="margin-top: 25px;">${sessionScope.uFirstname}
 				${sessionScope.uLastname}</h6>
 		</div>
-		<a href="user"> <img style="margin-right: 30px;"
+		<a href="user"> <!-- <img style="margin-right: 30px;"
 			src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
-			class="rounded-circle" width="150">
+			class="rounded-circle" width="150"> --> <img
+			src="${pageContext.request.contextPath}/${sessionScope.avatar}"
+			 class="rounded-circle" width="150" height="150">
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#nav" aria-expanded="false"
@@ -33,7 +35,7 @@
 				<li class="nav-item"><a href="orderList"
 					class="nav-link pt-3 pb-3 ps-5 pe-5">Đơn hàng</a></li>
 				<li><a href="logout">
-						<button
+						<button onclick="return confirm('Bạn có thực sự muốn đăng xuất?')"
 							style="float: right; margin-right: 70px; margin-top: 20px; background-color: #FF6347; border: none; text-align: center; padding: 5px 10px;"
 							class="btn btn-info">
 							<h6>Đăng xuất</h6>
@@ -42,6 +44,6 @@
 			</ul>
 
 		</div>
-	
+
 	</nav>
 </div>

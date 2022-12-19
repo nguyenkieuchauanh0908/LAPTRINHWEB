@@ -47,7 +47,7 @@ public class OrderDAO {
 	// }
 
 	public void insert(String userId, String address, String phone) {
-		String sql = "insert into _Order (userId,address, phone,status,createdAt,updatedAT) values (?,?,?,N'Cần xử lí',getdate(), getdate())";
+		String sql = "insert into _Order (userId,address, phone,status,createdAt,updatedAT) values (?,?,?,N'Cần xử lý',getdate(), getdate())";
 		try {
 			// mo ket noi DB
 			conn = new DBconnect().getConnection();
@@ -191,7 +191,7 @@ public class OrderDAO {
 									// Khai bao List de luu danh sách đơn hàng
 		List<Order> list = new ArrayList<Order>();
 		// khai bao chuoi truy van
-		String sql = "SELECT * FROM _Order";
+		String sql = "SELECT * FROM _Order order by _id DESC";
 		try {
 			// mo ket noi DB
 			conn = new DBconnect().getConnection();
@@ -274,7 +274,7 @@ public class OrderDAO {
 		return orders;
 	}
 	public void cancelOrder(String oid) {
-		String sql = "Update _Order Set status = 'Đã hủy' where _id = ?"; 
+		String sql = "Update _Order Set status = N'Đã hủy' where _id = ?"; 
 		try {
 			conn = new DBconnect().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -323,7 +323,7 @@ public class OrderDAO {
 		index = (index - 1) * n;// Số lượng sản phẩm ở phía trước trang index
 		List<Order> listOrder = new ArrayList<Order>();
 		// khai báo chuỗi truy vấn
-		String sql = "select * from _Order ORDER BY _id ASC OFFSET ? rows fetch next ? rows only"; // Lấy các sản phẩm
+		String sql = "select * from _Order ORDER BY _id DESC OFFSET ? rows fetch next ? rows only"; // Lấy các sản phẩm
 																									// (xếp _id tăng
 																									// dần) của 8 dòng
 																									// tiếp theo
