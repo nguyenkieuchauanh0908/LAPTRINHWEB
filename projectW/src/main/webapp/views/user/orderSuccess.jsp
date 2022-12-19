@@ -70,13 +70,13 @@
 					</p>
 				</div>
 				<div class="col-3">
-					<c:if test="${order.status == 'Cần xử lí' }">
+					<c:if test="${order.status == 'Cần xử lý' }">
 						<p>Chờ xác nhận</p>
 					</c:if>
 					<c:if test="${order.status == 'Đã bán' }">
 						<p>Giao hàng thành công</p>
 					</c:if>
-					<c:if test="${order.status != 'Cần xử lí' && 'Đã bán' }">
+					<c:if test="${order.status != 'Cần xử lý' && order.status !='Đã bán' }">
 						<p>${order.status}</p>
 					</c:if>
 				</div>

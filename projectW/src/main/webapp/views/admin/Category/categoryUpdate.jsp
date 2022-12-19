@@ -45,7 +45,9 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="" style="padding: 70px; margin-top: -50px;">
-										<form onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật thông tin loại sản phẩm này?');" method="post" action="categoryUpdate">
+										<form
+											onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật thông tin loại sản phẩm này?');"
+											method="post" action="categoryUpdate">
 											<div class="form-group">
 												<label>Loại sản phẩm</label> <input
 													style="margin-top: 15px;" class="form-control" name="cname"
@@ -54,15 +56,14 @@
 											<button type="submit" class="btn btn-primary"
 												style="width: 100px; margin-top: 20px; padding-right: 7px;">Cập
 												nhật</button>
-											<a href="productList">
-												<button
-													style="float: right;  border: none; text-align: center; margin-top:15px;"
-													class="btn btn-success">
-													<h6>Về lại danh sách</h6>
-												</button>
-											</a>
-
 										</form>
+										<a href="productList">
+											<button
+												style="float: right; border: none; text-align: center; margin-top: 15px;"
+												class="btn btn-success">
+												<h6>Về lại danh sách</h6>
+											</button>
+										</a>
 									</div>
 								</div>
 							</div>

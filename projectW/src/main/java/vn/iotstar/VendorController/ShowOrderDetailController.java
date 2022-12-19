@@ -71,7 +71,7 @@ public class ShowOrderDetailController extends HttpServlet {
 							+ "                                                                            <div class=\"purchase_item--product\">\r\n"
 							+ "                                                                                <div class=\"purchase_item--image\">\r\n"
 							+ "                                                                                    <img src=\"/ProjecltW/image?fname="
-							+ oitem.getProduct().getImage() + "\">\r\n"
+							+ "${pageContext.request.contextPath}/"+oitem.getProduct().getImage() + "\">\r\n"
 							+ "                                                                                </div>\r\n"
 							+ "                                                                                <div class=\"purchase_item--caption\" style=\"font-size: 18px;\">\r\n"
 							+ "                                                                                    <div class=\"purchase_item--name\" style=\"font-size: 18px;\">\r\n"

@@ -274,7 +274,7 @@ public class OrderDAO {
 		return orders;
 	}
 	public void cancelOrder(String oid) {
-		String sql = "Update _Order Set status = 'Đã hủy' where _id = ?"; 
+		String sql = "Update _Order Set status = N'Đã hủy' where _id = ?"; 
 		try {
 			conn = new DBconnect().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
