@@ -78,20 +78,20 @@
 						</p>
 					</div>
 					<div class="col-3">
-						<c:if test="${o.status == 'Cần xử lí' }">
+						<c:if test="${o.status == 'Cần xử lý' }">
 							<p>Chờ xác nhận</p>
 						</c:if>
 						<c:if test="${o.status == 'Đã bán' }">
 							<p>Giao hàng thành công</p>
 						</c:if>
-						<c:if test="${o.status != 'Cần xử lí' && o.status !='Đã bán' }">
+						<c:if test="${o.status != 'Cần xử lý' && o.status !='Đã bán' }">
 							<p>${o.status}</p>
 						</c:if>
 					</div>
 					<div class="col-3">
 						<p>${o.deliveryAt}</p>
 					</div>
-					<c:if test="${o.status == 'Cần xử lí'}">
+					<c:if test="${o.status == 'Cần xử lý'}">
 						<div class="col-1">
 							<form onsubmit="return confirm('Bạn có thực sự muốn hủy đơn hàng?')" action="${pageContext.request.contextPath}/cancelorder" method="post">
 								<input name="orderId" type="hidden" value="${o._id}" } />
@@ -101,7 +101,7 @@
 							</form>
 						</div>
 					</c:if>
-					<c:if test="${o.status != 'Cần xử lí'}">
+					<c:if test="${o.status != 'Cần xử lý'}">
 						<div class="col-1">
 							<form onsubmit="return confirm('Bạn có thực sự muốn hủy đơn hàng?')" action="${pageContext.request.contextPath}/cancelorder" method="post">
 								<input name="orderId" type="hidden" value="${o._id}" } />
