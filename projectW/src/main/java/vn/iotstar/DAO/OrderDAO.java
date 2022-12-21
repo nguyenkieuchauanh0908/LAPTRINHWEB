@@ -319,24 +319,30 @@ public class OrderDAO {
 		return 0;
 	}
 
-	public List<Order> getAllOrderbyPage(int index, int n) {// Trả về list các sản phẩm của trang thứ index
+	public List<Order> getAllOrderbyPage(int index, int n,String orderStatus) {// Trả về list các sản phẩm của trang thứ index
 		index = (index - 1) * n;// Số lượng sản phẩm ở phía trước trang index
 		List<Order> listOrder = new ArrayList<Order>();
 		// khai báo chuỗi truy vấn
-		String sql = "select * from _Order ORDER BY _id DESC OFFSET ? rows fetch next ? rows only"; // Lấy các sản phẩm
-																									// (xếp _id tăng
-																									// dần) của 8 dòng
-																									// tiếp theo
-		try {
-			// mở kết nối
-			conn = new DBconnect().getConnection();
-			// ném câu query qua sql
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, n);
-			// chạy query và nhận kết quả
+		try
+		{
+			if(orderStatus.equals("toàn bộ"))
+			{
+				String sql = "select * from _Order ORDER BY _id DESC OFFSET ? rows fetch next ? rows only"; // Lấy các sản phẩm
+					conn = new DBconnect().getConnection();
+					ps = conn.prepareStatement(sql);
+					ps.setInt(1, index);
+					ps.setInt(2, n);
+			}
+			if(orderStatus.equals("Cần xử lý") || orderStatus.equals("Đang giao hàng")|| orderStatus.equals("Đã hủy")||orderStatus.equals("Đã bán"))
+			{
+				String sql = "select * from _Order where _Order.[status] = ? ORDER BY _id DESC OFFSET ? rows fetch next ? rows only"; // Lấy các sản phẩm
+				conn = new DBconnect().getConnection();
+				ps = conn.prepareStatement(sql);
+				ps.setInt(2, index);
+				ps.setInt(3, n);
+				ps.setString(1, orderStatus);
+			}
 			rs = ps.executeQuery();
-			// lấy ResultSet đổ vào list
 			while (rs.next()) {
 
 				Order order = new Order();
@@ -357,7 +363,8 @@ public class OrderDAO {
 				order.setUpdatedAt(rs.getDate("updatedAT"));
 				listOrder.add(order);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			return null;
 		}
 		return listOrder;
@@ -365,7 +372,7 @@ public class OrderDAO {
 
 	public static void main(String[] args) {
 		OrderDAO dao = new OrderDAO();
-		List<Order> oList = dao.getAllOrderbyPage(1, 5);
+		List<Order> oList = dao.getAllOrderbyPage(1, 5,"toàn bộ");
 		System.out.print(oList.get(1));
 	}
 
