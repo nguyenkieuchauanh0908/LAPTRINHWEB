@@ -123,7 +123,7 @@
 										</c:if>
 										<c:if test="${tag > 1}">
 											<li class="page-item"><a class="page-link"
-												href="${pageContext.request.contextPath}/orderList?index=${tag-1}">Previous</a></li>
+												href="${pageContext.request.contextPath}/orderDeliveryList?index=${tag-1}">Previous</a></li>
 										</c:if>
 										<c:forEach begin="1" end="${CountPa}" var="i">
 											<c:if test="${i==tag}">
@@ -133,7 +133,7 @@
 											</c:if>
 											<c:if test="${i!=tag}">
 												<li class="page-item"><a class="page-link"
-													href="${pageContext.request.contextPath}/orderList?index=${i}">${i}</a></li>
+													href="${pageContext.request.contextPath}/orderDeliveryList?index=${i}">${i}</a></li>
 											</c:if>
 										</c:forEach>
 										<c:if test="${tag == CountPa}">
@@ -142,7 +142,7 @@
 										</c:if>
 										<c:if test="${tag < CountPa}">
 											<li class="page-item"><a class="page-link"
-												href="${pageContext.request.contextPath}/orderList?index=${tag+1}">Next</a></li>
+												href="${pageContext.request.contextPath}/orderDeliveryList?index=${tag+1}">Next</a></li>
 										</c:if>
 									</ul>
 								</nav>

@@ -9,19 +9,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import vn.iotstar.DAO.OrderDAO;
-import vn.iotstar.DAO.UserDAO;
 import vn.iotstar.model.Order;
-import vn.iotstar.model.User;
-@WebServlet(urlPatterns  = "/orderList")
-public class orderListController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+@WebServlet("/orderDeliveryList")
+public class orderDeliveryListController extends HttpServlet {
 	public int n;
-	public String orderStatus;
-    public orderListController() {
+    public orderDeliveryListController() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		n = 5;
 		// thiết lập tiếng việt
 		resp.setContentType("text/html");
@@ -41,18 +41,19 @@ public class orderListController extends HttpServlet {
 		if (countOrder % n != 0) {// nếu chia ra bị lẻ thì ta cộng thêm một trang
 			countPage++;
 		}
-		List<Order> orderList = orderDAO.getAllOrderbyPage(indexpage, n,"toàn bộ");// lấy các user/nhân viên thuộc trang thứ indexPage
+		List<Order> orderList = orderDAO.getAllOrderbyPage(indexpage, n, "Đang giao hàng");// lấy các user/nhân viên thuộc trang thứ indexPage
 																			// cần hiển thị
 		// B3:thiết lập dữ liệu trên jsp
 		req.setAttribute("orderList", orderList);
 		req.setAttribute("CountPa", countPage);
 		req.setAttribute("tag", indexpage);
-		RequestDispatcher rq = req.getRequestDispatcher("views/admin/Order/orderList.jsp");
+		RequestDispatcher rq = req.getRequestDispatcher("views/admin/Order/orderDeliveryList.jsp");
 		rq.forward(req, resp);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

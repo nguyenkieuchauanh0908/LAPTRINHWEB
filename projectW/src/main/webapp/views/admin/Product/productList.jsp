@@ -59,6 +59,7 @@
 								<form action="searchProductAdmin" method="get"
 									style="float: right;">
 									<div class="input-group" style="padding-top: 0px;">
+							
 										<div class="form-outline">
 											<input id="search-focus" type="search" id="form2"
 												class="form-control" placeholder="Tìm kiếm..."
@@ -108,88 +109,106 @@
 								<tbody>
 									<c:forEach items="${producList}" var="product">
 										<tr>
-											<td><div class="py-3"> ${product._id}</div></td>
-											<td> <div class="py-3"> <img class="card-img-top"
-												src="${pageContext.request.contextPath}/${product.image}"
-												width="20" height="20" alt="Card image cap"></div></td>
+											<td><div class="py-3">${product._id}</div></td>
+											<td>
+												<div class="py-3">
+													<img class="card-img-top"
+														src="${pageContext.request.contextPath}/${product.image}"
+														width="20" height="20" alt="Card image cap">
+												</div>
+											</td>
 											<td>
 												<div class="py-3">${product.name}</div>
 											</td>
-											<td> <div class="py-3">${product.price}</div></td>
-											<td> <div class="py-3"> ${product.sold}</div></td>
-											<td class="center"><div class="py-3"><c:choose>
-													<c:when test="${product.categoryId == 1 }">Sách giáo khoa
+											<td>
+												<div class="py-3">${product.price}</div>
+											</td>
+											<td>
+												<div class="py-3">${product.sold}</div>
+											</td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${product.categoryId == 1 }">Sách giáo khoa
 													</c:when>
-													<c:when test="${product.categoryId  == 2 }">Truyện tranh
+														<c:when test="${product.categoryId  == 2 }">Truyện tranh
 													</c:when>
-													<c:when test="${product.categoryId  == 3}">Tiểu thuyết
+														<c:when test="${product.categoryId  == 3}">Tiểu thuyết
 													</c:when>
-													<c:when test="${product.categoryId == 4 }">Sách tham khảo
+														<c:when test="${product.categoryId == 4 }">Sách tham khảo
 													</c:when>
-													<c:when test="${product.categoryId  == 5}">Vở ô ly
+														<c:when test="${product.categoryId  == 5}">Vở ô ly
 													</c:when>
-													<c:when test="${product.categoryId  == 6}">Vở kẻ ngang
+														<c:when test="${product.categoryId  == 6}">Vở kẻ ngang
 													</c:when>
-													<c:when test="${product.categoryId  == 7}">Sổ các loại
+														<c:when test="${product.categoryId  == 7}">Sổ các loại
 													</c:when>
-													<c:when test="${product.categoryId  == 8}">Cặp càng cua
+														<c:when test="${product.categoryId  == 8}">Cặp càng cua
 													</c:when>
-													<c:when test="${product.categoryId  == 9}">Cặp trình ký
+														<c:when test="${product.categoryId  == 9}">Cặp trình ký
 													</c:when>
-													<c:when test="${product.categoryId  == 10}">Giấy in - photo
+														<c:when test="${product.categoryId  == 10}">Giấy in - photo
 													</c:when>
-													<c:when test="${product.categoryId  == 11}">Túi đựng tài liệu
+														<c:when test="${product.categoryId  == 11}">Túi đựng tài liệu
 													</c:when>
-													<c:when test="${product.categoryId  == 12}">Bút bi
+														<c:when test="${product.categoryId  == 12}">Bút bi
 													</c:when>
-													<c:when test="${product.categoryId  == 13}">Bút chì
+														<c:when test="${product.categoryId  == 13}">Bút chì
 													</c:when>
-													<c:when test="${product.categoryId  == 14}">Bút máy
+														<c:when test="${product.categoryId  == 14}">Bút máy
 													</c:when>
-													<c:when test="${product.categoryId  == 15}">Dụng cụ học sinh
+														<c:when test="${product.categoryId  == 15}">Dụng cụ học sinh
 													</c:when>
-													<c:when test="${product.categoryId  == 16}">Ba lô - Túi - Cặp
+														<c:when test="${product.categoryId  == 16}">Ba lô - Túi - Cặp
 													</c:when>
-													<c:when test="${product.categoryId  == 17}">Bảng - Bàn học 
+														<c:when test="${product.categoryId  == 17}">Bảng - Bàn học 
 													</c:when>
-													<c:when test="${product.categoryId  == 18}">Kệ sách, vở 
+														<c:when test="${product.categoryId  == 18}">Kệ sách, vở 
 													</c:when>
-													
-													<c:otherwise>Khác
+
+														<c:otherwise>Khác
 													</c:otherwise>
-												</c:choose></div></td>
-											<td class="center"><div class="py-3"><c:choose>
-													<c:when test="${sessionScope.role == 0}">
-														<!-- Nếu là admin -->
-														<c:if test="${product.quantity > 0}">Còn hàng
+													</c:choose>
+												</div></td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${sessionScope.role == 0}">
+															<!-- Nếu là admin -->
+															<c:if test="${product.quantity > 0}">Còn hàng
 														</c:if>
-														<c:if test="${product.quantity <= 0}">Hết hàng
+															<c:if test="${product.quantity <= 0}">Hết hàng
 														</c:if>
-													</c:when>
-													<c:otherwise>
-														<!-- Nếu là vendor -->
+														</c:when>
+														<c:otherwise>
+															<!-- Nếu là vendor -->
 													${product.quantity}
 													</c:otherwise>
-												</c:choose></div></td>
-											<td class="center"><div class="py-3"><c:choose>
-													<c:when test="${product.isDeleted eq false}">Đang kinh doanh
+													</c:choose>
+												</div></td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${product.isDeleted eq false}">Đang kinh doanh
 													</c:when>
-													<c:otherwise>Ngưng bán
+														<c:otherwise>Ngưng bán
 													</c:otherwise>
-												</c:choose></div></td>
-											<td><div class="py-3"><a href="productUpdate?pid=${product._id}">
-													<button class="btn btn-info">Sửa</button>
-											</a></div></td>
+													</c:choose>
+												</div></td>
+											<td><div class="py-3">
+													<a href="productUpdate?pid=${product._id}">
+														<button class="btn btn-info">Sửa</button>
+													</a>
+												</div></td>
 											<c:if test="${sessionScope.role == 0}">
 												<!-- Nếu là admin thì mới cột xóa sản phẩm -->
-												<td> <div class="py-3">
-													<form
-														onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');"
-														action="${pageContext.request.contextPath}/productDelete"
-														method="post">
-														<input type="hidden" name="pid" value="${product._id}">
-														<button type="submit" class="btn btn-info">Xóa</button>
-													</form></div>
+												<td>
+													<div class="py-3">
+														<form
+															onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');"
+															action="${pageContext.request.contextPath}/productDelete"
+															method="post">
+															<input type="hidden" name="pid" value="${product._id}">
+															<button type="submit" class="btn btn-info">Xóa</button>
+														</form>
+													</div>
 												</td>
 											</c:if>
 
