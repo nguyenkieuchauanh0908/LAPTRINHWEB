@@ -59,6 +59,7 @@
 								<form action="searchProductAdmin" method="get"
 									style="float: right;">
 									<div class="input-group" style="padding-top: 0px;">
+							
 										<div class="form-outline">
 											<input id="search-focus" type="search" id="form2"
 												class="form-control" placeholder="Tìm kiếm..."
@@ -126,6 +127,7 @@
 												<div class="py-3">${product.sold}</div>
 											</td>
 											<td class="center"><div class="py-3">
+<<<<<<< HEAD
 													<c:forEach items="${listcate }" var="c">
 														<c:if test="${product.categoryId == c._id}">
 															<div class="py-3">${c._name}</div>
@@ -133,45 +135,54 @@
 													</c:forEach>
 													<%-- <c:choose>
 													<c:when test="${product.categoryId == 1 }">Sách giáo khoa
+=======
+													<c:choose>
+														<c:when test="${product.categoryId == 1 }">Sách giáo khoa
+>>>>>>> main
 													</c:when>
-													<c:when test="${product.categoryId  == 2 }">Truyện tranh
+														<c:when test="${product.categoryId  == 2 }">Truyện tranh
 													</c:when>
-													<c:when test="${product.categoryId  == 3}">Tiểu thuyết
+														<c:when test="${product.categoryId  == 3}">Tiểu thuyết
 													</c:when>
-													<c:when test="${product.categoryId == 4 }">Sách tham khảo
+														<c:when test="${product.categoryId == 4 }">Sách tham khảo
 													</c:when>
-													<c:when test="${product.categoryId  == 5}">Vở ô ly
+														<c:when test="${product.categoryId  == 5}">Vở ô ly
 													</c:when>
-													<c:when test="${product.categoryId  == 6}">Vở kẻ ngang
+														<c:when test="${product.categoryId  == 6}">Vở kẻ ngang
 													</c:when>
-													<c:when test="${product.categoryId  == 7}">Sổ các loại
+														<c:when test="${product.categoryId  == 7}">Sổ các loại
 													</c:when>
-													<c:when test="${product.categoryId  == 8}">Cặp càng cua
+														<c:when test="${product.categoryId  == 8}">Cặp càng cua
 													</c:when>
-													<c:when test="${product.categoryId  == 9}">Cặp trình ký
+														<c:when test="${product.categoryId  == 9}">Cặp trình ký
 													</c:when>
-													<c:when test="${product.categoryId  == 10}">Giấy in - photo
+														<c:when test="${product.categoryId  == 10}">Giấy in - photo
 													</c:when>
-													<c:when test="${product.categoryId  == 11}">Túi đựng tài liệu
+														<c:when test="${product.categoryId  == 11}">Túi đựng tài liệu
 													</c:when>
-													<c:when test="${product.categoryId  == 12}">Bút bi
+														<c:when test="${product.categoryId  == 12}">Bút bi
 													</c:when>
-													<c:when test="${product.categoryId  == 13}">Bút chì
+														<c:when test="${product.categoryId  == 13}">Bút chì
 													</c:when>
-													<c:when test="${product.categoryId  == 14}">Bút máy
+														<c:when test="${product.categoryId  == 14}">Bút máy
 													</c:when>
-													<c:when test="${product.categoryId  == 15}">Dụng cụ học sinh
+														<c:when test="${product.categoryId  == 15}">Dụng cụ học sinh
 													</c:when>
-													<c:when test="${product.categoryId  == 16}">Ba lô - Túi - Cặp
+														<c:when test="${product.categoryId  == 16}">Ba lô - Túi - Cặp
 													</c:when>
-													<c:when test="${product.categoryId  == 17}">Bảng - Bàn học 
+														<c:when test="${product.categoryId  == 17}">Bảng - Bàn học 
 													</c:when>
-													<c:when test="${product.categoryId  == 18}">Kệ sách, vở 
+														<c:when test="${product.categoryId  == 18}">Kệ sách, vở 
 													</c:when>
-													
-													<c:otherwise>Khác
+
+														<c:otherwise>Khác
 													</c:otherwise>
+<<<<<<< HEAD
 												</c:choose></div> --%></td>
+=======
+													</c:choose>
+												</div></td>
+>>>>>>> main
 											<td class="center"><div class="py-3">
 													<c:choose>
 														<c:when test="${sessionScope.role == 0}">
