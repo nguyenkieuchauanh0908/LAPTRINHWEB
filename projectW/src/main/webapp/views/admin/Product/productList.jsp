@@ -108,16 +108,30 @@
 								<tbody>
 									<c:forEach items="${producList}" var="product">
 										<tr>
-											<td><div class="py-3"> ${product._id}</div></td>
-											<td> <div class="py-3"> <img class="card-img-top"
-												src="${pageContext.request.contextPath}/${product.image}"
-												width="20" height="20" alt="Card image cap"></div></td>
+											<td><div class="py-3">${product._id}</div></td>
+											<td>
+												<div class="py-3">
+													<img class="card-img-top"
+														src="${pageContext.request.contextPath}/${product.image}"
+														width="20" height="20" alt="Card image cap">
+												</div>
+											</td>
 											<td>
 												<div class="py-3">${product.name}</div>
 											</td>
-											<td> <div class="py-3">${product.price}</div></td>
-											<td> <div class="py-3"> ${product.sold}</div></td>
-											<td class="center"><div class="py-3"><c:choose>
+											<td>
+												<div class="py-3">${product.price}</div>
+											</td>
+											<td>
+												<div class="py-3">${product.sold}</div>
+											</td>
+											<td class="center"><div class="py-3">
+													<c:forEach items="${listcate }" var="c">
+														<c:if test="${product.categoryId == c._id}">
+															<div class="py-3">${c._name}</div>
+														</c:if>
+													</c:forEach>
+													<%-- <c:choose>
 													<c:when test="${product.categoryId == 1 }">Sách giáo khoa
 													</c:when>
 													<c:when test="${product.categoryId  == 2 }">Truyện tranh
@@ -157,39 +171,47 @@
 													
 													<c:otherwise>Khác
 													</c:otherwise>
-												</c:choose></div></td>
-											<td class="center"><div class="py-3"><c:choose>
-													<c:when test="${sessionScope.role == 0}">
-														<!-- Nếu là admin -->
-														<c:if test="${product.quantity > 0}">Còn hàng
+												</c:choose></div> --%></td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${sessionScope.role == 0}">
+															<!-- Nếu là admin -->
+															<c:if test="${product.quantity > 0}">Còn hàng
 														</c:if>
-														<c:if test="${product.quantity <= 0}">Hết hàng
+															<c:if test="${product.quantity <= 0}">Hết hàng
 														</c:if>
-													</c:when>
-													<c:otherwise>
-														<!-- Nếu là vendor -->
+														</c:when>
+														<c:otherwise>
+															<!-- Nếu là vendor -->
 													${product.quantity}
 													</c:otherwise>
-												</c:choose></div></td>
-											<td class="center"><div class="py-3"><c:choose>
-													<c:when test="${product.isDeleted eq false}">Đang kinh doanh
+													</c:choose>
+												</div></td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${product.isDeleted eq false}">Đang kinh doanh
 													</c:when>
-													<c:otherwise>Ngưng bán
+														<c:otherwise>Ngưng bán
 													</c:otherwise>
-												</c:choose></div></td>
-											<td><div class="py-3"><a href="productUpdate?pid=${product._id}">
-													<button class="btn btn-info">Sửa</button>
-											</a></div></td>
+													</c:choose>
+												</div></td>
+											<td><div class="py-3">
+													<a href="productUpdate?pid=${product._id}">
+														<button class="btn btn-info">Sửa</button>
+													</a>
+												</div></td>
 											<c:if test="${sessionScope.role == 0}">
 												<!-- Nếu là admin thì mới cột xóa sản phẩm -->
-												<td> <div class="py-3">
-													<form
-														onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');"
-														action="${pageContext.request.contextPath}/productDelete"
-														method="post">
-														<input type="hidden" name="pid" value="${product._id}">
-														<button type="submit" class="btn btn-info">Xóa</button>
-													</form></div>
+												<td>
+													<div class="py-3">
+														<form
+															onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');"
+															action="${pageContext.request.contextPath}/productDelete"
+															method="post">
+															<input type="hidden" name="pid" value="${product._id}">
+															<button type="submit" class="btn btn-info">Xóa</button>
+														</form>
+													</div>
 												</td>
 											</c:if>
 
