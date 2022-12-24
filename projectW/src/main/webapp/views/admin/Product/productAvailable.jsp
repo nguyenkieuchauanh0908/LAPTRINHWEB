@@ -63,20 +63,18 @@
 												<select required id="categoryId" name="categoryId"
 													class="form-select form-control">
 													<c:forEach var="category" items="${listcate}">
-														<option
-															${product.category._id == category._id ? "selected" : ""}
-															value="${category._id}">${category._name}</option>
+														<option value="${category._id}">${category._name}</option>
 													</c:forEach>
 												</select>
 												<button
 													style="float: left; border-radius: 6px; margin-left: 370px; margin-top: -40px; background-color: #228B22; hover: Green; border: none; text-align: center; width: 30%;"
 													class="btn btn-info" type="submit">
-													<h6>Chọn</h6>
+													<h6>Lọc</h6>
 												</button>
 											</div>
-
-										</div>
+										</div>	
 									</form>
+
 								</div>
 								<form action="searchProductAdmin" method="get"
 									style="float: right;">
@@ -99,6 +97,7 @@
 												style="float: right; background-color: #FF6347; border: none; text-align: center; border-radius: 6px;"
 												class="btn btn-info"> Thêm </a>
 										</c:if>
+
 									</div>
 								</form>
 							</div>
@@ -149,18 +148,14 @@
 											<td>
 												<div class="py-3">${product.sold}</div>
 											</td>
-											<td class="center">
-												<div class="py-3">
+											<td class="center"><div class="py-3">
 
 													<c:forEach items="${listcate }" var="c">
 														<c:if test="${product.categoryId == c._id}">
 															<div class="py-3">${c._name}</div>
 														</c:if>
 													</c:forEach>
-												</div>
-											</td>
-
-
+												</div></td>
 											<td class="center"><div class="py-3">
 													<c:choose>
 														<c:when test="${sessionScope.role == 0}">
@@ -217,7 +212,7 @@
 										</c:if>
 										<c:if test="${tag > 1}">
 											<li class="page-item"><a class="page-link"
-												href="${pageContext.request.contextPath}/productList?index=${tag-1}">Previous</a></li>
+												href="${pageContext.request.contextPath}/productAvailable?index=${tag-1}">Previous</a></li>
 										</c:if>
 										<c:forEach begin="1" end="${CountPa}" var="i">
 											<c:if test="${i==tag}">
@@ -227,7 +222,7 @@
 											</c:if>
 											<c:if test="${i!=tag}">
 												<li class="page-item"><a class="page-link"
-													href="${pageContext.request.contextPath}/productList?index=${i}">${i}</a></li>
+													href="${pageContext.request.contextPath}/productAvailable?index=${i}">${i}</a></li>
 											</c:if>
 										</c:forEach>
 										<c:if test="${tag == CountPa}">
@@ -236,7 +231,7 @@
 										</c:if>
 										<c:if test="${tag < CountPa}">
 											<li class="page-item"><a class="page-link"
-												href="${pageContext.request.contextPath}/productList?index=${tag+1}">Next</a></li>
+												href="${pageContext.request.contextPath}/productAvailable?index=${tag+1}">Next</a></li>
 										</c:if>
 									</ul>
 								</nav>
@@ -254,7 +249,6 @@
 											class="btn btn-info"> Hết hàng </a>
 											</div>
 										</div>
-							<div class="clearfix"></div>
 							<div class="clearfix"></div>
 						</div>
 					</div>
