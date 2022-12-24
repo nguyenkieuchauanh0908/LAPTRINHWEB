@@ -2,6 +2,7 @@ package vn.iotstar.AdminController;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,6 +53,7 @@ public class productListController extends HttpServlet {
 		// List<Category> listC = categoryDao.getAll(); //Lấy hết tất cả sản phẩm
 		// B3:thiết lập dữ liệu trên jsp
 		req.setAttribute("producList", producList);
+		req.setAttribute("listcate", listC);
 		req.setAttribute("listcate", listC);
 		req.setAttribute("CountPa", countPage);
 		req.setAttribute("tag", indexpage);

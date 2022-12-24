@@ -150,8 +150,18 @@
 												<div class="py-3">${product.sold}</div>
 											</td>
 											<td class="center"><div class="py-3">
+<<<<<<< HEAD
+													<c:forEach items="${listcate }" var="c">
+														<c:if test="${product.categoryId == c._id}">
+															<div class="py-3">${c._name}</div>
+														</c:if>
+													</c:forEach>
+													<%-- <c:choose>
+													<c:when test="${product.categoryId == 1 }">Sách giáo khoa
+=======
 													<c:choose>
 														<c:when test="${product.categoryId == 1 }">Sách giáo khoa
+>>>>>>> main
 													</c:when>
 														<c:when test="${product.categoryId  == 2 }">Truyện tranh
 													</c:when>
@@ -190,8 +200,12 @@
 
 														<c:otherwise>Khác
 													</c:otherwise>
+<<<<<<< HEAD
+												</c:choose></div> --%></td>
+=======
 													</c:choose>
 												</div></td>
+>>>>>>> main
 											<td class="center"><div class="py-3">
 													<c:choose>
 														<c:when test="${sessionScope.role == 0}">
