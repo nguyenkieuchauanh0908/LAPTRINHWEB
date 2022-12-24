@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import vn.iotstar.DAO.OrderDAO;
 import vn.iotstar.DAO.OrderItemDAO;
@@ -110,15 +111,20 @@ public class ShowOrderDetailController extends HttpServlet {
 				+ "                                                </div>\r\n"
 				+ "                                                \r\n"
 				+ "										<div class=\"modal-footer\">\r\n");
-		if (order.getStatus().equals("Cần xử lý")) {
-			out.println(
-					"<button class=\"btn btn-primary\" onclick=\"location.href='/ProjecltW/vendor/order/confirm?oid="
-							+ order.get_id() + "'\">Xác nhận</button>\r\n");
-			
-		} else if (order.getStatus().equals("Đang giao hàng")) {
-			out.println(
-					"<button class=\"btn btn-primary\" onclick=\"location.href='/ProjecltW/vendor/order/confirm?oid="
-							+ order.get_id() + "'\">Hoàn thành đơn hàng </button>\r\n");
+		HttpSession session = req.getSession(false);
+		Integer role = Integer.parseInt((String) session.getAttribute("role"));
+		if (role == 2)
+		{
+			if (order.getStatus().equals("Cần xử lý")) {
+				out.println(
+						"<button class=\"btn btn-primary\" onclick=\"location.href='/ProjecltW/vendor/order/confirm?oid="
+								+ order.get_id() + "'\">Xác nhận</button>\r\n");
+				
+			} else if (order.getStatus().equals("Đang giao hàng")) {
+				out.println(
+						"<button class=\"btn btn-primary\" onclick=\"location.href='/ProjecltW/vendor/order/confirm?oid="
+								+ order.get_id() + "'\">Hoàn thành đơn hàng </button>\r\n");
+			}
 		}
 		out.println(
 				"											<a class=\"btn btn-danger closed-dongs\" data-dismiss=\"modal\"\r\n"
@@ -128,6 +134,7 @@ public class ShowOrderDetailController extends HttpServlet {
 						+ "                                                        </div>\r\n"
 						+ "                                                    </div>\r\n"
 						+ "                                                </div>\r\n");
+
 
 	}
 

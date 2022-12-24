@@ -56,10 +56,33 @@
 							</div>
 							<div></div>
 							<div>
+								<div style="margin-right: 10px; color: black;">
+									<form method="post" action="ProByCate">
+										<div class="form-group" style="margin-top: 15px;">
+											<div class="col-sm-10" style="width: 30%">
+												<select required id="categoryId" name="categoryId"
+													class="form-select form-control">
+													<c:forEach var="category" items="${listcate}">
+														<option
+																${product.category._id == category._id ? "selected" : ""}
+																value="${category._id}">${category._name}</option>
+													</c:forEach>
+												</select>
+												<button
+													style="float: left; border-radius: 6px; margin-left: 370px; margin-top:-40px;background-color: #228B22; hover: Green; border: none; text-align: center;width:30%;"
+													class="btn btn-info" type="submit">
+													<h6>Chọn</h6>
+												</button>
+											</div>
+
+										</div>
+									</form>
+								</div>
 								<form action="searchProductAdmin" method="get"
 									style="float: right;">
+
 									<div class="input-group" style="padding-top: 0px;">
-							
+
 										<div class="form-outline">
 											<input id="search-focus" type="search" id="form2"
 												class="form-control" placeholder="Tìm kiếm..."

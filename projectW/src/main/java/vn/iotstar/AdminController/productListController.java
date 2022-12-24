@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import vn.iotstar.DAO.CategoryDAO;
 import vn.iotstar.DAO.ProductDAO;
+import vn.iotstar.model.Category;
 import vn.iotstar.model.Product;
 
 @WebServlet(urlPatterns = "/productList")
@@ -35,6 +38,7 @@ public class productListController extends HttpServlet {
 		int indexpage = Integer.parseInt(index); // trang thứ index
 		// B1:khỏi tạo DAO
 		ProductDAO productDao = new ProductDAO();
+		CategoryDAO categoryDao = new CategoryDAO();
 		//CategoryDAO categoryDao = new CategoryDAO();
 		// B2:sử dụng đối tượng list để chứa danh sách từ ProductDAO
 		int countPro = productDao.countAllPro(); // số dòng
@@ -44,10 +48,11 @@ public class productListController extends HttpServlet {
 		}
 		List<Product> producList = productDao.getAllProbyPage(indexpage,n); // lấy các sản phẩm thuộc trang thứ indexPage
 																			// cần hiển thị
+		List<Category> listC = categoryDao.getAll();
 		// List<Category> listC = categoryDao.getAll(); //Lấy hết tất cả sản phẩm
 		// B3:thiết lập dữ liệu trên jsp
 		req.setAttribute("producList", producList);
-		// req.setAttribute("listcate", listC);
+		req.setAttribute("listcate", listC);
 		req.setAttribute("CountPa", countPage);
 		req.setAttribute("tag", indexpage);
 		RequestDispatcher rq = req.getRequestDispatcher("views/admin/Product/productList.jsp");
