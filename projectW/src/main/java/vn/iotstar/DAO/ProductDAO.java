@@ -339,7 +339,57 @@ public class ProductDAO {
 		}
 		return list;
 	}
-	public List<Product> getAllProbyPagebyCate(int index, String cateId,int n){//Lấy sản phẩm id loại sp, n là số dòng muốn lấy, trang thứ index
+	public List<Product> getAllAvailableProbyPage(int index,int n){//Trả về list các sản phẩm còn hàng của trang thứ index
+		index=(index-1)*n;//Số lượng sản phẩm ở phía trước trang index
+		List<Product> list = new ArrayList<Product>();
+		// khai báo chuỗi truy vấn
+		String sql = "select * from Product where quantity>0 ORDER BY _id ASC OFFSET ? rows fetch next ? rows only"; //Lấy các sản phẩm (xếp _id tăng dần) của 8 dòng tiếp theo
+		try {
+			// mở kết nối
+			conn = new DBconnect().getConnection();
+			// ném câu query qua sql
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1,index);
+			ps.setInt(2, n);
+			// chạy query và nhận kết quả
+			rs = ps.executeQuery();
+			// lấy ResultSet đổ vào list
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getBoolean(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		return list;
+	}
+	public List<Product> getAllNotAvailableProbyPage(int index,int n){//Trả về list các sản phẩm còn hàng của trang thứ index
+		index=(index-1)*n;//Số lượng sản phẩm ở phía trước trang index
+		List<Product> list = new ArrayList<Product>();
+		// khai báo chuỗi truy vấn
+		String sql = "select * from Product where quantity<=0 ORDER BY _id ASC OFFSET ? rows fetch next ? rows only"; //Lấy các sản phẩm (xếp _id tăng dần) của 8 dòng tiếp theo
+		try {
+			// mở kết nối
+			conn = new DBconnect().getConnection();
+			// ném câu query qua sql
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1,index);
+			ps.setInt(2, n);
+			// chạy query và nhận kết quả
+			rs = ps.executeQuery();
+			// lấy ResultSet đổ vào list
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5),
+						rs.getFloat(6), rs.getInt(7), rs.getInt(8), rs.getByte(9), rs.getByte(10),rs.getString(11), rs.getInt(12),
+						rs.getInt(13), rs.getBoolean(14), rs.getInt(15), rs.getDate(16), rs.getDate(17)));
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		return list;
+	}
+	public List<Product> getAllProbyPagebyCate(int index, String cateId,int n){//Lấy sản phẩm theo id loại sp, n là số dòng muốn lấy, trang thứ index
 		index=(index-1)*n;
 		List<Product> list = new ArrayList<Product>();
 		// khai báo chuỗi truy vấn

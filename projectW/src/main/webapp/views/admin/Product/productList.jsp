@@ -56,10 +56,33 @@
 							</div>
 							<div></div>
 							<div>
+								<div style="margin-right: 10px; color: black;">
+									<form method="post" action="ProByCate">
+										<div class="form-group" style="margin-top: 15px;">
+											<div class="col-sm-10" style="width: 30%">
+												<select required id="categoryId" name="categoryId"
+													class="form-select form-control">
+													<c:forEach var="category" items="${listcate}">
+														<option
+															${product.category._id == category._id ? "selected" : ""}
+															value="${category._id}">${category._name}</option>
+													</c:forEach>
+												</select>
+												<button
+													style="float: left; border-radius: 6px; margin-left: 370px; margin-top: -40px; background-color: #228B22; hover: Green; border: none; text-align: center; width: 30%;"
+													class="btn btn-info" type="submit">
+													<h6>Chọn</h6>
+												</button>
+											</div>
+
+										</div>
+									</form>
+								</div>
 								<form action="searchProductAdmin" method="get"
 									style="float: right;">
+
 									<div class="input-group" style="padding-top: 0px;">
-							
+
 										<div class="form-outline">
 											<input id="search-focus" type="search" id="form2"
 												class="form-control" placeholder="Tìm kiếm..."
@@ -126,63 +149,18 @@
 											<td>
 												<div class="py-3">${product.sold}</div>
 											</td>
-											<td class="center"><div class="py-3">
-<<<<<<< HEAD
+											<td class="center">
+												<div class="py-3">
+
 													<c:forEach items="${listcate }" var="c">
 														<c:if test="${product.categoryId == c._id}">
 															<div class="py-3">${c._name}</div>
 														</c:if>
 													</c:forEach>
-													<%-- <c:choose>
-													<c:when test="${product.categoryId == 1 }">Sách giáo khoa
-=======
-													<c:choose>
-														<c:when test="${product.categoryId == 1 }">Sách giáo khoa
->>>>>>> main
-													</c:when>
-														<c:when test="${product.categoryId  == 2 }">Truyện tranh
-													</c:when>
-														<c:when test="${product.categoryId  == 3}">Tiểu thuyết
-													</c:when>
-														<c:when test="${product.categoryId == 4 }">Sách tham khảo
-													</c:when>
-														<c:when test="${product.categoryId  == 5}">Vở ô ly
-													</c:when>
-														<c:when test="${product.categoryId  == 6}">Vở kẻ ngang
-													</c:when>
-														<c:when test="${product.categoryId  == 7}">Sổ các loại
-													</c:when>
-														<c:when test="${product.categoryId  == 8}">Cặp càng cua
-													</c:when>
-														<c:when test="${product.categoryId  == 9}">Cặp trình ký
-													</c:when>
-														<c:when test="${product.categoryId  == 10}">Giấy in - photo
-													</c:when>
-														<c:when test="${product.categoryId  == 11}">Túi đựng tài liệu
-													</c:when>
-														<c:when test="${product.categoryId  == 12}">Bút bi
-													</c:when>
-														<c:when test="${product.categoryId  == 13}">Bút chì
-													</c:when>
-														<c:when test="${product.categoryId  == 14}">Bút máy
-													</c:when>
-														<c:when test="${product.categoryId  == 15}">Dụng cụ học sinh
-													</c:when>
-														<c:when test="${product.categoryId  == 16}">Ba lô - Túi - Cặp
-													</c:when>
-														<c:when test="${product.categoryId  == 17}">Bảng - Bàn học 
-													</c:when>
-														<c:when test="${product.categoryId  == 18}">Kệ sách, vở 
-													</c:when>
+												</div>
+											</td>
 
-														<c:otherwise>Khác
-													</c:otherwise>
-<<<<<<< HEAD
-												</c:choose></div> --%></td>
-=======
-													</c:choose>
-												</div></td>
->>>>>>> main
+
 											<td class="center"><div class="py-3">
 													<c:choose>
 														<c:when test="${sessionScope.role == 0}">
@@ -263,6 +241,20 @@
 									</ul>
 								</nav>
 							</div>
+							<div style="margin-top: 10px;">
+											<div class="col-sm-10" style="width: 30%;margin-top:-52px;float:right">
+												<a href="productList"
+											style="float: right; background-color: forestgreen; border: none; text-align: center; border-radius: 6px;margin-right:5px;"
+											class="btn btn-info"> Toàn bộ sản phẩm </a> <a
+											href="productAvailable"
+											style="float: right; background-color: forestgreen; border: none; text-align: center; border-radius: 6px;margin-right:5px;"
+											class="btn btn-info"> Còn hàng </a> <a
+											href="productNotAvailable"
+											style="float: right; background-color: forestgreen; border: none; text-align: center; border-radius: 6px;margin-right:5px;"
+											class="btn btn-info"> Hết hàng </a>
+											</div>
+										</div>
+							<div class="clearfix"></div>
 							<div class="clearfix"></div>
 						</div>
 					</div>

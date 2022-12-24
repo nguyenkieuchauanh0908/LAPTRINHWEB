@@ -1,0 +1,263 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+	rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+	rel='stylesheet'>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.0.6/bundle.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	type="text/javascript"></script>
+<link rel="stylesheet" href="./Builder/css/main.css">
+<link rel="stylesheet" href="./Builder/css/purchase.css">
+</head>
+<body>
+	<div class="container-fluid" id="content">
+		<div class="row min-vh-100 flex-column flex-md-row">
+			<c:choose>
+				<c:when test="${sessionScope.role == 0}">
+					<!-- Nếu là admin -->
+					<!-- menu bar -->
+					<%@ include file="/views/admin/menuAdmin.jsp"%>
+					<!-- end menu bar -->
+				</c:when>
+				<c:otherwise>
+					<!-- menu bar -->
+					<%@ include file="/views/vendor/vendor_left.jsp"%>
+					<!-- end menu bar -->
+				</c:otherwise>
+			</c:choose>
+			<div class="container-fluid col-12 col-md-9 col-xl-10">
+				<section id="table">
+					<div class="container">
+						<div class="table-wrapper">
+							<div class="table-title">
+								<div class="row">
+									<div class="col-sm-6">
+										<h2 style="margin-top: 30px;">
+											<b>Quản lý sản phẩm</b>
+										</h2>
+									</div>
+								</div>
+							</div>
+							<div></div>
+							<div>
+								<div style="margin-right: 10px; color: black;">
+									<form method="post" action="ProByCate">
+										<div class="form-group" style="margin-top: 15px;">
+											<div class="col-sm-10" style="width: 30%">
+												<select required id="categoryId" name="categoryId"
+													class="form-select form-control">
+													<c:forEach var="category" items="${listcate}">
+														<option value="${category._id}">${category._name}</option>
+													</c:forEach>
+												</select>
+												<button
+													style="float: left; border-radius: 6px; margin-left: 370px; margin-top: -40px; background-color: #228B22; hover: Green; border: none; text-align: center; width: 30%;"
+													class="btn btn-info" type="submit">
+													<h6>Lọc</h6>
+												</button>
+											</div>
+										</div>	
+									</form>
+
+								</div>
+								<form action="searchProductAdmin" method="get"
+									style="float: right;">
+
+									<div class="input-group" style="padding-top: 0px;">
+
+										<div class="form-outline">
+											<input id="search-focus" type="search" id="form2"
+												class="form-control" placeholder="Tìm kiếm..."
+												name="keyword" value="${key}" />
+										</div>
+										<button
+											style="float: right; border-radius: 6px; margin-right: 10px; margin-left: 10px; background-color: #228B22; hover: Green; border: none; text-align: center;"
+											class="btn btn-info" type="submit">
+											<h6>Tìm kiếm</h6>
+										</button>
+										<c:if test="${sessionScope.role == 0}">
+											<!-- Nếu là admin thì mới cho thêm sản phẩm -->
+											<a href="productAdd"
+												style="float: right; background-color: #FF6347; border: none; text-align: center; border-radius: 6px;"
+												class="btn btn-info"> Thêm </a>
+										</c:if>
+
+									</div>
+								</form>
+							</div>
+							<table class="table table-striped table-hover" style="top: 20px;">
+								<thead>
+									<tr>
+										<th style="width: 100px;">Mã SP</th>
+										<th style="width: 20px">Hình</th>
+										<th style="width: 200px">Tên sản phẩm</th>
+										<th style="width: 200px">Gía bán</th>
+										<th style="width: 200px">Đã bán</th>
+										<th style="width: 300px">Loại sản phẩm</th>
+										<th style="width: 300px"><c:choose>
+												<c:when test="${sessionScope.role == 0}">
+													<!-- Nếu là admin -->
+													Trạng thái SP
+												</c:when>
+												<c:when test="${sessionScope.role == 2}">
+													<!-- Nếu là vendor -->
+													Số lượng
+												</c:when>
+											</c:choose></th>
+										<th style="width: 400px">Trạng thái kinh doanh</th>
+										<th>Sửa</th>
+										<c:if test="${sessionScope.role == 0}">
+											<!-- Nếu là admin thì mới cột xóa sản phẩm -->
+											<th>Xóa</th>
+										</c:if>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${listpro}" var="product">
+										<tr>
+											<td><div class="py-3">${product._id}</div></td>
+											<td>
+												<div class="py-3">
+													<img class="card-img-top"
+														src="${pageContext.request.contextPath}/${product.image}"
+														width="20" height="20" alt="Card image cap">
+												</div>
+											</td>
+											<td>
+												<div class="py-3">${product.name}</div>
+											</td>
+											<td>
+												<div class="py-3">${product.price}</div>
+											</td>
+											<td>
+												<div class="py-3">${product.sold}</div>
+											</td>
+											<td class="center"><div class="py-3">
+
+													<c:forEach items="${listcate }" var="c">
+														<c:if test="${product.categoryId == c._id}">
+															<div class="py-3">${c._name}</div>
+														</c:if>
+													</c:forEach>
+												</div></td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${sessionScope.role == 0}">
+															<!-- Nếu là admin -->
+															<c:if test="${product.quantity > 0}">Còn hàng
+														</c:if>
+															<c:if test="${product.quantity <= 0}">Hết hàng
+														</c:if>
+														</c:when>
+														<c:otherwise>
+															<!-- Nếu là vendor -->
+													${product.quantity}
+													</c:otherwise>
+													</c:choose>
+												</div></td>
+											<td class="center"><div class="py-3">
+													<c:choose>
+														<c:when test="${product.isDeleted eq false}">Đang kinh doanh
+													</c:when>
+														<c:otherwise>Ngưng bán
+													</c:otherwise>
+													</c:choose>
+												</div></td>
+											<td><div class="py-3">
+													<a href="productUpdate?pid=${product._id}">
+														<button class="btn btn-info">Sửa</button>
+													</a>
+												</div></td>
+											<c:if test="${sessionScope.role == 0}">
+												<!-- Nếu là admin thì mới cột xóa sản phẩm -->
+												<td>
+													<div class="py-3">
+														<form
+															onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');"
+															action="${pageContext.request.contextPath}/productDelete"
+															method="post">
+															<input type="hidden" name="pid" value="${product._id}">
+															<button type="submit" class="btn btn-info">Xóa</button>
+														</form>
+													</div>
+												</td>
+											</c:if>
+
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div class="col-12">
+								<nav aria-label="...">
+									<ul class="pagination">
+										<c:if test="${tag == 1}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#" tabindex="-1">Previous</a></li>
+										</c:if>
+										<c:if test="${tag > 1}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/ProByCate?index=${tag-1}">Previous</a></li>
+										</c:if>
+										<c:forEach begin="1" end="${CountPa}" var="i">
+											<c:if test="${i==tag}">
+												<li class="page-item active"><a class="page-link"
+													href="#">${i} <span class="sr-only">(current)</span>
+												</a></li>
+											</c:if>
+											<c:if test="${i!=tag}">
+												<li class="page-item"><a class="page-link"
+													href="${pageContext.request.contextPath}/ProByCate?index=${i}">${i}</a></li>
+											</c:if>
+										</c:forEach>
+										<c:if test="${tag == CountPa}">
+											<li class="page-item disabled"><a class="page-link"
+												href="#">Next</a></li>
+										</c:if>
+										<c:if test="${tag < CountPa}">
+											<li class="page-item"><a class="page-link"
+												href="${pageContext.request.contextPath}/ProByCate?index=${tag+1}">Next</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
+							<div style="margin-top: 10px;">
+								<div class="col-sm-10"
+									style="width: 30%; margin-top: -52px; float: right">
+									<a href="productList"
+										style="float: right; background-color: forestgreen; border: none; text-align: center; border-radius: 6px; margin-right: 5px;"
+										class="btn btn-info"> Toàn bộ sản phẩm </a> <a
+										href="productAvailable"
+										style="float: right; background-color: forestgreen; border: none; text-align: center; border-radius: 6px; margin-right: 5px;"
+										class="btn btn-info"> Còn hàng </a> <a
+										href="productNotAvailable"
+										style="float: right; background-color: forestgreen; border: none; text-align: center; border-radius: 6px; margin-right: 5px;"
+										class="btn btn-info"> Hết hàng </a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="./Builder/js/vendor.js" type="text/javascript"></script>
+</body>
