@@ -35,6 +35,7 @@ public class LoginController extends HttpServlet {
 			return;
 		} else {
 			// The CSRF token is valid.
+			
 			try {
 				String email = req.getParameter("email");
 				String password = req.getParameter("password");
