@@ -86,8 +86,8 @@ span.psw {
 					type="email" placeholder="Nhập email" name="email" required>
 				<label for="psw"><strong>Mật khẩu</strong></label> <input
 					type="password" placeholder="Nhập password" name="password"
-					required>
-					<input type="hidden" name="csrfToken" value="${csrfToken}" />
+					required> <input type="hidden" name="csrfToken"
+					value="${csrfToken}" />
 				<div class="text-${messageType }">${message}</div>
 			</div>
 
@@ -97,10 +97,8 @@ span.psw {
 					href="registration"> Chưa có tài khoản</a></span> <span class="psw"><a
 					href="forgetPassword"> Quên mật khẩu</a></span>
 			</div>
-			
+		</div>
 
-			</div>
-	
 	</form>
 </body>
 </html>

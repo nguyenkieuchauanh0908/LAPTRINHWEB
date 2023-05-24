@@ -2,7 +2,10 @@ package vn.iotstar.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
@@ -21,6 +24,7 @@ import vn.iotstar.model.User;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String CSRF_TOKEN_NAME = "csrfToken";
+	private static final String SECRET_KEY = UUID.randomUUID().toString();
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
@@ -35,7 +39,6 @@ public class LoginController extends HttpServlet {
 			return;
 		} else {
 			// The CSRF token is valid.
-			
 			try {
 				String email = req.getParameter("email");
 				String password = req.getParameter("password");
@@ -52,7 +55,7 @@ public class LoginController extends HttpServlet {
 				{
 					// cách gọi session ở servlet Controller khác: Ex:
 					// request.getSession().getAttribute("listaProdutos");
-					session.setAttribute("uEmail", email); // Cách gọi session ở trang jsp: ${sessionScope.uPass}
+					session.setAttribute("uEmail", email); // Cách gọi session ở trang jsp: ${sessionScope.csrfToken}
 					session.setAttribute("uId", a.get_id());
 					session.setAttribute("uFirstname", a.getFirstname());
 					session.setAttribute("uLastname", a.getLastname());
@@ -77,11 +80,29 @@ public class LoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Create a random string to use as the CSRF token.
-		String csrfToken = UUID.randomUUID().toString();
+		String csrfToken = generateCsrfToken();
         // Store the CSRF token in the session.
         request.getSession().setAttribute(CSRF_TOKEN_NAME, csrfToken);
         RequestDispatcher rq = request.getRequestDispatcher("/views/shared/login.jsp");
 		rq.forward(request, response);
 	}
+	 private String generateCsrfToken() {
+	        long timestamp = System.currentTimeMillis();
 
+	        // Combine timestamp and secret key
+	        String data = timestamp + SECRET_KEY;
+
+	        try {
+	            // Generate a SHA-256 hash of the data
+	            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+	            byte[] hash = digest.digest(data.getBytes());
+
+	            // Encode the hash as a Base64 string
+	            return Base64.getUrlEncoder().withoutPadding().encodeToString(hash);
+	        } catch (NoSuchAlgorithmException e) {
+	            e.printStackTrace();
+	        }
+
+	        return null;
+	    }
 }
