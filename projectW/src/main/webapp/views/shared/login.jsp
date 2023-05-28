@@ -86,8 +86,9 @@ span.psw {
 					type="email" placeholder="Nhập email" name="email" required>
 				<label for="psw"><strong>Mật khẩu</strong></label> <input
 					type="password" placeholder="Nhập password" name="password"
-					required>
-				<div class="text-${messageType }">${message }</div>
+					required> <input type="hidden" name="csrfToken"
+					value="${csrfToken}" />
+				<div class="text-${messageType }">${message}</div>
 			</div>
 
 			<button type="submit">Đăng nhập</button>
@@ -97,6 +98,7 @@ span.psw {
 					href="forgetPassword"> Quên mật khẩu</a></span>
 			</div>
 		</div>
+
 	</form>
 </body>
 </html>

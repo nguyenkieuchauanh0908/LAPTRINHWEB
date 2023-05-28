@@ -186,13 +186,14 @@
 						</c:forEach>
 					</div>
 					<hr>
+					
 					<c:if test="${sessionScope.uId != null}">
 						<div class="col-md-12">
 							<form accept-charset="UTF-8" action="productDetail" method="post">
 								<input hidden name="pid" value="${getPro._id }">
-								<textarea class="form-control animated" cols="50"
+								<input class="form-control animated" cols="50"
 									id="new-review" name="comment"
-									placeholder="Nhập đánh giá của bạn..." rows="5"></textarea>
+									placeholder="Nhập đánh giá của bạn..." rows="5"></input>
 								<div class="rating">
 
 									<input type="radio" name="rating" value="5" id="5"><label
@@ -202,6 +203,7 @@
 									<input type="radio" name="rating" value="2" id="2"><label
 										for="2">☆</label> <input type="radio" name="rating" value="1"
 										id="1"><label for="1">☆</label>
+									
 								</div>
 								<div class="text-right">
 
