@@ -87,7 +87,7 @@ span.psw {
 				<label for="psw"><strong>Mật khẩu</strong></label> <input
 					type="password" placeholder="Nhập password" name="password"
 					required> <input type="hidden" name="csrfToken"
-					value="${csrfToken}" />
+					value="${sessionScope.csrfToken}" />
 				<div class="text-${messageType }">${message}</div>
 			</div>
 
